@@ -5,21 +5,11 @@ import {
   FlatList,
   Text,
   StatusBar,
-  ScrollView,
   SafeAreaView,
 } from 'react-native';
 import Header from '../components/Header';
-import IncompletedGauge from '../components/charts/IncompletedGauge';
 import ListItemSeparator from '../components/ListItemSeparator';
 import ChartDetailsCard from '../components/cards/ChartDetailsCard';
-import BezierLineChart from '../components/charts/BezierLineChart';
-import colors from '../config/colors';
-import CircleGauge from '../components/charts/CircleGauge';
-import SimpleLineChart from '../components/charts/SimpleLineChart';
-import ProgressRing from '../components/charts/ProgressRing';
-import StackedBarsChart from '../components/charts/StackedBarsChart';
-import SimplePieCharts from '../components/charts/SimplePieCharts';
-import MultiBarChart from '../components/charts/MultiBarChart';
 import dataDetails from '../mockData/dataDetails';
 import Icon from '../components/Icon';
 
@@ -30,6 +20,7 @@ function IconsDetailsScreen({ navigation, route }) {
     setRefreshing(true);
     setTimeout(() => setRefreshing(false), 3000);
   };
+
   const item = route.params.item;
 
   return (

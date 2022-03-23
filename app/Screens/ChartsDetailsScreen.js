@@ -5,7 +5,6 @@ import {
   FlatList,
   Text,
   StatusBar,
-  ScrollView,
   SafeAreaView,
 } from 'react-native';
 import Header from '../components/Header';

@@ -26,7 +26,6 @@ import iconsData from '../mockData/iconsData';
 import secondCardData from '../mockData/secondCardData';
 import bigChartsData from '../mockData/bigChartsData';
 import thirdCardData from '../mockData/thirdCardData';
-import MultiBarChart from '../components/charts/MultiBarChart';
 
 function HomeScreen({ navigation }) {
   return (

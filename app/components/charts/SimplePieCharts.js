@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
 
-import { LineChart, PieChart } from 'react-native-chart-kit';
+import { PieChart } from 'react-native-chart-kit';
 
 let screenWidth = Dimensions.get('window').width;
 let screenHeigth = Dimensions.get('window').height;
@@ -66,9 +66,7 @@ export default function SimplePieCharts({ names, values, colors, size }) {
         height={size == 'small' ? screenHeigth * 0.2 : screenHeigth * 0.3}
         chartConfig={chartConfig}
         accessor={'population'}
-        // backgroundColor={'transparent'}
         paddingLeft={size == 'small' ? '50' : '20'}
-        // center={[10, 50]}
         absolute={false}
         hasLegend={size == 'small' ? false : true}
       />

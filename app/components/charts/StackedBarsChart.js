@@ -1,13 +1,6 @@
-import { StyleSheet, Text, View, Dimensions, ScrollView } from 'react-native';
+import { StyleSheet, View, Dimensions, ScrollView } from 'react-native';
 
-import {
-  LineChart,
-  BarChart,
-  PieChart,
-  ProgressChart,
-  ContributionGraph,
-  StackedBarChart,
-} from 'react-native-chart-kit';
+import { StackedBarChart } from 'react-native-chart-kit';
 
 let screenWidth = Dimensions.get('window').width;
 let screenHeigth = Dimensions.get('window').height;

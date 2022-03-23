@@ -1,7 +1,6 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 
-import { BarChart, Grid, XAxis, YAxis } from 'react-native-svg-charts';
+import { BarChart, Grid, XAxis } from 'react-native-svg-charts';
 import { Dimensions } from 'react-native';
 
 let d = Dimensions.get('window').width;
@@ -11,10 +10,6 @@ export default function MultiBarChart({ size, values, color }) {
   const data1 = values.map((value) => ({
     value,
   }));
-
-  // const date1 = [1577940356000, 1577508356000, 1577594756000].map((value) => ({
-  //   value,
-  // }));
 
   const barData = [
     {
