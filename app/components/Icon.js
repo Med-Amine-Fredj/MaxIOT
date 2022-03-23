@@ -1,16 +1,16 @@
 import React from 'react';
 import { AntDesign } from '@expo/vector-icons';
 
-function Icon({ iconName, iconColor, iconBackgroundColor }) {
+function Icon({ iconName, iconColor, iconBackgroundColor, size }) {
   return (
     <>
       <AntDesign
         name={iconName}
-        size={28}
+        size={size == 'large' ? 35 : 28}
         color={iconColor}
         style={{
           backgroundColor: iconBackgroundColor,
-          borderRadius: 30,
+          borderRadius: size == 'large' ? 50 : 30,
           padding: iconBackgroundColor ? 11 : 0,
         }}
       />

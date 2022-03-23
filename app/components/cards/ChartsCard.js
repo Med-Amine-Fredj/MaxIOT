@@ -12,7 +12,6 @@ import BezierLineChart from '../charts/BezierLineChart';
 import CircleGauge from '../charts/CircleGauge';
 import SimpleLineChart from '../charts/SimpleLineChart';
 import ProgressRing from '../charts/ProgressRing';
-import { PieChart } from 'react-native-chart-kit';
 import SimplePieCharts from '../charts/SimplePieCharts';
 
 let d = Dimensions.get('window').width;

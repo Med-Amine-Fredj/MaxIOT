@@ -20,7 +20,6 @@ export default function gouge({ value, size }) {
         backgroundWidth={size > 200 ? 7 : 2}
         tintColor={value < 30 ? '#F60707' : '#00BFBF'}
         tintTransparency={false}
-        // onAnimationComplete={() => console.log('Animation Completed')}
         backgroundColor="#E6E6E6"
         arcSweepAngle={240}
         rotation={242}

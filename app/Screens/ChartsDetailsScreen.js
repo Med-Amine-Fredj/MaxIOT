@@ -20,8 +20,9 @@ import ProgressRing from '../components/charts/ProgressRing';
 import StackedBarsChart from '../components/charts/StackedBarsChart';
 import SimplePieCharts from '../components/charts/SimplePieCharts';
 import MultiBarChart from '../components/charts/MultiBarChart';
+import dataDetails from '../mockData/dataDetails';
 
-function IncompletedGaugeDetails({ navigation, route }) {
+function ChartsDetailsScreen({ navigation, route }) {
   const [refreshing, setRefreshing] = useState(false);
 
   const onRefresh = () => {
@@ -29,93 +30,7 @@ function IncompletedGaugeDetails({ navigation, route }) {
     setTimeout(() => setRefreshing(false), 3000);
   };
   const item = route.params.item;
-  const data = [
-    {
-      id: '1234',
-      PO: 'PERF444',
-      Description: 'PERF454',
-      type: 'STD',
-      orderedDate: '11/13/2021 11:56 AM',
-    },
-    {
-      id: '3414',
-      PO: 'PERF444',
-      Description: 'PERF454',
-      type: 'STD',
-      orderedDate: '11/13/2021 11:56 AM',
-      test: 'test',
-    },
-    {
-      id: '22',
-      PO: 'PERF444',
-      Description: 'PERF454',
-      type: 'STD',
-      orderedDate: '11/13/2021 11:56 AM',
-    },
-    {
-      id: '12',
-      PO: 'PERF444',
-      Description: 'PERF454',
-      type: 'STD',
-      orderedDate: '11/13/2021 11:56 AM',
-    },
-    {
-      id: '122',
-      PO: 'PERF444',
-      Description: 'PERF454',
-      type: 'STD',
-      orderedDate: '11/13/2021 11:56 AM',
-    },
-    {
-      id: '12112',
-      PO: 'PERF444',
-      Description: 'PERF454',
-      type: 'STD',
-      orderedDate: '11/13/2021 11:56 AM',
-    },
-    {
-      id: '121112',
-      PO: 'PERF444',
-      Description: 'PERF454',
-      type: 'STD',
-      orderedDate: '11/13/2021 11:56 AM',
-    },
-    {
-      id: '1211a12',
-      PO: 'PERF444',
-      Description: 'PERF454',
-      type: 'STD',
-      orderedDate: '11/13/2021 11:56 AM',
-    },
-    {
-      id: '121aza1a12',
-      PO: 'PERF444',
-      Description: 'PERF454',
-      type: 'STD',
-      orderedDate: '11/13/2021 11:56 AM',
-    },
-    {
-      id: '1211azaeaz12',
-      PO: 'PERF444',
-      Description: 'PERF454',
-      type: 'STD',
-      orderedDate: '11/13/2021 11:56 AM',
-    },
-    {
-      id: '1211azezaa12',
-      PO: 'PERF444',
-      Description: 'PERF454',
-      type: 'STD',
-      orderedDate: '11/13/2021 11:56 AM',
-    },
-    {
-      id: '1211azaeazaa12',
-      PO: 'PERF444',
-      Description: 'PERF454',
-      type: 'STD',
-      orderedDate: '11/13/2021 11:56 AM',
-    },
-  ];
+
   return (
     <>
       <StatusBar backgroundColor="#6E53A2" />
@@ -210,8 +125,8 @@ function IncompletedGaugeDetails({ navigation, route }) {
           <FlatList
             showsVerticalScrollIndicator={false}
             showsHorizontalScrollIndicator={false}
-            data={data}
-            keyExtractor={(item) => item.id}
+            data={dataDetails}
+            keyExtractor={(item) => item._id}
             ItemSeparatorComponent={ListItemSeparator}
             refreshing={refreshing}
             onRefresh={onRefresh}
@@ -223,6 +138,7 @@ function IncompletedGaugeDetails({ navigation, route }) {
     </>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 2,
@@ -249,4 +165,4 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
 });
-export default IncompletedGaugeDetails;
+export default ChartsDetailsScreen;

@@ -83,7 +83,6 @@ export default function CircleGauge({ value, min, max, warning, size }) {
                 : '#00BFBF'
             }
             tintTransparency={false}
-            // onAnimationComplete={() => console.log('Animation Completed')}
             backgroundColor={
               value <= min || value >= max
                 ? '#FFDCDC'

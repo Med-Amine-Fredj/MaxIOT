@@ -12,9 +12,9 @@ import Icon from '../Icon';
 let d = Dimensions.get('window').width;
 let h = Dimensions.get('window').height;
 
-function IconsCard({ iconData }) {
+function IconsCard({ iconData, onPress }) {
   return (
-    <TouchableWithoutFeedback>
+    <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.card}>
         <View style={styles.container}>
           <Icon

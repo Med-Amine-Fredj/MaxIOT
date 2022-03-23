@@ -75,7 +75,16 @@ function HomeScreen({ navigation }) {
                 horizontal={true}
                 data={iconsData}
                 keyExtractor={(item) => item._id}
-                renderItem={({ item }) => <IconsCard iconData={item} />}
+                renderItem={({ item }) => (
+                  <IconsCard
+                    iconData={item}
+                    onPress={() =>
+                      navigation.navigate(routes.ICONS_DETAILS, {
+                        item,
+                      })
+                    }
+                  />
+                )}
               />
               <FlatList
                 showsVerticalScrollIndicator={false}
