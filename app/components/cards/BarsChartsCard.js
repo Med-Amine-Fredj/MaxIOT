@@ -11,7 +11,7 @@ import colors from '../../config/colors';
 import StackedBarsChart from '../charts/StackedBarsChart';
 import MultiBarChart from '../charts/MultiBarChart';
 
-let d = Dimensions.get('window').width;
+let w = Dimensions.get('window').width;
 let h = Dimensions.get('window').height;
 
 function BarsChartsCard({ chartObject, onPress }) {
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     paddingTop: '10%',
     overflow: 'hidden',
     height: h * 0.3,
-    width: d * 0.89,
+    width: w * 0.89,
     marginHorizontal: 3,
     alignItems: 'center',
     justifyContent: 'center',

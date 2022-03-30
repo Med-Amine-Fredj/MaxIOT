@@ -14,7 +14,7 @@ import SimpleLineChart from '../charts/SimpleLineChart';
 import ProgressRing from '../charts/ProgressRing';
 import SimplePieCharts from '../charts/SimplePieCharts';
 
-let d = Dimensions.get('window').width;
+let w = Dimensions.get('window').width;
 let h = Dimensions.get('window').height;
 
 function ChartsCard({ chartObject, onPress }) {
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     paddingTop: '10%',
     overflow: 'hidden',
     height: h * 0.3,
-    width: (d / 2) * 0.88,
+    width: (w / 2) * 0.88,
     marginHorizontal: 3,
     alignItems: 'center',
     justifyContent: 'center',

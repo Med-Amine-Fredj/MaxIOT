@@ -2,8 +2,10 @@ import { StyleSheet, Text, View, Dimensions } from 'react-native';
 
 import { LineChart } from 'react-native-chart-kit';
 
-let screenWidth = Dimensions.get('window').width;
-let screenHeigth = Dimensions.get('window').height;
+import colors from '../../config/colors';
+
+let w = Dimensions.get('window').width;
+let h = Dimensions.get('window').height;
 
 export default function BezierLineChart({ dataArray, size }) {
   const data = {
@@ -16,17 +18,17 @@ export default function BezierLineChart({ dataArray, size }) {
   const chartConfig = {
     backgroundGradientFrom: 'white',
     backgroundGradientTo: 'white',
-    fillShadowGradientFrom: '#00BFBF',
+    fillShadowGradientFrom: colors.light_green,
     fillShadowGradientToOpacity: 0.1,
     fillShadowGradientTo: 'white',
     strokeWidth: 4,
     decimalPlaces: 2,
-    color: () => '#00BFBF',
-    labelColor: () => '#018E8E',
+    color: () => colors.light_green,
+    labelColor: () => colors.dark_green,
     propsForDots: {
       r: '2',
       strokeWidth: '2',
-      stroke: '#018E8E',
+      stroke: colors.dark_green,
     },
     propsForBackgroundLines: {
       stroke: 'gray',
@@ -45,8 +47,8 @@ export default function BezierLineChart({ dataArray, size }) {
       )}
       <LineChart
         data={data}
-        width={size == 'large' ? screenWidth : screenWidth * 0.67}
-        height={size == 'large' ? screenHeigth * 0.3 : screenHeigth * 0.17}
+        width={size == 'large' ? w : w * 0.67}
+        height={size == 'large' ? h * 0.3 : h * 0.17}
         withOuterLines={size == 'large' ? true : false}
         withInnerLines={size == 'large' ? true : false}
         withVerticalLines={size == 'large' ? true : false}
@@ -64,7 +66,7 @@ export default function BezierLineChart({ dataArray, size }) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
+    backgroundColor: colors.white,
     alignItems: 'center',
     justifyContent: 'center',
     alignSelf: 'center',
@@ -74,6 +76,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
-    color: '#00BFBF',
+    color: colors.light_green,
   },
 });

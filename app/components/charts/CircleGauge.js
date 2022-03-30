@@ -1,8 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+
 import { StyleSheet, Text, View } from 'react-native';
+
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
+
 import { AntDesign } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
+
+import colors from '../../config/colors';
 
 export default function CircleGauge({ value, min, max, warning, size }) {
   var levelStyle = StyleSheet.flatten([
@@ -11,10 +16,10 @@ export default function CircleGauge({ value, min, max, warning, size }) {
       fontSize: size == 'large' ? 50 : 35,
       color:
         value <= min || value >= max
-          ? '#F60707'
+          ? colors.dark_red
           : value == warning
-          ? '#FEA308'
-          : '#00BFBF',
+          ? colors.dark_warning
+          : colors.light_green,
     },
   ]);
 
@@ -23,10 +28,10 @@ export default function CircleGauge({ value, min, max, warning, size }) {
     {
       color:
         value <= min || value >= max
-          ? '#F60707'
+          ? colors.dark_red
           : value == warning
-          ? '#FEA308'
-          : '#00BFBF',
+          ? colors.dark_warning
+          : colors.light_green,
     },
   ]);
 
@@ -35,10 +40,10 @@ export default function CircleGauge({ value, min, max, warning, size }) {
     {
       color:
         value <= min || value >= max
-          ? '#F60707'
+          ? colors.dark_red
           : value == warning
-          ? '#FEA308'
-          : '#00BFBF',
+          ? colors.dark_warning
+          : colors.light_green,
     },
   ]);
 
@@ -51,7 +56,7 @@ export default function CircleGauge({ value, min, max, warning, size }) {
               <AntDesign
                 name="warning"
                 size={size == 'large' ? 30 : 25}
-                color="#FEA308"
+                color={colors.dark_warning}
               />
               {size == 'large' && <Text style={messageStyle}>Warning</Text>}
             </View>
@@ -61,7 +66,7 @@ export default function CircleGauge({ value, min, max, warning, size }) {
               <MaterialIcons
                 name="error-outline"
                 size={size == 'large' ? 30 : 25}
-                color="#F60707"
+                color={colors.dark_red}
               />
               {size == 'large' && <Text style={messageStyle}>Error</Text>}
             </View>
@@ -75,10 +80,10 @@ export default function CircleGauge({ value, min, max, warning, size }) {
             backgroundWidth={1}
             tintColor={
               value <= min || value >= max
-                ? '#FF4747'
+                ? colors.light_red
                 : value == warning
-                ? '#FEA308'
-                : '#00BFBF'
+                ? colors.dark_warning
+                : colors.light_green
             }
             tintTransparency={false}
             backgroundColor={
@@ -109,7 +114,7 @@ export default function CircleGauge({ value, min, max, warning, size }) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
+    backgroundColor: colors.white,
   },
   valueContainer: {
     flexDirection: 'row',

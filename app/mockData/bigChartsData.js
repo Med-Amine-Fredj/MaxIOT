@@ -19,7 +19,7 @@ export default bigChartsData = [
     id: '2',
     type: 'MultiBar Chart',
     title: 'Critical Work',
-    values: [14, 8, 6, 13, 14, 10, 12, 14, 15, 14, 20],
+    values: [14, 8, 6, 13, 14, 10, 12, 14, 15, 14, 20, 30],
     color: '#6E53A2',
   },
 ];
