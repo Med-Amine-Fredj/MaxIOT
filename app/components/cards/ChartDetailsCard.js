@@ -7,8 +7,8 @@ function ChartDetailsCard({ item }) {
 
   return (
     <View style={styles.container}>
-      {keys.slice(1).map((k) => (
-        <View style={styles.textContainer}>
+      {keys.slice(1).map((k, index) => (
+        <View key={index} style={styles.textContainer}>
           <Text style={styles.title}>{k} :</Text>
           <Text style={styles.description}>
             {Object.getOwnPropertyDescriptor(item, k).value}

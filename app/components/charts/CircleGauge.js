@@ -42,8 +42,6 @@ export default function CircleGauge({ value, min, max, warning, size }) {
     },
   ]);
 
-  useEffect(() => {}, [value]);
-
   return (
     <>
       <View style={styles.container}>

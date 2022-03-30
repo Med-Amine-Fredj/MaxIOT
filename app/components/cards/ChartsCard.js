@@ -22,7 +22,12 @@ function ChartsCard({ chartObject, onPress }) {
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.card}>
         <View style={styles.chartContainer}>
-          <IncompletedGauge value={chartObject.value} size={140} />
+          <IncompletedGauge
+            value={chartObject.value}
+            min={chartObject.min}
+            max={chartObject.max}
+            warning={chartObject.warning}
+          />
         </View>
         <View style={styles.titleContainer}>
           <Text style={styles.title}>{chartObject.title}</Text>

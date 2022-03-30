@@ -46,7 +46,7 @@ function HomeScreen({ navigation }) {
                 showsHorizontalScrollIndicator={false}
                 horizontal={true}
                 data={simpleData}
-                keyExtractor={(item) => item._id}
+                keyExtractor={(item, index) => index.toString()}
                 renderItem={({ item }) => (
                   <InfoCard number={item.number} message={item.title} />
                 )}
@@ -56,7 +56,7 @@ function HomeScreen({ navigation }) {
                 showsHorizontalScrollIndicator={false}
                 horizontal={true}
                 data={firstCardData}
-                keyExtractor={(item) => item._id}
+                keyExtractor={(item, index) => index.toString()}
                 renderItem={({ item }) => (
                   <ChartsCard
                     chartObject={item}
@@ -73,7 +73,7 @@ function HomeScreen({ navigation }) {
                 showsHorizontalScrollIndicator={false}
                 horizontal={true}
                 data={iconsData}
-                keyExtractor={(item) => item._id}
+                keyExtractor={(item, index) => index.toString()}
                 renderItem={({ item }) => (
                   <IconsCard
                     iconData={item}
@@ -90,7 +90,7 @@ function HomeScreen({ navigation }) {
                 showsHorizontalScrollIndicator={false}
                 horizontal={true}
                 data={secondCardData}
-                keyExtractor={(item) => item._id}
+                keyExtractor={(item, index) => index.toString()}
                 renderItem={({ item }) => (
                   <ChartsCard
                     chartObject={item}
@@ -107,7 +107,7 @@ function HomeScreen({ navigation }) {
                 showsHorizontalScrollIndicator={false}
                 horizontal={true}
                 data={bigChartsData}
-                keyExtractor={(item) => item._id}
+                keyExtractor={(item, index) => index.toString()}
                 renderItem={({ item }) => (
                   <BarsChartsCard
                     chartObject={item}
@@ -124,7 +124,7 @@ function HomeScreen({ navigation }) {
                 showsHorizontalScrollIndicator={false}
                 horizontal={true}
                 data={thirdCardData}
-                keyExtractor={(item) => item._id}
+                keyExtractor={(item, index) => index.toString()}
                 renderItem={({ item }) => (
                   <ChartsCard
                     chartObject={item}

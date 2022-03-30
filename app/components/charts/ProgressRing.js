@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import { StyleSheet, View, Dimensions } from 'react-native';
 import { ProgressChart } from 'react-native-chart-kit';
 
 let screenWidth = Dimensions.get('window').width;
@@ -11,7 +11,7 @@ export default function ProgressRing({
   size,
 }) {
   const data = {
-    labels: dataLegend, // optional
+    labels: dataLegend,
     data: dataArray,
     colors: dataColors,
   };

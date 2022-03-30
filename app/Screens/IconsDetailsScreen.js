@@ -47,7 +47,7 @@ function IconsDetailsScreen({ navigation, route }) {
             showsVerticalScrollIndicator={false}
             showsHorizontalScrollIndicator={false}
             data={dataDetails}
-            keyExtractor={(item) => item._id}
+            keyExtractor={(item, index) => index.toString()}
             ItemSeparatorComponent={ListItemSeparator}
             refreshing={refreshing}
             onRefresh={onRefresh}

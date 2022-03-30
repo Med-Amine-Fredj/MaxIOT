@@ -9,9 +9,28 @@ import AppNavigator from './app/navigation/AppNavigator';
 import navigationTheme from './app/navigation/navigationTheme';
 import Header from './app/components/Header';
 import Screen from './app/components/Screen';
+import { io } from 'socket.io-client';
+import axios from 'axios';
 
 export default function App() {
+  const [response, setResponse] = useState('');
   const [batteryLevel, setBatteryLevel] = useState(null);
+
+  useEffect(() => {
+    const socket = io('http://192.168.1.77:5000/');
+
+    socket.on('FromAPI', (data) => {
+      // setResponse(data);
+      console.log('Operation on collection : ', data);
+    });
+
+    socket.on('connect', () => {
+      console.log('Connected wih Id : ', socket.id);
+    });
+
+    return () => socket.disconnect();
+  }, []);
+
   // Battery.getBatteryLevelAsync()
   //   .then((response) => setBatteryLevel(response * 100))
   //   .catch((err) => console.log(err));

@@ -1,46 +1,121 @@
-import { StyleSheet, Text, View } from 'react-native';
-
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 
-export default function gouge({ value, size }) {
+import { StyleSheet, Text, View } from 'react-native';
+import { Dimensions } from 'react-native';
+
+import { AntDesign } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
+
+import colors from '../../config/colors';
+
+let w = Dimensions.get('window').width;
+let h = Dimensions.get('window').height;
+
+export default function gouge({ value, size, min, max, warning }) {
   var levelStyle = StyleSheet.flatten([
     styles.txt,
     {
-      color: value < 30 ? '#F60707' : '#00BFBF',
-      fontSize: size > 200 ? 60 : 30,
+      color:
+        value <= min || value >= max
+          ? colors.dark_red
+          : value == warning
+          ? colors.dark_warning
+          : colors.light_green,
+      fontSize: size == 'large' ? 60 : 30,
+    },
+  ]);
+
+  var messageStyle = StyleSheet.flatten([
+    styles.message,
+    {
+      color:
+        value <= min || value >= max
+          ? colors.dark_red
+          : value == warning
+          ? colors.dark_warning
+          : colors.light_green,
     },
   ]);
 
   return (
     <View style={styles.container}>
-      <AnimatedCircularProgress
-        size={size}
-        width={size > 200 ? 10 : 7}
-        fill={value}
-        backgroundWidth={size > 200 ? 7 : 2}
-        tintColor={value < 30 ? '#F60707' : '#00BFBF'}
-        tintTransparency={false}
-        backgroundColor="#E6E6E6"
-        arcSweepAngle={240}
-        rotation={242}
-        lineCap="round"
-        tintColorSecondary={value < 30 ? '#F60707' : '#00BFBF'}
-        duration={1000}
-      >
-        {(fill) => <Text style={levelStyle}>{Math.round(fill)}%</Text>}
-      </AnimatedCircularProgress>
+      <View>
+        {value == warning && (
+          <View style={styles.messageContainer}>
+            <AntDesign
+              name="warning"
+              size={size == 'large' ? 30 : 25}
+              color={colors.dark_warning}
+            />
+            {size == 'large' && <Text style={messageStyle}>Warning</Text>}
+          </View>
+        )}
+        {(value >= max || value <= min) && (
+          <View style={styles.messageContainer}>
+            <MaterialIcons
+              name="error-outline"
+              size={size == 'large' ? 30 : 25}
+              color={colors.dark_red}
+            />
+            {size == 'large' && <Text style={messageStyle}>Error</Text>}
+          </View>
+        )}
+      </View>
+      <View style={{ alignSelf: 'center' }}>
+        <AnimatedCircularProgress
+          size={size == 'large' ? h * 0.34 : h * 0.18}
+          width={size == 'large' ? w * 0.025 : w * 0.015}
+          fill={value}
+          backgroundWidth={size == 'large' ? w * 0.018 : w * 0.01}
+          tintColor={
+            value <= min || value >= max
+              ? colors.dark_red
+              : value == warning
+              ? colors.dark_warning
+              : colors.light_green
+          }
+          tintTransparency={false}
+          backgroundColor={colors.gray}
+          arcSweepAngle={240}
+          rotation={242}
+          lineCap="round"
+          duration={1000}
+        >
+          {(fill) => <Text style={levelStyle}>{Math.round(fill)}%</Text>}
+        </AnimatedCircularProgress>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
-    alignItems: 'center',
+    backgroundColor: colors.white,
+  },
+  valueContainer: {
+    flexDirection: 'row',
+    alignContent: 'center',
     justifyContent: 'center',
   },
   txt: {
+    fontSize: 34,
     fontWeight: 'bold',
     textAlign: 'center',
+  },
+  messageContainer: {
+    flexDirection: 'row',
+    alignSelf: 'flex-end',
+    marginRight: '5%',
+  },
+  message: {
+    fontSize: 14,
+    marginTop: 3,
+    marginLeft: 3,
+  },
+  percent: {
+    textAlign: 'center',
+    fontSize: 22,
+    fontWeight: 'bold',
+    marginTop: '10%',
   },
 });

@@ -37,7 +37,13 @@ function ChartsDetailsScreen({ navigation, route }) {
       <View style={styles.container}>
         <View style={styles.chartContainer}>
           {item.type === 'Incompleted Gauge' && (
-            <IncompletedGauge size={250} value={item.value} />
+            <IncompletedGauge
+              value={item.value}
+              min={item.min}
+              max={item.max}
+              warning={item.warning}
+              size="large"
+            />
           )}
           {item.type === 'Bezier Line Chart' && (
             <>
@@ -125,7 +131,7 @@ function ChartsDetailsScreen({ navigation, route }) {
             showsVerticalScrollIndicator={false}
             showsHorizontalScrollIndicator={false}
             data={dataDetails}
-            keyExtractor={(item) => item._id}
+            keyExtractor={(item, index) => index.toString()}
             ItemSeparatorComponent={ListItemSeparator}
             refreshing={refreshing}
             onRefresh={onRefresh}

@@ -1,6 +1,6 @@
 export default thirdCardData = [
   {
-    id: '3',
+    id: '1',
     type: 'Progress Ring',
     title: 'Resources',
     value: [0.4, 0.6, 0.1, 0.7, 0.2],
@@ -8,7 +8,7 @@ export default thirdCardData = [
     legend: ['TMP', 'TPM', 'WTF', 'OMG', 'LOL'],
   },
   {
-    id: '5',
+    id: '2',
     type: 'Pie Chart',
     title: 'Resources',
     names: ['Seoul', 'Toronto', 'Beijing', 'New York', 'Moscow'],
