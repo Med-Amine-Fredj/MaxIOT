@@ -30,8 +30,11 @@ export default function App() {
             <AppNavigator />
             <StatusBar backgroundColor="#6E53A2" />
           </NavigationContainer>
+          <StatusBar backgroundColor="#6E53A2" />
         </PersistGate>
+        <StatusBar backgroundColor="#6E53A2" />
       </Provider>
+      <StatusBar backgroundColor="#6E53A2" />
     </>
   );
 }

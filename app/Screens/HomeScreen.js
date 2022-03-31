@@ -27,52 +27,23 @@ import secondCardData from '../mockData/secondCardData';
 import bigChartsData from '../mockData/bigChartsData';
 import thirdCardData from '../mockData/thirdCardData';
 
-import axios from 'axios';
-
 import { io } from 'socket.io-client';
 
-import { useStore, useSelector } from 'react-redux';
+import { useSelector, useStore } from 'react-redux';
 
-import {
-  GET_UISTYLING_REQUEST,
-  GET_UISTYLING_SUCCESS,
-  GET_UISTYLING_FAIL,
-} from '../store/slices/reducers/uiStyling';
+import { getUiStyling } from '../store/actions/uiStylingActions';
 
 function HomeScreen({ navigation }) {
   const scrollable = false;
 
-  const store = useStore();
   const clicked = useSelector(
     (state) => state?.entities?.uiStyling?.uiStylingData
   );
-  const clickButton = async () => {
-    try {
-      store.dispatch({
-        type: GET_UISTYLING_REQUEST,
-      });
 
-      const { data } = await axios.get(
-        'http://192.168.1.77:5000/api/uiStyling/'
-      );
-
-      store.dispatch({
-        type: GET_UISTYLING_SUCCESS,
-        payload: data,
-      });
-    } catch (error) {
-      store.dispatch({
-        type: GET_UISTYLING_FAIL,
-        payload:
-          error.response && error.response.data.message
-            ? error.response.data.message
-            : error.message,
-      });
-    }
-  };
+  const store = useStore();
 
   useEffect(() => {
-    clickButton();
+    getUiStyling(store);
     const socket = io('http://192.168.1.77:5000/');
 
     socket.on('FromAPI', (data) => {
