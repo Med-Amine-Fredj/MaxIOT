@@ -25,7 +25,7 @@ export default function StackedBarsChart({
     useShadowColorFromDataset: false,
     labelColor: () => 'black',
 
-    barPercentage: 0.7,
+    barPercentage: size == 'large' ? 0.55 : 0.7,
     propsForBackgroundLines: {
       strokeOpacity: size == 'large' ? 0.1 : 0,
       strokeDasharray: [-1000000000000, 1000000000000000],
@@ -33,9 +33,8 @@ export default function StackedBarsChart({
     decimalPlaces: 0,
     labelColor: () => `black`,
     propsForLabels: {
-      fontSize: 10,
+      fontSize: 9,
       fontWeight: 'bold',
-      alignSelf: 'center',
     },
   };
 
@@ -46,16 +45,17 @@ export default function StackedBarsChart({
           paddingRight: size == 'large' ? '0%' : '23%',
           padding: 10,
           alignSelf: 'center',
+          justifyContent: 'center',
         }}
         data={data}
-        width={screenWidth}
+        width={size == 'large' ? screenWidth * 1.15 : screenWidth}
         height={screenHeigth * 0.3}
         chartConfig={chartConfig}
-        withVerticalLabels={size == 'large' ? true : false}
+        withVerticalLabels={size == 'large' ? false : false}
         withHorizontalLabels={size == 'large' ? true : false}
         hideLegend={size == 'large' ? false : true}
         fromZero={true}
-        segments={2}
+        segments={4}
       />
     </View>
   );

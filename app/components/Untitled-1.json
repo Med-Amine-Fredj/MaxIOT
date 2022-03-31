@@ -1,0 +1,1870 @@
+
+
+[
+    {
+      "grid_size": 1000,
+      "blocks": [
+        {
+          "position": {
+            "x": 4,
+            "y": 7,
+            "x_percentage": "14.641288433382138",
+            "y_percentage": "54.94505494505495"
+          },
+          "size": {
+            "width": 2,
+            "height": 4,
+            "width_percentage": "14.494875549048317",
+            "height_percentage": "27.197802197802197"
+          },
+          "devicesList": [
+            {
+              "controls": {
+                "device_index": "0",
+                "name": "light_sen",
+                "type": "kpi",
+                "style": "2",
+                "unit": "lx",
+                "kpi_value_intervals": {
+                  "optimal": {
+                    "min": "200",
+                    "max": "300"
+                  },
+                  "warning": {
+                    "min": "100",
+                    "max": "800"
+                  }
+                },
+                "kpi_meta": [
+                  {
+                    "source": "meta",
+                    "meta": "name"
+                  },
+                  {
+                    "source": "meta",
+                    "meta": "data_source"
+                  }
+                ],
+                "simple_view_desc": "",
+                "graph_values": {
+                  "graph_title": "",
+                  "graph_description": "",
+                  "x_label": {
+                    "title": "",
+                    "cycle": ""
+                  },
+                  "y_label": {
+                    "title": "",
+                    "unit": ""
+                  }
+                }
+              },
+              "device": {
+                "device_id": "620812886abd7acc",
+                "d": {
+                  "light_sen": 0
+                },
+                "meta": {
+                  "name": "light sensor",
+                  "data_source": "light sensor",
+                  "type": "",
+                  "location": "",
+                  "model": "",
+                  "display": {
+                    "configured": "false"
+                  }
+                },
+                "cutom_meta": [
+                  {
+                    "meta_pair_id": "pair_id-0",
+                    "meta_name": "asset",
+                    "meta_value": "IMX1001"
+                  }
+                ],
+                "id": "5e95ecf05b24f31590f9ab80",
+                "dataItemRead": "light_sen"
+              }
+            }
+          ],
+          "equipmentList": [],
+          "locationsList": []
+        },
+        {
+          "position": {
+            "x": 1,
+            "y": 3,
+            "x_percentage": "14.641288433382138",
+            "y_percentage": "0"
+          },
+          "size": {
+            "width": 5,
+            "height": 6,
+            "width_percentage": "36.45680819912152",
+            "height_percentage": "40.934065934065934"
+          },
+          "devicesList": [
+            {
+              "controls": {
+                "device_index": "0",
+                "name": "light_sen",
+                "type": "graph",
+                "style": "",
+                "unit": "",
+                "kpi_value_intervals": {
+                  "optimal": {
+                    "min": "",
+                    "max": ""
+                  },
+                  "warning": {
+                    "min": "",
+                    "max": ""
+                  }
+                },
+                "graph_meta": [
+                  {
+                    "source": "custom",
+                    "meta": "asset"
+                  },
+                  {
+                    "source": "meta",
+                    "meta": "data_source"
+                  }
+                ],
+                "simple_view_desc": "",
+                "graph_values": {
+                  "graph_title": "Light sensor graph",
+                  "graph_description": "device ID 620812886abd7acc",
+                  "x_label": {
+                    "title": "",
+                    "cycle": ""
+                  },
+                  "y_label": {
+                    "title": "",
+                    "unit": ""
+                  }
+                }
+              },
+              "device": {
+                "device_id": "620812886abd7acc",
+                "d": {
+                  "light_sen": 0
+                },
+                "meta": {
+                  "name": "light sensor",
+                  "data_source": "light sensor",
+                  "type": "",
+                  "location": "",
+                  "model": "",
+                  "display": {
+                    "configured": "false"
+                  }
+                },
+                "cutom_meta": [
+                  {
+                    "meta_pair_id": "pair_id-0",
+                    "meta_name": "asset",
+                    "meta_value": "IMX1001"
+                  }
+                ],
+                "id": "5e95ecf05b24f31590f9ab80",
+                "dataItemRead": "light_sen"
+              }
+            }
+          ],
+          "equipmentList": [],
+          "locationsList": []
+        },
+        {
+          "position": {
+            "x": 6,
+            "y": 1,
+            "x_percentage": "65.88579795021961",
+            "y_percentage": "0"
+          },
+          "size": {
+            "width": 3,
+            "height": 2,
+            "width_percentage": "21.815519765739385",
+            "height_percentage": "27.197802197802197"
+          },
+          "devicesList": [
+            {
+              "controls": {
+                "device_index": "0",
+                "name": "light_sen",
+                "type": "simple_view",
+                "style": "",
+                "unit": "",
+                "kpi_value_intervals": {
+                  "optimal": {
+                    "min": "",
+                    "max": ""
+                  },
+                  "warning": {
+                    "min": "",
+                    "max": ""
+                  }
+                },
+                "simple_view_desc": "device ID 620812886abd7acc",
+                "graph_values": {
+                  "graph_title": "",
+                  "graph_description": "",
+                  "x_label": {
+                    "title": "",
+                    "cycle": ""
+                  },
+                  "y_label": {
+                    "title": "",
+                    "unit": ""
+                  }
+                }
+              },
+              "device": {
+                "device_id": "620812886abd7acc",
+                "d": {
+                  "light_sen": "0"
+                },
+                "meta": {
+                  "name": "light sensor",
+                  "data_source": "light sensor",
+                  "type": "",
+                  "location": "",
+                  "model": "",
+                  "display": {
+                    "configured": "false"
+                  }
+                },
+                "cutom_meta": [
+                  {
+                    "meta_pair_id": "pair_id-0",
+                    "meta_name": "asset",
+                    "meta_value": "IMX1001"
+                  }
+                ],
+                "id": "5e95ecf05b24f31590f9ab80",
+                "dataItemRead": "light_sen"
+              }
+            }
+          ],
+          "equipmentList": [],
+          "locationsList": []
+        },
+        {
+          "position": {
+            "x": 0,
+            "y": 7,
+            "x_percentage": "43.92386530014642",
+            "y_percentage": "54.94505494505495"
+          },
+          "size": {
+            "width": 2,
+            "height": 4,
+            "width_percentage": "14.494875549048317",
+            "height_percentage": "27.197802197802197"
+          },
+          "devicesList": [
+            {
+              "controls": {
+                "device_index": "0",
+                "name": "batteryLevel_sen",
+                "type": "kpi",
+                "style": "1",
+                "unit": "%",
+                "kpi_value_intervals": {
+                  "optimal": {
+                    "min": "40",
+                    "max": "100"
+                  },
+                  "warning": {
+                    "min": "30",
+                    "max": "100"
+                  }
+                },
+                "kpi_meta": [
+                  {
+                    "source": "meta",
+                    "meta": "name"
+                  },
+                  {
+                    "source": "meta",
+                    "meta": "data_source"
+                  }
+                ],
+                "simple_view_desc": "",
+                "graph_values": {
+                  "graph_title": "",
+                  "graph_description": "",
+                  "x_label": {
+                    "title": "",
+                    "cycle": ""
+                  },
+                  "y_label": {
+                    "title": "",
+                    "unit": ""
+                  }
+                }
+              },
+              "device": {
+                "device_id": "620812886abd7acc",
+                "d": {
+                  "batteryLevel_sen": 64
+                },
+                "meta": {
+                  "name": "batteryLevel_sen",
+                  "data_source": "battery level sensor",
+                  "type": "",
+                  "location": "",
+                  "model": "",
+                  "display": {
+                    "configured": "false"
+                  }
+                },
+                "id": "5e95ecf35b24f31590f9ab81",
+                "dataItemRead": "batteryLevel_sen"
+              }
+            }
+          ],
+          "equipmentList": [],
+          "locationsList": []
+        },
+        {
+          "position": {
+            "x": 2,
+            "y": 7,
+            "x_percentage": "73.20644216691069",
+            "y_percentage": "54.94505494505495"
+          },
+          "size": {
+            "width": 2,
+            "height": 4,
+            "width_percentage": "14.494875549048317",
+            "height_percentage": "27.197802197802197"
+          },
+          "devicesList": [
+            {
+              "controls": {
+                "device_index": "0",
+                "name": "volume_sen",
+                "type": "kpi",
+                "style": "1",
+                "unit": "%",
+                "kpi_value_intervals": {
+                  "optimal": {
+                    "min": "10",
+                    "max": "40"
+                  },
+                  "warning": {
+                    "min": "0",
+                    "max": "80"
+                  }
+                },
+                "kpi_meta": [
+                  {
+                    "source": "meta",
+                    "meta": "name"
+                  },
+                  {
+                    "source": "meta",
+                    "meta": "data_source"
+                  }
+                ],
+                "simple_view_desc": "",
+                "graph_values": {
+                  "graph_title": "",
+                  "graph_description": "",
+                  "x_label": {
+                    "title": "",
+                    "cycle": ""
+                  },
+                  "y_label": {
+                    "title": "",
+                    "unit": ""
+                  }
+                }
+              },
+              "device": {
+                "device_id": "620812886abd7acc",
+                "d": {
+                  "volume_sen": 29
+                },
+                "meta": {
+                  "name": "volume_sen",
+                  "data_source": "volume sensor",
+                  "type": "",
+                  "location": "",
+                  "model": "",
+                  "display": {
+                    "configured": "false"
+                  }
+                },
+                "id": "5e95ecf65b24f31590f9ab82",
+                "dataItemRead": "volume_sen"
+              }
+            }
+          ],
+          "equipmentList": [],
+          "locationsList": []
+        },
+        {
+          "position": {
+            "x": 7,
+            "y": 3
+          },
+          "size": {
+            "width": 2,
+            "height": 3
+          },
+          "devicesList": [
+            {
+              "controls": {
+                "device_index": "0",
+                "name": "device 1",
+                "type": "simple_view",
+                "style": null,
+                "unit": null,
+                "kpi_value_intervals": {
+                  "optimal": {
+                    "min": null,
+                    "max": null
+                  },
+                  "warning": {
+                    "min": null,
+                    "max": null
+                  }
+                },
+                "kpi_meta": [],
+                "graph_meta": [],
+                "simple_view_meta": [],
+                "simple_view_desc": "Remaining Useful Life",
+                "graph_values": {
+                  "graph_title": null,
+                  "graph_description": null,
+                  "x_label": {
+                    "title": null,
+                    "cycle": null
+                  },
+                  "y_label": {
+                    "title": null,
+                    "unit": null
+                  }
+                }
+              },
+              "device": {
+                "device_id": "deviceid1",
+                "d": {
+                  "temperature": 8,
+                  "lx": 8
+                },
+                "meta": {
+                  "name": "device 1",
+                  "data_source": "moon lander",
+                  "location": "moon",
+                  "model": "XSRF",
+                  "type": "lava"
+                },
+                "cutom_meta": [
+                  {
+                    "meta_pair_id": "pair_id-0",
+                    "meta_name": "asset",
+                    "meta_value": "IMX1001"
+                  }
+                ],
+                "id": "5c00466d95d6032d90b87841",
+                "dataItemRead": "temperature",
+                "index": "0"
+              }
+            }
+          ],
+          "equipmentList": [],
+          "locationsList": []
+        }
+      ],
+      "name": "dash_620812886abd7acc",
+      "alias": "d7acc",
+      "id": "5e95eced5b24f31590f9ab7f",
+      "status_counter": {
+        "warning_counter": 0,
+        "danger_counter": 1
+      },
+      "JSESSIONID": [
+        "5CCD414D2CE531FBDEEB76E109F4025F",
+        "5CCD414D2CE531FBDEEB76E109F4025F",
+        "5CCD414D2CE531FBDEEB76E109F4025F",
+        "5CCD414D2CE531FBDEEB76E109F4025F",
+        "5CCD414D2CE531FBDEEB76E109F4025F"
+      ]
+    },
+    {
+      "grid_size": 1000,
+      "blocks": [
+        {
+          "position": {
+            "x": 6,
+            "y": 2,
+            "x_percentage": "73.20644216691069",
+            "y_percentage": "54.94505494505495"
+          },
+          "size": {
+            "width": 2,
+            "height": 4,
+            "width_percentage": "14.494875549048317",
+            "height_percentage": "27.197802197802197"
+          },
+          "devicesList": [
+            {
+              "controls": {
+                "device_index": "0",
+                "name": "device 1",
+                "type": "graph",
+                "style": null,
+                "unit": null,
+                "kpi_value_intervals": {
+                  "optimal": {
+                    "min": null,
+                    "max": null
+                  },
+                  "warning": {
+                    "min": null,
+                    "max": null
+                  }
+                },
+                "kpi_meta": [],
+                "graph_meta": [],
+                "simple_view_meta": [],
+                "simple_view_desc": "",
+                "graph_values": {
+                  "graph_title": null,
+                  "graph_description": null,
+                  "x_label": {
+                    "title": null,
+                    "cycle": null
+                  },
+                  "y_label": {
+                    "title": null,
+                    "unit": null
+                  }
+                }
+              },
+              "device": {
+                "device_id": "deviceid1",
+                "d": {
+                  "temperature": 8,
+                  "lx": 8
+                },
+                "meta": {
+                  "name": "device 1",
+                  "data_source": "moon lander",
+                  "location": "moon",
+                  "model": "XSRF",
+                  "type": "lava"
+                },
+                "cutom_meta": [
+                  {
+                    "meta_pair_id": "pair_id-0",
+                    "meta_name": "asset",
+                    "meta_value": "IMX1001"
+                  }
+                ],
+                "id": "5c00466d95d6032d90b87841",
+                "dataItemRead": "temperature",
+                "index": "0"
+              }
+            }
+          ],
+          "equipmentList": [],
+          "locationsList": []
+        },
+        {
+          "position": {
+            "x": 4,
+            "y": 11,
+            "x_percentage": "43.92386530014642",
+            "y_percentage": "54.94505494505495"
+          },
+          "size": {
+            "width": 2,
+            "height": 4,
+            "width_percentage": "14.494875549048317",
+            "height_percentage": "27.197802197802197"
+          },
+          "devicesList": [
+            {
+              "controls": {
+                "device_index": "0",
+                "name": "batteryLevel_sen",
+                "type": "kpi",
+                "style": "1",
+                "unit": "%",
+                "kpi_value_intervals": {
+                  "optimal": {
+                    "min": "40",
+                    "max": "100"
+                  },
+                  "warning": {
+                    "min": "30",
+                    "max": "100"
+                  }
+                },
+                "kpi_meta": [
+                  {
+                    "source": "meta",
+                    "meta": "name"
+                  },
+                  {
+                    "source": "meta",
+                    "meta": "data_source"
+                  }
+                ],
+                "simple_view_desc": "",
+                "graph_values": {
+                  "graph_title": "",
+                  "graph_description": "",
+                  "x_label": {
+                    "title": "",
+                    "cycle": ""
+                  },
+                  "y_label": {
+                    "title": "",
+                    "unit": ""
+                  }
+                }
+              },
+              "device": {
+                "device_id": "8534a24a2f5efc40",
+                "d": {
+                  "batteryLevel_sen": 77
+                },
+                "meta": {
+                  "name": "batteryLevel_sen",
+                  "data_source": "battery level sensor",
+                  "type": "",
+                  "location": "",
+                  "model": "",
+                  "display": {
+                    "configured": "false"
+                  }
+                },
+                "id": "5e95ee3a5b24f31590f9ab85",
+                "dataItemRead": "batteryLevel_sen"
+              }
+            }
+          ],
+          "equipmentList": [],
+          "locationsList": []
+        },
+        {
+          "position": {
+            "x": "1",
+            "y": "7",
+            "x_percentage": "14.641288433382138",
+            "y_percentage": "54.94505494505495"
+          },
+          "size": {
+            "width": "2",
+            "height": "4",
+            "width_percentage": "14.494875549048317",
+            "height_percentage": "27.197802197802197"
+          },
+          "devicesList": [
+            {
+              "controls": {
+                "device_index": "0",
+                "name": "light_sen",
+                "type": "kpi",
+                "style": "2",
+                "unit": "lx",
+                "kpi_value_intervals": {
+                  "optimal": {
+                    "min": "200",
+                    "max": "300"
+                  },
+                  "warning": {
+                    "min": "100",
+                    "max": "800"
+                  }
+                },
+                "kpi_meta": [
+                  {
+                    "source": "meta",
+                    "meta": "name"
+                  },
+                  {
+                    "source": "meta",
+                    "meta": "data_source"
+                  }
+                ],
+                "simple_view_desc": "",
+                "graph_values": {
+                  "graph_title": "",
+                  "graph_description": "",
+                  "x_label": {
+                    "title": "",
+                    "cycle": ""
+                  },
+                  "y_label": {
+                    "title": "",
+                    "unit": ""
+                  }
+                }
+              },
+              "device": {
+                "device_id": "8534a24a2f5efc40",
+                "d": {
+                  "light_sen": "0"
+                },
+                "meta": {
+                  "name": "light sensor",
+                  "data_source": "light sensor",
+                  "type": "",
+                  "location": "",
+                  "model": "",
+                  "display": {
+                    "configured": "false"
+                  }
+                },
+                "cutom_meta": [
+                  {
+                    "meta_pair_id": "pair_id-0",
+                    "meta_name": "asset",
+                    "meta_value": "IMX1001"
+                  }
+                ],
+                "id": "5e95ee3d5b24f31590f9ab86",
+                "dataItemRead": "light_sen"
+              }
+            }
+          ],
+          "equipmentList": [],
+          "locationsList": []
+        },
+        {
+          "position": {
+            "x": "1",
+            "y": "0",
+            "x_percentage": "14.641288433382138",
+            "y_percentage": "0"
+          },
+          "size": {
+            "width": "5",
+            "height": "6",
+            "width_percentage": "36.45680819912152",
+            "height_percentage": "40.934065934065934"
+          },
+          "devicesList": [
+            {
+              "controls": {
+                "device_index": "0",
+                "name": "light_sen",
+                "type": "graph",
+                "style": "",
+                "unit": "",
+                "kpi_value_intervals": {
+                  "optimal": {
+                    "min": "",
+                    "max": ""
+                  },
+                  "warning": {
+                    "min": "",
+                    "max": ""
+                  }
+                },
+                "graph_meta": [
+                  {
+                    "source": "custom",
+                    "meta": "asset"
+                  },
+                  {
+                    "source": "meta",
+                    "meta": "data_source"
+                  }
+                ],
+                "simple_view_desc": "",
+                "graph_values": {
+                  "graph_title": "Light sensor graph",
+                  "graph_description": "device ID 8534a24a2f5efc40",
+                  "x_label": {
+                    "title": "",
+                    "cycle": ""
+                  },
+                  "y_label": {
+                    "title": "",
+                    "unit": ""
+                  }
+                }
+              },
+              "device": {
+                "device_id": "8534a24a2f5efc40",
+                "d": {
+                  "light_sen": "0"
+                },
+                "meta": {
+                  "name": "light sensor",
+                  "data_source": "light sensor",
+                  "type": "",
+                  "location": "",
+                  "model": "",
+                  "display": {
+                    "configured": "false"
+                  }
+                },
+                "cutom_meta": [
+                  {
+                    "meta_pair_id": "pair_id-0",
+                    "meta_name": "asset",
+                    "meta_value": "IMX1001"
+                  }
+                ],
+                "id": "5e95ee3d5b24f31590f9ab86",
+                "dataItemRead": "light_sen"
+              }
+            }
+          ],
+          "equipmentList": [],
+          "locationsList": []
+        },
+        {
+          "position": {
+            "x": "7",
+            "y": "0",
+            "x_percentage": "65.88579795021961",
+            "y_percentage": "0"
+          },
+          "size": {
+            "width": "2",
+            "height": "2",
+            "width_percentage": "21.815519765739385",
+            "height_percentage": "27.197802197802197"
+          },
+          "devicesList": [
+            {
+              "controls": {
+                "device_index": "0",
+                "name": "light_sen",
+                "type": "simple_view",
+                "style": "",
+                "unit": "",
+                "kpi_value_intervals": {
+                  "optimal": {
+                    "min": "",
+                    "max": ""
+                  },
+                  "warning": {
+                    "min": "",
+                    "max": ""
+                  }
+                },
+                "simple_view_desc": "device ID 8534a24a2f5efc40",
+                "graph_values": {
+                  "graph_title": "",
+                  "graph_description": "",
+                  "x_label": {
+                    "title": "",
+                    "cycle": ""
+                  },
+                  "y_label": {
+                    "title": "",
+                    "unit": ""
+                  }
+                }
+              },
+              "device": {
+                "device_id": "8534a24a2f5efc40",
+                "d": {
+                  "light_sen": "0"
+                },
+                "meta": {
+                  "name": "light sensor",
+                  "data_source": "light sensor",
+                  "type": "",
+                  "location": "",
+                  "model": "",
+                  "display": {
+                    "configured": "false"
+                  }
+                },
+                "cutom_meta": [
+                  {
+                    "meta_pair_id": "pair_id-0",
+                    "meta_name": "asset",
+                    "meta_value": "IMX1001"
+                  }
+                ],
+                "id": "5e95ee3d5b24f31590f9ab86",
+                "dataItemRead": "light_sen"
+              }
+            }
+          ],
+          "equipmentList": [],
+          "locationsList": []
+        },
+        {
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "size": {
+            "width": 6,
+            "height": 7
+          },
+          "devicesList": [],
+          "equipmentList": [
+            {
+              "controls": {
+                "equipment_index": "0"
+              },
+              "equipment": {
+                "devices": [
+                  "5c00466d95d6032d90b87841",
+                  "5c00470995d6032d90b87844",
+                  "5e95ecf05b24f31590f9ab80",
+                  "5e95ecf35b24f31590f9ab81"
+                ],
+                "id": "5f1eae11fa437c14d0c4b51f",
+                "index": "0",
+                "devicesList": [
+                  {
+                    "controls": {
+                      "device_index": "0",
+                      "name": "device 1",
+                      "type": "kpi",
+                      "style": "1",
+                      "unit": "C",
+                      "kpi_value_intervals": {
+                        "optimal": {
+                          "min": 1,
+                          "max": 2
+                        },
+                        "warning": {
+                          "min": -2,
+                          "max": 3
+                        }
+                      },
+                      "kpi_meta": [],
+                      "graph_meta": [],
+                      "simple_view_meta": [],
+                      "simple_view_desc": null,
+                      "graph_values": {
+                        "graph_title": null,
+                        "graph_description": null,
+                        "x_label": {
+                          "title": null,
+                          "cycle": null
+                        },
+                        "y_label": {
+                          "title": null,
+                          "unit": null
+                        }
+                      }
+                    },
+                    "device": {
+                      "device_id": "deviceid1",
+                      "d": {
+                        "temperature": 8,
+                        "lx": 8
+                      },
+                      "meta": {
+                        "name": "device 1",
+                        "data_source": "moon lander",
+                        "location": "moon",
+                        "model": "XSRF",
+                        "type": "lava"
+                      },
+                      "cutom_meta": [
+                        {
+                          "meta_pair_id": "pair_id-0",
+                          "meta_name": "asset",
+                          "meta_value": "IMX1001"
+                        }
+                      ],
+                      "id": "5c00466d95d6032d90b87841",
+                      "dataItemRead": "temperature",
+                      "index": "0"
+                    }
+                  },
+                  {
+                    "controls": {
+                      "device_index": "1",
+                      "name": "device 4",
+                      "type": "simple_view",
+                      "style": null,
+                      "unit": null,
+                      "kpi_value_intervals": {
+                        "optimal": {
+                          "min": null,
+                          "max": null
+                        },
+                        "warning": {
+                          "min": null,
+                          "max": null
+                        }
+                      },
+                      "kpi_meta": [],
+                      "graph_meta": [],
+                      "simple_view_meta": [
+                        {
+                          "source": "meta",
+                          "meta": "model"
+                        },
+                        {
+                          "source": "custom",
+                          "meta": "manufacture"
+                        }
+                      ],
+                      "simple_view_desc": "dev 4",
+                      "graph_values": {
+                        "graph_title": null,
+                        "graph_description": null,
+                        "x_label": {
+                          "title": null,
+                          "cycle": null
+                        },
+                        "y_label": {
+                          "title": null,
+                          "unit": null
+                        }
+                      }
+                    },
+                    "device": {
+                      "device_id": "deviceid4",
+                      "d": {
+                        "temperature": 50,
+                        "lx": 50
+                      },
+                      "meta": {
+                        "name": "device 4",
+                        "data_source": "earth core",
+                        "location": "earth",
+                        "model": "model A",
+                        "type": "type B"
+                      },
+                      "cutom_meta": [
+                        {
+                          "meta_pair_id": "pair_id-1",
+                          "meta_name": "equipment",
+                          "meta_value": "Eq 123"
+                        },
+                        {
+                          "meta_pair_id": "pair_id-1",
+                          "meta_name": "manufacture",
+                          "meta_value": "Manuf 100"
+                        }
+                      ],
+                      "id": "5c00470995d6032d90b87844",
+                      "dataItemRead": "lx",
+                      "index": "1"
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "locationsList": []
+        },
+        {
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "size": {
+            "width": 2,
+            "height": 3
+          },
+          "devicesList": [],
+          "equipmentList": [],
+          "locationsList": [
+            {
+              "controls": {
+                "location_index": "0"
+              },
+              "location": {
+                "devices": [
+                  "5e95ee3a5b24f31590f9ab85",
+                  "5e95ee3d5b24f31590f9ab86"
+                ],
+                "equipments": [
+                  "5f1eae11fa437c14d0c4b51f"
+                ],
+                "id": "5f1eae9bfa437c14d0c4b520",
+                "index": "0",
+                "devicesList": [
+                  {
+                    "controls": {
+                      "device_index": "0",
+                      "name": "batteryLevel_sen",
+                      "type": "simple_view",
+                      "style": null,
+                      "unit": null,
+                      "kpi_value_intervals": {
+                        "optimal": {
+                          "min": null,
+                          "max": null
+                        },
+                        "warning": {
+                          "min": null,
+                          "max": null
+                        }
+                      },
+                      "kpi_meta": [],
+                      "graph_meta": [],
+                      "simple_view_meta": [
+                        {
+                          "source": "meta",
+                          "meta": "name"
+                        }
+                      ],
+                      "simple_view_desc": null,
+                      "graph_values": {
+                        "graph_title": null,
+                        "graph_description": null,
+                        "x_label": {
+                          "title": null,
+                          "cycle": null
+                        },
+                        "y_label": {
+                          "title": null,
+                          "unit": null
+                        }
+                      }
+                    },
+                    "device": {
+                      "device_id": "8534a24a2f5efc40",
+                      "d": {
+                        "batteryLevel_sen": 77
+                      },
+                      "meta": {
+                        "name": "batteryLevel_sen",
+                        "data_source": "battery level sensor",
+                        "type": "",
+                        "location": "",
+                        "model": "",
+                        "display": {
+                          "configured": "false"
+                        }
+                      },
+                      "cutom_meta": [],
+                      "id": "5e95ee3a5b24f31590f9ab85",
+                      "dataItemRead": "batteryLevel_sen",
+                      "JSESSIONID": "1583851E577F1D15755677CFA27541D5",
+                      "index": "0"
+                    }
+                  },
+                  {
+                    "controls": {
+                      "device_index": "1",
+                      "name": "light sensor",
+                      "type": "simple_view",
+                      "style": null,
+                      "unit": null,
+                      "kpi_value_intervals": {
+                        "optimal": {
+                          "min": null,
+                          "max": null
+                        },
+                        "warning": {
+                          "min": null,
+                          "max": null
+                        }
+                      },
+                      "kpi_meta": [],
+                      "graph_meta": [],
+                      "simple_view_meta": [
+                        {
+                          "source": "meta",
+                          "meta": "data_source"
+                        },
+                        {
+                          "source": "custom",
+                          "meta": "asset"
+                        }
+                      ],
+                      "simple_view_desc": "lx4",
+                      "graph_values": {
+                        "graph_title": null,
+                        "graph_description": null,
+                        "x_label": {
+                          "title": null,
+                          "cycle": null
+                        },
+                        "y_label": {
+                          "title": null,
+                          "unit": null
+                        }
+                      }
+                    },
+                    "device": {
+                      "device_id": "8534a24a2f5efc40",
+                      "d": {
+                        "light_sen": "0"
+                      },
+                      "meta": {
+                        "name": "light sensor",
+                        "data_source": "light sensor",
+                        "type": "",
+                        "location": "",
+                        "model": "",
+                        "display": {
+                          "configured": "false"
+                        }
+                      },
+                      "cutom_meta": [
+                        {
+                          "meta_pair_id": "pair_id-0",
+                          "meta_name": "asset",
+                          "meta_value": "IMX1001"
+                        }
+                      ],
+                      "id": "5e95ee3d5b24f31590f9ab86",
+                      "dataItemRead": "light_sen",
+                      "JSESSIONID": "1583851E577F1D15755677CFA27541D5",
+                      "index": "1"
+                    }
+                  }
+                ],
+                "equipmentsList": [
+                  {
+                    "equipment_index": "0",
+                    "devicesList": [
+                      {
+                        "controls": {
+                          "device_index": "2",
+                          "name": "light sensor",
+                          "type": "simple_view",
+                          "style": null,
+                          "unit": null,
+                          "kpi_value_intervals": {
+                            "optimal": {
+                              "min": null,
+                              "max": null
+                            },
+                            "warning": {
+                              "min": null,
+                              "max": null
+                            }
+                          },
+                          "kpi_meta": [],
+                          "graph_meta": [],
+                          "simple_view_meta": [
+                            {
+                              "source": "meta",
+                              "meta": "name"
+                            }
+                          ],
+                          "simple_view_desc": null,
+                          "graph_values": {
+                            "graph_title": null,
+                            "graph_description": null,
+                            "x_label": {
+                              "title": null,
+                              "cycle": null
+                            },
+                            "y_label": {
+                              "title": null,
+                              "unit": null
+                            }
+                          }
+                        },
+                        "device": {
+                          "device_id": "620812886abd7acc",
+                          "d": {
+                            "light_sen": 0
+                          },
+                          "meta": {
+                            "name": "light sensor",
+                            "data_source": "light sensor",
+                            "type": "",
+                            "location": "",
+                            "model": "",
+                            "display": {
+                              "configured": "false"
+                            }
+                          },
+                          "cutom_meta": [
+                            {
+                              "meta_pair_id": "pair_id-0",
+                              "meta_name": "asset",
+                              "meta_value": "IMX1001"
+                            }
+                          ],
+                          "id": "5e95ecf05b24f31590f9ab80",
+                          "dataItemRead": "light_sen",
+                          "JSESSIONID": "5CCD414D2CE531FBDEEB76E109F4025F",
+                          "index": "2"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "size": {
+            "width": 2,
+            "height": 3
+          },
+          "devicesList": [
+            {
+              "controls": {
+                "device_index": "4",
+                "name": "volume_sen",
+                "type": "kpi",
+                "style": "2",
+                "unit": "C",
+                "kpi_value_intervals": {
+                  "optimal": {
+                    "min": 0,
+                    "max": 0
+                  },
+                  "warning": {
+                    "min": 0,
+                    "max": 0
+                  }
+                },
+                "kpi_meta": [
+                  {
+                    "source": "meta",
+                    "meta": "name"
+                  }
+                ],
+                "graph_meta": [],
+                "simple_view_meta": [],
+                "simple_view_desc": "",
+                "graph_values": {
+                  "graph_title": "",
+                  "graph_description": "",
+                  "x_label": {
+                    "title": "",
+                    "cycle": ""
+                  },
+                  "y_label": {
+                    "title": "",
+                    "unit": ""
+                  }
+                }
+              },
+              "device": {
+                "device_id": "620812886abd7acc",
+                "d": {
+                  "volume_sen": 29
+                },
+                "meta": {
+                  "name": "volume_sen",
+                  "data_source": "volume sensor",
+                  "type": "",
+                  "location": "",
+                  "model": "",
+                  "display": {
+                    "configured": "false"
+                  }
+                },
+                "cutom_meta": [],
+                "id": "5e95ecf65b24f31590f9ab82",
+                "dataItemRead": "volume_sen",
+                "JSESSIONID": "5CCD414D2CE531FBDEEB76E109F4025F",
+                "index": "4"
+              }
+            }
+          ],
+          "equipmentList": [],
+          "locationsList": []
+        }
+      ],
+      "name": "dash_8534a24a2f5efc40",
+      "alias": "efc40",
+      "id": "5e95ee355b24f31590f9ab83",
+      "status_counter": {
+        "warning_counter": 0,
+        "danger_counter": 3
+      },
+      "JSESSIONID": [
+        "1583851E577F1D15755677CFA27541D5",
+        "1583851E577F1D15755677CFA27541D5",
+        "1583851E577F1D15755677CFA27541D5",
+        "1583851E577F1D15755677CFA27541D5",
+        "1583851E577F1D15755677CFA27541D5"
+      ]
+    },
+    {
+      "grid_size": 1000,
+      "name": "dash_319A2E4E-BE2B-4434-A355-E1FB8FA868DF",
+      "alias": "868DF",
+      "id": "5ea99a348fb6c80f208b8c54",
+      "status_counter": {
+        "warning_counter": "0",
+        "danger_counter": "0"
+      },
+      "JSESSIONID": "C93C98993A11A0C8AB7A97FDC4060584"
+    },
+    {
+      "grid_size": 1000,
+      "name": "dash_8ae911b12288a3c1",
+      "alias": "8a3c1",
+      "id": "5ebd0d618fb6c80f208b8c55",
+      "status_counter": {
+        "warning_counter": "0",
+        "danger_counter": "0"
+      },
+      "JSESSIONID": "7AF5735D407614695726C9B1D9740630"
+    },
+    {
+      "grid_size": 1000,
+      "blocks": [
+        {
+          "position": {
+            "x": 1,
+            "y": 0
+          },
+          "size": {
+            "width": 2,
+            "height": 6
+          },
+          "devicesList": [],
+          "equipmentList": [
+            {
+              "controls": {
+                "equipment_index": "0"
+              },
+              "equipment": {
+                "devices": [
+                  "5c00466d95d6032d90b87841",
+                  "5c00470995d6032d90b87844",
+                  "5e95ecf05b24f31590f9ab80",
+                  "5e95ecf35b24f31590f9ab81"
+                ],
+                "id": "5f1eae11fa437c14d0c4b51f",
+                "index": "0",
+                "devicesList": [
+                  {
+                    "controls": {
+                      "device_index": "1",
+                      "name": "device 4",
+                      "type": "kpi",
+                      "style": "1",
+                      "unit": "C",
+                      "kpi_value_intervals": {
+                        "optimal": {
+                          "min": 115,
+                          "max": 117
+                        },
+                        "warning": {
+                          "min": 100,
+                          "max": 120
+                        }
+                      },
+                      "kpi_meta": [
+                        {
+                          "source": "meta",
+                          "meta": "location"
+                        },
+                        {
+                          "source": "custom",
+                          "meta": "manufacture"
+                        }
+                      ],
+                      "graph_meta": [],
+                      "simple_view_meta": [],
+                      "simple_view_desc": null,
+                      "graph_values": {
+                        "graph_title": null,
+                        "graph_description": null,
+                        "x_label": {
+                          "title": null,
+                          "cycle": null
+                        },
+                        "y_label": {
+                          "title": null,
+                          "unit": null
+                        }
+                      }
+                    },
+                    "device": {
+                      "device_id": "deviceid1",
+                      "d": {
+                        "temperature": 8,
+                        "lx": 8
+                      },
+                      "meta": {
+                        "name": "device 1",
+                        "data_source": "moon lander",
+                        "location": "moon",
+                        "model": "XSRF",
+                        "type": "lava"
+                      },
+                      "cutom_meta": [
+                        {
+                          "meta_pair_id": "pair_id-0",
+                          "meta_name": "asset",
+                          "meta_value": "IMX1001"
+                        }
+                      ],
+                      "id": "5c00466d95d6032d90b87841",
+                      "dataItemRead": "temperature"
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "locationsList": []
+        },
+        {
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "size": {
+            "width": 2,
+            "height": 3
+          },
+          "devicesList": [
+            {
+              "controls": {
+                "device_index": "0",
+                "name": "device 1",
+                "type": "simple_view",
+                "style": null,
+                "unit": null,
+                "kpi_value_intervals": {
+                  "optimal": {
+                    "min": null,
+                    "max": null
+                  },
+                  "warning": {
+                    "min": null,
+                    "max": null
+                  }
+                },
+                "kpi_meta": [],
+                "graph_meta": [],
+                "simple_view_meta": [
+                  {
+                    "source": "custom",
+                    "meta": "asset"
+                  }
+                ],
+                "simple_view_desc": "Remaining Useful Life",
+                "graph_values": {
+                  "graph_title": null,
+                  "graph_description": null,
+                  "x_label": {
+                    "title": null,
+                    "cycle": null
+                  },
+                  "y_label": {
+                    "title": null,
+                    "unit": null
+                  }
+                }
+              },
+              "device": {
+                "device_id": "deviceid1",
+                "d": {
+                  "temperature": 8,
+                  "lx": 8
+                },
+                "meta": {
+                  "name": "device 1",
+                  "data_source": "moon lander",
+                  "location": "moon",
+                  "model": "XSRF",
+                  "type": "lava"
+                },
+                "cutom_meta": [
+                  {
+                    "meta_pair_id": "pair_id-0",
+                    "meta_name": "asset",
+                    "meta_value": "IMX1001"
+                  }
+                ],
+                "id": "5c00466d95d6032d90b87841",
+                "dataItemRead": "temperature",
+                "index": "0"
+              }
+            }
+          ],
+          "equipmentList": [],
+          "locationsList": []
+        },
+        {
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "size": {
+            "width": 2,
+            "height": 3
+          },
+          "devicesList": [
+            {
+              "controls": {
+                "device_index": "2",
+                "name": "light sensor",
+                "type": "graph",
+                "style": null,
+                "unit": null,
+                "kpi_value_intervals": {
+                  "optimal": {
+                    "min": null,
+                    "max": null
+                  },
+                  "warning": {
+                    "min": null,
+                    "max": null
+                  }
+                },
+                "kpi_meta": [],
+                "graph_meta": [],
+                "simple_view_meta": [],
+                "simple_view_desc": "",
+                "graph_values": {
+                  "graph_title": null,
+                  "graph_description": null,
+                  "x_label": {
+                    "title": null,
+                    "cycle": null
+                  },
+                  "y_label": {
+                    "title": null,
+                    "unit": null
+                  }
+                }
+              },
+              "device": {
+                "device_id": "620812886abd7acc",
+                "d": {
+                  "light_sen": 0
+                },
+                "meta": {
+                  "name": "light sensor",
+                  "data_source": "light sensor",
+                  "type": "",
+                  "location": "",
+                  "model": "",
+                  "display": {
+                    "configured": "false"
+                  }
+                },
+                "cutom_meta": [
+                  {
+                    "meta_pair_id": "pair_id-0",
+                    "meta_name": "asset",
+                    "meta_value": "IMX1001"
+                  }
+                ],
+                "id": "5e95ecf05b24f31590f9ab80",
+                "dataItemRead": "light_sen",
+                "JSESSIONID": "5CCD414D2CE531FBDEEB76E109F4025F",
+                "index": "2"
+              }
+            }
+          ],
+          "equipmentList": [],
+          "locationsList": []
+        }
+      ],
+      "name": "dash_C0B15AC6-D3AD-460D-9BFB-C3C013F3B47F",
+      "alias": "3B47F",
+      "id": "5ec49b938fb6c80f208b8c56",
+      "status_counter": {
+        "warning_counter": 0,
+        "danger_counter": 1
+      },
+      "JSESSIONID": "28CB72070B5C753F4780FA53F834CC8B"
+    }
+  ]
+
+
+
+
+
+
+  [
+    {
+      "device_id": "deviceid1",
+      "d": {
+        "temperature": 8,
+        "lx": 8
+      },
+      "meta": {
+        "name": "device 1",
+        "data_source": "moon lander",
+        "location": "moon",
+        "model": "XSRF",
+        "type": "lava"
+      },
+      "cutom_meta": [
+        {
+          "meta_pair_id": "pair_id-0",
+          "meta_name": "asset",
+          "meta_value": "IMX1001"
+        }
+      ],
+      "id": "5c00466d95d6032d90b87841",
+      "dataItemRead": "temperature"
+    },
+    {
+      "device_id": "deviceid4",
+      "d": {
+        "temperature": 50,
+        "lx": 50
+      },
+      "meta": {
+        "name": "device 4",
+        "data_source": "earth core",
+        "location": "earth",
+        "model": "model A",
+        "type": "type B"
+      },
+      "cutom_meta": [
+        {
+          "meta_pair_id": "pair_id-1",
+          "meta_name": "equipment",
+          "meta_value": "Eq 123"
+        },
+        {
+          "meta_pair_id": "pair_id-1",
+          "meta_name": "manufacture",
+          "meta_value": "Manuf 100"
+        }
+      ],
+      "id": "5c00470995d6032d90b87844",
+      "dataItemRead": "lx"
+    },
+    {
+      "device_id": "620812886abd7acc",
+      "d": {
+        "light_sen": 0
+      },
+      "meta": {
+        "name": "light sensor",
+        "data_source": "light sensor",
+        "type": "",
+        "location": "",
+        "model": "",
+        "display": {
+          "configured": "false"
+        }
+      },
+      "cutom_meta": [
+        {
+          "meta_pair_id": "pair_id-0",
+          "meta_name": "asset",
+          "meta_value": "IMX1001"
+        }
+      ],
+      "id": "5e95ecf05b24f31590f9ab80",
+      "dataItemRead": "light_sen",
+      "JSESSIONID": "5CCD414D2CE531FBDEEB76E109F4025F"
+    },
+    {
+      "device_id": "620812886abd7acc",
+      "d": {
+        "batteryLevel_sen": 64
+      },
+      "meta": {
+        "name": "batteryLevel_sen",
+        "data_source": "battery level sensor",
+        "type": "",
+        "location": "",
+        "model": "",
+        "display": {
+          "configured": "false"
+        }
+      },
+      "cutom_meta": [],
+      "id": "5e95ecf35b24f31590f9ab81",
+      "dataItemRead": "batteryLevel_sen",
+      "JSESSIONID": "5CCD414D2CE531FBDEEB76E109F4025F"
+    },
+    {
+      "device_id": "620812886abd7acc",
+      "d": {
+        "volume_sen": 29
+      },
+      "meta": {
+        "name": "volume_sen",
+        "data_source": "volume sensor",
+        "type": "",
+        "location": "",
+        "model": "",
+        "display": {
+          "configured": "false"
+        }
+      },
+      "cutom_meta": [],
+      "id": "5e95ecf65b24f31590f9ab82",
+      "dataItemRead": "volume_sen",
+      "JSESSIONID": "5CCD414D2CE531FBDEEB76E109F4025F"
+    },
+    {
+      "device_id": "8534a24a2f5efc40",
+      "d": {
+        "volume_sen": 33
+      },
+      "meta": {
+        "name": "volume_sen",
+        "data_source": "volume sensor",
+        "type": "",
+        "location": "",
+        "model": "",
+        "display": {
+          "configured": "false"
+        }
+      },
+      "cutom_meta": [],
+      "id": "5e95ee375b24f31590f9ab84",
+      "dataItemRead": "volume_sen",
+      "JSESSIONID": "1583851E577F1D15755677CFA27541D5"
+    },
+    {
+      "device_id": "8534a24a2f5efc40",
+      "d": {
+        "batteryLevel_sen": 77
+      },
+      "meta": {
+        "name": "batteryLevel_sen",
+        "data_source": "battery level sensor",
+        "type": "",
+        "location": "",
+        "model": "",
+        "display": {
+          "configured": "false"
+        }
+      },
+      "cutom_meta": [],
+      "id": "5e95ee3a5b24f31590f9ab85",
+      "dataItemRead": "batteryLevel_sen",
+      "JSESSIONID": "1583851E577F1D15755677CFA27541D5"
+    },
+    {
+      "device_id": "8534a24a2f5efc40",
+      "d": {
+        "light_sen": "0"
+      },
+      "meta": {
+        "name": "light sensor",
+        "data_source": "light sensor",
+        "type": "",
+        "location": "",
+        "model": "",
+        "display": {
+          "configured": "false"
+        }
+      },
+      "cutom_meta": [
+        {
+          "meta_pair_id": "pair_id-0",
+          "meta_name": "asset",
+          "meta_value": "IMX1001"
+        }
+      ],
+      "id": "5e95ee3d5b24f31590f9ab86",
+      "dataItemRead": "light_sen",
+      "JSESSIONID": "1583851E577F1D15755677CFA27541D5"
+    }
+  ]

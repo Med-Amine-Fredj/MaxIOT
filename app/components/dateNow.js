@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
+
 import color from '../config/colors';
 
-let d = Dimensions.get('window').height;
+let h = Dimensions.get('window').height;
 
 function date() {
   const months = [
@@ -43,7 +45,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     marginTop: '5%',
-    maxHeight: d * 0.7,
+    maxHeight: h * 0.7,
   },
   txt: {
     color: color.primary,

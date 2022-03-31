@@ -23,7 +23,7 @@ function BarsChartsCard({ chartObject, onPress }) {
         </View>
         <View style={styles.chartContainer}>
           <StackedBarsChart
-            dataArray={chartObject.value}
+            dataArray={chartObject?.value ? chartObject?.value : []}
             labelsArray={chartObject.labels}
             legendArray={chartObject.legend}
             colorsArray={chartObject.colors}

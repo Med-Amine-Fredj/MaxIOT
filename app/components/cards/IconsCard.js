@@ -9,7 +9,7 @@ import {
 import colors from '../../config/colors';
 import Icon from '../Icon';
 
-let d = Dimensions.get('window').width;
+let w = Dimensions.get('window').width;
 let h = Dimensions.get('window').height;
 
 function IconsCard({ iconData, onPress }) {
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     marginTop: h * 0.01,
     overflow: 'hidden',
     height: h * 0.17,
-    width: (d / 2) * 0.58,
+    width: (w / 2) * 0.58,
     marginHorizontal: 3,
   },
   container: {
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     height: '90%',
   },
   textContainer: {
-    marginTop: '15%',
+    marginTop: '5%',
   },
   value: {
     textAlign: 'center',
