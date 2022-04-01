@@ -1,7 +1,7 @@
 export default bigChartsData = [
   {
     id: '1',
-    type: 'Stacked Bars',
+    type: 'Stacked_Bars',
     title: 'Critical Work',
     value: [
       [60, 60, 60],
@@ -22,7 +22,7 @@ export default bigChartsData = [
   },
   {
     id: '2',
-    type: 'MultiBar Chart',
+    type: 'Simple_Bar',
     title: 'Critical Work',
     values: [14, 8, 6, 13, 14, 10, 12, 14, 15, 14, 20, 30],
     color: '#6E53A2',

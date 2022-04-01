@@ -20,30 +20,48 @@ import ChartsCard from '../components/cards/ChartsCard';
 import IconsCard from '../components/cards/IconsCard';
 import BarsChartsCard from '../components/cards/BarsChartsCard';
 
-import simpleData from '../mockData/simpleData';
-import firstCardData from '../mockData/firstCardData';
-import iconsData from '../mockData/iconsData';
-import secondCardData from '../mockData/secondCardData';
-import bigChartsData from '../mockData/bigChartsData';
-import thirdCardData from '../mockData/thirdCardData';
-
 import { io } from 'socket.io-client';
 
 import { useSelector, useStore } from 'react-redux';
 
 import { getUiStyling } from '../store/actions/uiStylingActions';
+import { getDevicesData } from '../store/actions/devicesActions';
+import {
+  BEZIER_LINE,
+  COMPLETED_GAUGE,
+  ICONS,
+  INCOMPLETED_GAUGE,
+  PIE,
+  PROGRESS_RING,
+  SIMPLE_BAR,
+  SIMPLE_DATA,
+  SIMPLE_LINE,
+  STACKED_BARS,
+} from '../components/charts/AllChartsTypesConstants';
+import ActivityIndicator from '../components/ActivityIndicator';
 
 function HomeScreen({ navigation }) {
-  const scrollable = false;
+  const scrollable = true;
 
-  const clicked = useSelector(
+  const uiStylingData = useSelector(
     (state) => state?.entities?.uiStyling?.uiStylingData
+  );
+  const loadingUiStyling = useSelector(
+    (state) => state?.entities?.uiStyling?.loading
+  );
+  const deviceData = useSelector(
+    (state) => state?.entities?.devices?.devicesData
+  );
+
+  const loadingDeviceData = useSelector(
+    (state) => state?.entities?.devices?.loading
   );
 
   const store = useStore();
 
   useEffect(() => {
     getUiStyling(store);
+    getDevicesData(store);
     const socket = io('http://192.168.1.77:5000/');
 
     socket.on('FromAPI', (data) => {
@@ -54,13 +72,35 @@ function HomeScreen({ navigation }) {
     socket.on('connect', () => {
       console.log('Connected wih Id : ', socket.id);
     });
-    console.log(clicked);
+    // console.log('Devices data from store HomeScreen ========', deviceData);
     return () => socket.disconnect();
   }, []);
+
+  const simpleData = deviceData?.filter((n) => n?.chartType === SIMPLE_DATA);
+
+  const iconsData = deviceData?.filter((n) => n?.chartType === ICONS);
+
+  const lineChartsData = deviceData?.filter(
+    (n) => n?.chartType === BEZIER_LINE || n?.chartType === SIMPLE_LINE
+  );
+
+  const gaugeData = deviceData?.filter(
+    (n) =>
+      n?.chartType === COMPLETED_GAUGE || n?.chartType === INCOMPLETED_GAUGE
+  );
+
+  const circleChartData = deviceData?.filter(
+    (n) => n?.chartType === PROGRESS_RING || n?.chartType === PIE
+  );
+
+  const barsChartsData = deviceData?.filter(
+    (n) => n?.chartType === STACKED_BARS || n?.chartType === SIMPLE_BAR
+  );
 
   return (
     <>
       <Screen>
+        <ActivityIndicator visible={loadingDeviceData || loadingUiStyling} />
         <StatusBar backgroundColor="#6E53A2" />
         <View style={styles.container}>
           <ScrollView
@@ -71,6 +111,7 @@ function HomeScreen({ navigation }) {
               <DateNow />
 
               <AllUserCard usersNumber={1231231231} />
+
               <FlatList
                 showsVerticalScrollIndicator={false}
                 showsHorizontalScrollIndicator={false}
@@ -78,14 +119,18 @@ function HomeScreen({ navigation }) {
                 data={simpleData}
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={({ item }) => (
-                  <InfoCard number={item.number} message={item.title} />
+                  <InfoCard
+                    number={item?.meta?.simpleDataNmuber}
+                    message={item?.name}
+                  />
                 )}
               />
+
               <FlatList
                 showsVerticalScrollIndicator={false}
                 showsHorizontalScrollIndicator={false}
                 horizontal={true}
-                data={firstCardData}
+                data={lineChartsData}
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={({ item }) => (
                   <ChartsCard
@@ -121,7 +166,7 @@ function HomeScreen({ navigation }) {
                   showsVerticalScrollIndicator={false}
                   showsHorizontalScrollIndicator={false}
                   horizontal={false}
-                  numColumns={3}
+                  numColumns={iconsData.length > 3 && 3}
                   data={iconsData}
                   keyExtractor={(item, index) => index.toString()}
                   renderItem={({ item }) => (
@@ -141,7 +186,7 @@ function HomeScreen({ navigation }) {
                 showsVerticalScrollIndicator={false}
                 showsHorizontalScrollIndicator={false}
                 horizontal={true}
-                data={secondCardData}
+                data={gaugeData}
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={({ item }) => (
                   <ChartsCard
@@ -158,7 +203,7 @@ function HomeScreen({ navigation }) {
                 showsVerticalScrollIndicator={false}
                 showsHorizontalScrollIndicator={false}
                 horizontal={true}
-                data={bigChartsData}
+                data={barsChartsData}
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={({ item }) => (
                   <BarsChartsCard
@@ -175,7 +220,7 @@ function HomeScreen({ navigation }) {
                 showsVerticalScrollIndicator={false}
                 showsHorizontalScrollIndicator={false}
                 horizontal={true}
-                data={thirdCardData}
+                data={circleChartData}
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={({ item }) => (
                   <ChartsCard

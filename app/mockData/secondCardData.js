@@ -1,7 +1,7 @@
 export default secondCardData = [
   {
     id: '1',
-    type: 'Completed Gauge',
+    type: 'Completed_Gauge',
     title: 'Critical Work',
     value: 61,
     min: 10,
@@ -10,7 +10,7 @@ export default secondCardData = [
   },
   {
     id: '2',
-    type: 'Completed Gauge',
+    type: 'Completed_Gauge',
     title: 'Resources',
     value: 61,
     min: 20,
@@ -19,7 +19,7 @@ export default secondCardData = [
   },
   {
     id: '3',
-    type: 'Completed Gauge',
+    type: 'Completed_Gauge',
     title: 'Resources',
     value: 40,
     min: 10,
@@ -28,7 +28,7 @@ export default secondCardData = [
   },
   {
     id: '4',
-    type: 'Incompleted Gauge',
+    type: 'Incompleted_Gauge',
     title: 'Resources',
     value: 13,
     min: 10,
@@ -37,7 +37,7 @@ export default secondCardData = [
   },
   {
     id: '4',
-    type: 'Incompleted Gauge',
+    type: 'Incompleted_Gauge',
     title: 'Resources',
     value: 50,
     min: 10,
@@ -46,7 +46,7 @@ export default secondCardData = [
   },
   {
     id: '5',
-    type: 'Incompleted Gauge',
+    type: 'Incompleted_Gauge',
     title: 'Resources',
     value: 10,
     min: 10,

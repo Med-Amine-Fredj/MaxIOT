@@ -28,13 +28,9 @@ export default function App() {
         <PersistGate loading={null} persistor={appStore.persistor}>
           <NavigationContainer theme={navigationTheme}>
             <AppNavigator />
-            <StatusBar backgroundColor="#6E53A2" />
           </NavigationContainer>
-          <StatusBar backgroundColor="#6E53A2" />
         </PersistGate>
-        <StatusBar backgroundColor="#6E53A2" />
       </Provider>
-      <StatusBar backgroundColor="#6E53A2" />
     </>
   );
 }

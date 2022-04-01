@@ -7,13 +7,11 @@ let screenHeigth = Dimensions.get('window').height;
 
 export default function StackedBarsChart({
   dataArray,
-  labelsArray,
   legendArray,
   colorsArray,
   size,
 }) {
   const data = {
-    labels: labelsArray,
     legend: legendArray,
     data: dataArray,
     barColors: colorsArray,

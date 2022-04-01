@@ -10,39 +10,43 @@ import colors from '../../config/colors';
 
 import StackedBarsChart from '../charts/StackedBarsChart';
 import MultiBarChart from '../charts/MultiBarChart';
+import { SIMPLE_BAR, STACKED_BARS } from '../charts/AllChartsTypesConstants';
 
 let w = Dimensions.get('window').width;
 let h = Dimensions.get('window').height;
 
 function BarsChartsCard({ chartObject, onPress }) {
-  return chartObject.type === 'Stacked Bars' ? (
+  return chartObject?.chartType === STACKED_BARS ? (
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.card}>
         <View style={styles.titleContainer}>
-          <Text style={styles.title}>{chartObject.title}</Text>
+          <Text style={styles.title}>{chartObject?.name}</Text>
         </View>
         <View style={styles.chartContainer}>
           <StackedBarsChart
-            dataArray={chartObject?.value ? chartObject?.value : []}
-            labelsArray={chartObject.labels}
-            legendArray={chartObject.legend}
-            colorsArray={chartObject.colors}
+            dataArray={
+              chartObject?.meta?.values ? chartObject?.meta?.values : []
+            }
+            legendArray={chartObject?.meta?.legend}
+            colorsArray={chartObject?.meta?.colors}
           />
         </View>
       </View>
     </TouchableWithoutFeedback>
   ) : (
-    chartObject.type === 'MultiBar Chart' && (
+    chartObject?.chartType === SIMPLE_BAR && (
       <TouchableWithoutFeedback onPress={onPress}>
         <View style={styles.card}>
           <View style={styles.titleContainer}>
-            <Text style={styles.title}>{chartObject.title}</Text>
+            <Text style={styles.title}>{chartObject?.name}</Text>
           </View>
           <View style={styles.chartContainer}>
             <MultiBarChart
               size="small"
-              values={chartObject.values}
-              color={chartObject.color}
+              values={chartObject?.meta?.values}
+              color={
+                chartObject?.meta?.colors[chartObject?.meta?.colors.length - 1]
+              }
             />
           </View>
         </View>
@@ -64,7 +68,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 3,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: '1%',
+    // marginBottom: '1%',
   },
   chartContainer: {
     alignSelf: 'center',

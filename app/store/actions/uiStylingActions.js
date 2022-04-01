@@ -14,10 +14,11 @@ export const getUiStyling = async (store) => {
 
     const { data } = await axios.get('http://192.168.1.77:5000/api/uiStyling/');
 
-    store.dispatch({
-      type: GET_UISTYLING_SUCCESS,
-      payload: data,
-    });
+    data &&
+      store.dispatch({
+        type: GET_UISTYLING_SUCCESS,
+        payload: data,
+      });
   } catch (error) {
     store.dispatch({
       type: GET_UISTYLING_FAIL,

@@ -18,16 +18,16 @@ function IconsCard({ iconData, onPress }) {
       <View style={styles.card}>
         <View style={styles.container}>
           <Icon
-            iconName={iconData.iconName}
-            iconColor={iconData.iconColor}
-            iconBackgroundColor={iconData.iconBackgroundColor}
+            iconName={iconData?.meta?.iconName}
+            iconColor={iconData?.meta?.iconColor}
+            iconBackgroundColor={iconData?.meta?.iconBackgroundColor}
           />
           <View style={styles.textContainer}>
-            <Text style={styles.value} numberOfLines={1}>
-              {iconData.value}
+            <Text style={styles.v} numberOfLines={1}>
+              {iconData?.meta?.values[iconData?.meta?.values?.length - 1]}
             </Text>
             <Text style={styles.title} numberOfLines={1}>
-              {iconData.title}
+              {iconData?.name}
             </Text>
           </View>
         </View>
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   textContainer: {
     marginTop: '5%',
   },
-  value: {
+  v: {
     textAlign: 'center',
     fontSize: 16,
     fontWeight: 'bold',

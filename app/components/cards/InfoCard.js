@@ -6,6 +6,7 @@ import {
   Text,
   Dimensions,
 } from 'react-native';
+
 import colors from '../../config/colors';
 
 let d = Dimensions.get('window').width;

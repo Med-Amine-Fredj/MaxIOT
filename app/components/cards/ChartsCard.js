@@ -6,7 +6,9 @@ import {
   Text,
   Dimensions,
 } from 'react-native';
+
 import colors from '../../config/colors';
+
 import IncompletedGauge from '../charts/IncompletedGauge';
 import BezierLineChart from '../charts/BezierLineChart';
 import CircleGauge from '../charts/CircleGauge';
@@ -14,93 +16,110 @@ import SimpleLineChart from '../charts/SimpleLineChart';
 import ProgressRing from '../charts/ProgressRing';
 import SimplePieCharts from '../charts/SimplePieCharts';
 
+import {
+  BEZIER_LINE,
+  COMPLETED_GAUGE,
+  INCOMPLETED_GAUGE,
+  PIE,
+  PROGRESS_RING,
+  SIMPLE_LINE,
+} from '../charts/AllChartsTypesConstants';
+
 let w = Dimensions.get('window').width;
 let h = Dimensions.get('window').height;
 
 function ChartsCard({ chartObject, onPress }) {
-  return chartObject.type === 'Incompleted Gauge' ? (
+  return chartObject?.chartType === INCOMPLETED_GAUGE ? (
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.card}>
         <View style={styles.chartContainer}>
           <IncompletedGauge
-            value={chartObject.value}
-            min={chartObject.min}
-            max={chartObject.max}
-            warning={chartObject.warning}
+            value={
+              chartObject?.meta?.values[chartObject?.meta?.values.length - 1]
+            }
+            min={chartObject?.meta?.min[chartObject?.meta?.min.length - 1]}
+            max={chartObject?.meta?.max[chartObject?.meta?.max.length - 1]}
+            warning={
+              chartObject?.meta?.warning[chartObject?.meta?.warning.length - 1]
+            }
           />
         </View>
         <View style={styles.titleContainer}>
-          <Text style={styles.title}>{chartObject.title}</Text>
+          <Text style={styles.title}>{chartObject?.name}</Text>
         </View>
       </View>
     </TouchableWithoutFeedback>
-  ) : chartObject.type === 'Bezier Line Chart' ? (
+  ) : chartObject?.chartType === BEZIER_LINE ? (
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.card}>
         <View style={styles.chartContainer}>
-          <BezierLineChart dataArray={chartObject.value} size="small" />
+          <BezierLineChart dataArray={chartObject?.meta?.values} size="small" />
         </View>
         <View style={styles.titleContainer}>
-          <Text style={styles.title}>{chartObject.title}</Text>
+          <Text style={styles.title}>{chartObject?.name}</Text>
         </View>
       </View>
     </TouchableWithoutFeedback>
-  ) : chartObject.type === 'Completed Gauge' ? (
+  ) : chartObject?.chartType === COMPLETED_GAUGE ? (
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.card}>
         <View style={styles.chartContainer}>
           <CircleGauge
-            value={chartObject.value}
-            min={chartObject.min}
-            max={chartObject.max}
-            warning={chartObject.warning}
+            value={
+              chartObject?.meta?.values[chartObject?.meta?.values.length - 1]
+            }
+            min={chartObject?.meta?.min[chartObject?.meta?.min.length - 1]}
+            max={chartObject?.meta?.max[chartObject?.meta?.max.length - 1]}
+            warning={
+              chartObject?.meta?.warning[chartObject?.meta?.warning.length - 1]
+            }
           />
         </View>
         <View style={styles.titleContainer}>
-          <Text style={styles.title}>{chartObject.title}</Text>
+          <Text style={styles.title}>{chartObject?.name}</Text>
         </View>
       </View>
     </TouchableWithoutFeedback>
-  ) : chartObject.type === 'Simple Line Chart' ? (
+  ) : chartObject?.chartType === SIMPLE_LINE ? (
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.card}>
         <View style={styles.chartContainer}>
-          <SimpleLineChart dataArray={chartObject.value} size="small" />
+          <SimpleLineChart dataArray={chartObject?.meta?.values} size="small" />
         </View>
         <View style={styles.titleContainer}>
-          <Text style={styles.title}>{chartObject.title}</Text>
+          <Text style={styles.title}>{chartObject?.name}</Text>
         </View>
       </View>
     </TouchableWithoutFeedback>
-  ) : chartObject.type === 'Progress Ring' ? (
+  ) : chartObject?.chartType === PROGRESS_RING ? (
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.card}>
         <View style={styles.chartContainer}>
           <ProgressRing
-            dataArray={chartObject.value}
-            dataColors={chartObject.dataColors}
-            dataLegend={chartObject.legend}
+            dataArray={chartObject?.meta?.values}
+            dataColors={chartObject?.meta?.colors}
+            dataLegend={chartObject?.meta?.legend}
           />
         </View>
         <View style={styles.titleContainer}>
-          <Text style={styles.title}>{chartObject.title}</Text>
+          <Text style={styles.title}>{chartObject?.name}</Text>
         </View>
       </View>
     </TouchableWithoutFeedback>
   ) : (
-    chartObject.type === 'Pie Chart' && (
+    chartObject?.chartType === PIE && (
       <TouchableWithoutFeedback onPress={onPress}>
         <View style={styles.card}>
           <View style={styles.chartContainer}>
             <SimplePieCharts
               size="small"
-              names={chartObject.names}
-              values={chartObject.values}
-              colors={chartObject.colors}
+              names={chartObject?.meta?.names}
+              values={chartObject?.meta?.values}
+              colors={chartObject?.meta?.colors}
             />
           </View>
           <View style={styles.titleContainer}>
-            <Text style={styles.title}>{chartObject.title}</Text>
+            <Text style={styles.title}>{chartObject?.name}</Text>
           </View>
         </View>
       </TouchableWithoutFeedback>
