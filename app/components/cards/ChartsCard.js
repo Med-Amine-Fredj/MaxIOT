@@ -129,7 +129,6 @@ function ChartsCard({ chartObject, onPress }) {
 
 const styles = StyleSheet.create({
   card: {
-    flex: 1,
     borderRadius: 10,
     backgroundColor: colors.white,
     marginTop: h * 0.015,
@@ -142,17 +141,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   chartContainer: {
-    alignSelf: 'center',
-    alignContent: 'center',
-    justifyContent: 'center',
     minHeight: '80%',
     maxHeight: '80%',
   },
   titleContainer: {
-    marginBottom: '10%',
+    marginTop: '10%',
   },
   title: {
     fontSize: 15,
+    textAlign: 'center',
     fontWeight: 'bold',
   },
 });

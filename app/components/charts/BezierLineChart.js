@@ -11,7 +11,8 @@ export default function BezierLineChart({ dataArray, size }) {
   const data = {
     datasets: [
       {
-        data: dataArray,
+        data:
+          size == 'large' ? dataArray : dataArray.slice(dataArray.length - 5),
       },
     ],
   };
@@ -47,7 +48,7 @@ export default function BezierLineChart({ dataArray, size }) {
       )}
       <LineChart
         data={data}
-        width={size == 'large' ? w : w * 0.67}
+        width={size == 'large' ? w : w * 0.69}
         height={size == 'large' ? h * 0.3 : h * 0.17}
         withOuterLines={size == 'large' ? true : false}
         withInnerLines={size == 'large' ? true : false}
@@ -69,8 +70,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     alignItems: 'center',
     justifyContent: 'center',
-    alignSelf: 'center',
-    marginRight: '1%',
   },
   txt: {
     fontSize: 20,

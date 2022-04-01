@@ -37,6 +37,7 @@ import {
   SIMPLE_LINE,
   STACKED_BARS,
 } from '../components/charts/AllChartsTypesConstants';
+
 import ActivityIndicator from '../components/ActivityIndicator';
 
 function ChartsDetailsScreen({ navigation, route }) {
@@ -50,7 +51,7 @@ function ChartsDetailsScreen({ navigation, route }) {
 
   return (
     <>
-      <ActivityIndicator visible={item.length === 0} />
+      <ActivityIndicator visible={route.params.item.length === 0} />
       <StatusBar backgroundColor="#6E53A2" />
 
       <Header onPress={() => navigation.goBack()} title={item?.name} />
@@ -85,7 +86,7 @@ function ChartsDetailsScreen({ navigation, route }) {
                 value={item?.meta?.values[item?.meta?.values.length - 1]}
                 min={item?.meta?.min[item?.meta?.min.length - 1]}
                 max={item?.meta?.max[item?.meta?.max.length - 1]}
-                warning={item?.meta?.warning[item?.meta?.max.warning - 1]}
+                warning={item?.meta?.warning[item?.meta?.warning.length - 1]}
                 size="large"
               />
               <View style={styles.lineChartTextContainer}>
@@ -110,7 +111,7 @@ function ChartsDetailsScreen({ navigation, route }) {
                 value={item?.meta?.values[item?.meta?.values.length - 1]}
                 min={item?.meta?.min[item?.meta?.min.length - 1]}
                 max={item?.meta?.max[item?.meta?.max.length - 1]}
-                warning={item?.meta?.warning[item?.meta?.max.warning - 1]}
+                warning={item?.meta?.warning[item?.meta?.warning.length - 1]}
                 size="large"
               />
               <View style={styles.lineChartTextContainer}>

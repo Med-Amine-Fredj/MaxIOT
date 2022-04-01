@@ -1,24 +1,17 @@
 import React, { useEffect } from 'react';
+
 import {
   StyleSheet,
   StatusBar,
   View,
-  FlatList,
-  Text,
   ScrollView,
   SafeAreaView,
 } from 'react-native';
 
 import Screen from '../components/Screen';
 
-import routes from '../navigation/routes';
-
 import AllUserCard from '../components/cards/AllUserCard';
 import DateNow from '../components/dateNow';
-import InfoCard from '../components/cards/InfoCard';
-import ChartsCard from '../components/cards/ChartsCard';
-import IconsCard from '../components/cards/IconsCard';
-import BarsChartsCard from '../components/cards/BarsChartsCard';
 
 import { io } from 'socket.io-client';
 
@@ -38,11 +31,17 @@ import {
   SIMPLE_LINE,
   STACKED_BARS,
 } from '../components/charts/AllChartsTypesConstants';
+
 import ActivityIndicator from '../components/ActivityIndicator';
+import LineChartFlatlist from '../components/dataFlatlist/LineChartFlatlist';
+import IconsFlatlist from '../components/dataFlatlist/IconsFlatlist';
+import GaugeFlatlist from '../components/dataFlatlist/GaugeFlatlist';
+import BarChartsFlatlist from '../components/dataFlatlist/BarChartsFlatlist';
+import PieChartsFlalist from '../components/dataFlatlist/PieChartsFlalist';
+import InfoCard from '../components/cards/InfoCard';
+import SimpleFlatlist from '../components/dataFlatlist/SimpleFlatlist';
 
 function HomeScreen({ navigation }) {
-  const scrollable = true;
-
   const uiStylingData = useSelector(
     (state) => state?.entities?.uiStyling?.uiStylingData
   );
@@ -65,14 +64,13 @@ function HomeScreen({ navigation }) {
     const socket = io('http://192.168.1.77:5000/');
 
     socket.on('FromAPI', (data) => {
-      // setResponse(data);
       console.log('Operation on collection : ', data);
     });
 
     socket.on('connect', () => {
       console.log('Connected wih Id : ', socket.id);
     });
-    // console.log('Devices data from store HomeScreen ========', deviceData);
+
     return () => socket.disconnect();
   }, []);
 
@@ -99,147 +97,58 @@ function HomeScreen({ navigation }) {
 
   return (
     <>
-      <Screen>
-        <ActivityIndicator visible={loadingDeviceData || loadingUiStyling} />
-        <StatusBar backgroundColor="#6E53A2" />
-        <View style={styles.container}>
-          <ScrollView
-            showsVerticalScrollIndicator={false}
-            showsHorizontalScrollIndicator={false}
-          >
+      <ActivityIndicator visible={loadingDeviceData || loadingUiStyling} />
+
+      <StatusBar backgroundColor="#6E53A2" />
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
+      >
+        <Screen>
+          <View style={styles.container}>
             <SafeAreaView>
               <DateNow />
 
               <AllUserCard usersNumber={1231231231} />
 
-              <FlatList
-                showsVerticalScrollIndicator={false}
-                showsHorizontalScrollIndicator={false}
-                horizontal={true}
+              <SimpleFlatlist
                 data={simpleData}
-                keyExtractor={(item, index) => index.toString()}
-                renderItem={({ item }) => (
-                  <InfoCard
-                    number={item?.meta?.simpleDataNmuber}
-                    message={item?.name}
-                  />
-                )}
+                isScrollable={uiStylingData?.simpleData?.scrollable}
               />
 
-              <FlatList
-                showsVerticalScrollIndicator={false}
-                showsHorizontalScrollIndicator={false}
-                horizontal={true}
+              <LineChartFlatlist
                 data={lineChartsData}
-                keyExtractor={(item, index) => index.toString()}
-                renderItem={({ item }) => (
-                  <ChartsCard
-                    chartObject={item}
-                    onPress={() =>
-                      navigation.navigate(routes.CHART_DETAILS, {
-                        item,
-                      })
-                    }
-                  />
-                )}
+                isScrollable={uiStylingData?.lineCharts?.scrollable}
+                navigation={navigation}
               />
-              {scrollable ? (
-                <FlatList
-                  showsVerticalScrollIndicator={false}
-                  showsHorizontalScrollIndicator={false}
-                  horizontal={true}
-                  data={iconsData}
-                  keyExtractor={(item, index) => index.toString()}
-                  renderItem={({ item }) => (
-                    <IconsCard
-                      iconData={item}
-                      onPress={() =>
-                        navigation.navigate(routes.ICONS_DETAILS, {
-                          item,
-                        })
-                      }
-                    />
-                  )}
-                />
-              ) : (
-                <FlatList
-                  showsVerticalScrollIndicator={false}
-                  showsHorizontalScrollIndicator={false}
-                  horizontal={false}
-                  numColumns={iconsData.length > 3 && 3}
-                  data={iconsData}
-                  keyExtractor={(item, index) => index.toString()}
-                  renderItem={({ item }) => (
-                    <IconsCard
-                      iconData={item}
-                      onPress={() =>
-                        navigation.navigate(routes.ICONS_DETAILS, {
-                          item,
-                        })
-                      }
-                    />
-                  )}
-                />
-              )}
 
-              <FlatList
-                showsVerticalScrollIndicator={false}
-                showsHorizontalScrollIndicator={false}
-                horizontal={true}
+              <IconsFlatlist
+                data={iconsData}
+                isScrollable={uiStylingData?.icons?.scrollable}
+                navigation={navigation}
+              />
+
+              <GaugeFlatlist
                 data={gaugeData}
-                keyExtractor={(item, index) => index.toString()}
-                renderItem={({ item }) => (
-                  <ChartsCard
-                    chartObject={item}
-                    onPress={() =>
-                      navigation.navigate(routes.CHART_DETAILS, {
-                        item,
-                      })
-                    }
-                  />
-                )}
+                isScrollable={uiStylingData?.gaugeCharts?.scrollable}
+                navigation={navigation}
               />
-              <FlatList
-                showsVerticalScrollIndicator={false}
-                showsHorizontalScrollIndicator={false}
-                horizontal={true}
+
+              <BarChartsFlatlist
                 data={barsChartsData}
-                keyExtractor={(item, index) => index.toString()}
-                renderItem={({ item }) => (
-                  <BarsChartsCard
-                    chartObject={item}
-                    onPress={() =>
-                      navigation.navigate(routes.CHART_DETAILS, {
-                        item,
-                      })
-                    }
-                  />
-                )}
+                isScrollable={uiStylingData?.barCharts?.scrollable}
+                navigation={navigation}
               />
-              <FlatList
-                showsVerticalScrollIndicator={false}
-                showsHorizontalScrollIndicator={false}
-                horizontal={true}
+
+              <PieChartsFlalist
                 data={circleChartData}
-                keyExtractor={(item, index) => index.toString()}
-                renderItem={({ item }) => (
-                  <ChartsCard
-                    chartObject={item}
-                    onPress={() =>
-                      navigation.navigate(routes.CHART_DETAILS, {
-                        item,
-                      })
-                    }
-                  />
-                )}
+                isScrollable={uiStylingData?.pieCharts?.scrollable}
+                navigation={navigation}
               />
             </SafeAreaView>
-            <StatusBar backgroundColor="#6E53A2" />
-          </ScrollView>
-        </View>
-        <StatusBar backgroundColor="#6E53A2" />
-      </Screen>
-      <StatusBar backgroundColor="#6E53A2" />
+          </View>
+        </Screen>
+      </ScrollView>
     </>
   );
 }

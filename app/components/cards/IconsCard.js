@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
     height: h * 0.17,
     width: (w / 2) * 0.58,
     marginHorizontal: 3,
+    maxWidth: (w / 2) * 0.58,
   },
   container: {
     marginTop: '10%',

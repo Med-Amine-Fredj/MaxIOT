@@ -14,6 +14,6 @@ export const PROGRESS_RING = 'Progress_Ring'; // values: [] ; colors: [] ; legen
 
 export const PIE = 'Pie'; // names: [] ; values : []  ; colors: []
 
-export const SIMPLE_DATA = 'Simple_data'; // number
+export const SIMPLE_DATA = 'Simple_Data'; // number
 
 export const ICONS = 'Icons'; // values: [] ; iconName: '' ; iconColor: '' ; iconBackground : ''

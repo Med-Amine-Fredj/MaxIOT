@@ -40,7 +40,7 @@ export default function gouge({ value, size, min, max, warning }) {
   return (
     <View style={styles.container}>
       <View>
-        {value == warning && (
+        {value === warning && (
           <View style={styles.messageContainer}>
             <AntDesign
               name="warning"

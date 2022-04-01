@@ -9,7 +9,8 @@ export default function SimpleLineChart({ dataArray, size }) {
   const data = {
     datasets: [
       {
-        data: dataArray,
+        data:
+          size == 'large' ? dataArray : dataArray.slice(dataArray.length - 6),
       },
     ],
   };
@@ -66,8 +67,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    alignSelf: 'center',
-    marginRight: '1%',
   },
   txt: {
     fontSize: 20,
