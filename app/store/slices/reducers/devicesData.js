@@ -1,4 +1,4 @@
-const devices = {
+const devicesData = {
   initialState: {
     loading: false,
     error: null,
@@ -19,7 +19,7 @@ const devices = {
   },
 };
 
-export default devices;
+export default devicesData;
 export const GET_DEVICES_DATA_REQUEST = 'devicesData/get_devices_data_request';
 export const GET_DEVICES_DATA_SUCCESS = 'devicesData/get_devices_data_success';
 export const GET_DEVICES_DATA_FAIL = 'devicesData/get_devices_data_fail';
