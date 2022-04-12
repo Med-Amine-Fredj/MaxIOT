@@ -12,7 +12,7 @@ import Icon from '../Icon';
 let w = Dimensions.get('window').width;
 let h = Dimensions.get('window').height;
 
-function IconsCard({ iconData, onPress }) {
+function IconsCard({ iconData, onPress, values }) {
   return (
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.card}>
@@ -24,7 +24,7 @@ function IconsCard({ iconData, onPress }) {
           />
           <View style={styles.textContainer}>
             <Text style={styles.v} numberOfLines={1}>
-              {iconData?.meta?.values[iconData?.meta?.values?.length - 1]}
+              {values[values?.length - 1]}
             </Text>
             <Text style={styles.title} numberOfLines={1}>
               {iconData?.name}

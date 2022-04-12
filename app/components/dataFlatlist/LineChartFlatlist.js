@@ -1,11 +1,19 @@
 import React from 'react';
 
 import { StyleSheet, FlatList } from 'react-native';
+import { useSelector } from 'react-redux';
 import routes from '../../navigation/routes';
 
 import ChartsCard from '../cards/ChartsCard';
 
 function LineChartFlatlist({ data, isScrollable, navigation }) {
+  const dataC = useSelector(
+    (state) => state?.entities?.devicesData?.devicesData
+  );
+
+  const number = (id) => {
+    return dataC.filter((n) => n?.deviceId === id)[0].values;
+  };
   return (
     <>
       <FlatList
@@ -17,6 +25,7 @@ function LineChartFlatlist({ data, isScrollable, navigation }) {
         keyExtractor={(item, index) => 'LC' + index.toString()}
         renderItem={({ item }) => (
           <ChartsCard
+            values={number(item.deviceId)}
             chartObject={item}
             onPress={() =>
               navigation.navigate(routes.CHART_DETAILS, {

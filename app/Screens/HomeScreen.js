@@ -53,7 +53,9 @@ function HomeScreen({ navigation }) {
   const loadingUiStyling = useSelector(
     (state) => state?.entities?.uiStyling?.loading
   );
-  const devices = useSelector((state) => state?.entities?.devices?.devices);
+  const devices = useSelector(
+    (state) => state?.entities?.devices?.devicesStyle
+  );
 
   const loadingDevices = useSelector(
     (state) => state?.entities?.devices?.loading
@@ -69,9 +71,8 @@ function HomeScreen({ navigation }) {
     getDevices(store);
 
     socket.on('FromAPI', (data) => {
-      getUiStyling(store);
       getDevicesData(store);
-      console.log('Operation on collection : ', data);
+      // console.log('Operation on collection : ', data);
     });
 
     socket.on('connect', () => {

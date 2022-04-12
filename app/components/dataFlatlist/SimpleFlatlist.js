@@ -1,10 +1,19 @@
 import React from 'react';
 
 import { StyleSheet, FlatList } from 'react-native';
+import { useSelector } from 'react-redux';
 
 import InfoCard from '../cards/InfoCard';
 
 function SimpleFlatlist({ data, isScrollable }) {
+  const dataC = useSelector(
+    (state) => state?.entities?.devicesData?.devicesData
+  );
+
+  const number = (id) => {
+    return dataC.filter((n) => n?.deviceId === id)[0].values[0];
+  };
+
   return (
     <>
       <FlatList
@@ -15,10 +24,7 @@ function SimpleFlatlist({ data, isScrollable }) {
         data={data}
         keyExtractor={(item, index) => 'SD' + index.toString()}
         renderItem={({ item }) => (
-          <InfoCard
-            number={item?.meta?.simpleDataNmuber}
-            message={item?.name}
-          />
+          <InfoCard number={number(item.deviceId)} message={item?.name} />
         )}
       />
     </>

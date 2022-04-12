@@ -28,15 +28,13 @@ import {
 let w = Dimensions.get('window').width;
 let h = Dimensions.get('window').height;
 
-function ChartsCard({ chartObject, onPress }) {
+function ChartsCard({ chartObject, onPress, values }) {
   return chartObject?.chartType === INCOMPLETED_GAUGE ? (
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.card}>
         <View style={styles.chartContainer}>
           <IncompletedGauge
-            value={
-              chartObject?.meta?.values[chartObject?.meta?.values.length - 1]
-            }
+            value={values[values.length - 1]}
             min={chartObject?.meta?.min[chartObject?.meta?.min.length - 1]}
             max={chartObject?.meta?.max[chartObject?.meta?.max.length - 1]}
             warning={
@@ -53,7 +51,7 @@ function ChartsCard({ chartObject, onPress }) {
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.card}>
         <View style={styles.chartContainer}>
-          <BezierLineChart dataArray={chartObject?.meta?.values} size="small" />
+          <BezierLineChart dataArray={values} size="small" />
         </View>
         <View style={styles.titleContainer}>
           <Text style={styles.title}>{chartObject?.name}</Text>
@@ -65,9 +63,7 @@ function ChartsCard({ chartObject, onPress }) {
       <View style={styles.card}>
         <View style={styles.chartContainer}>
           <CircleGauge
-            value={
-              chartObject?.meta?.values[chartObject?.meta?.values.length - 1]
-            }
+            value={values[values.length - 1]}
             min={chartObject?.meta?.min[chartObject?.meta?.min.length - 1]}
             max={chartObject?.meta?.max[chartObject?.meta?.max.length - 1]}
             warning={
@@ -84,7 +80,7 @@ function ChartsCard({ chartObject, onPress }) {
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.card}>
         <View style={styles.chartContainer}>
-          <SimpleLineChart dataArray={chartObject?.meta?.values} size="small" />
+          <SimpleLineChart dataArray={values} size="small" />
         </View>
         <View style={styles.titleContainer}>
           <Text style={styles.title}>{chartObject?.name}</Text>
@@ -96,7 +92,7 @@ function ChartsCard({ chartObject, onPress }) {
       <View style={styles.card}>
         <View style={styles.chartContainer}>
           <ProgressRing
-            dataArray={chartObject?.meta?.values}
+            dataArray={values}
             dataColors={chartObject?.meta?.colors}
             dataLegend={chartObject?.meta?.legend}
           />
@@ -114,7 +110,7 @@ function ChartsCard({ chartObject, onPress }) {
             <SimplePieCharts
               size="small"
               names={chartObject?.meta?.names}
-              values={chartObject?.meta?.values}
+              values={values}
               colors={chartObject?.meta?.colors}
             />
           </View>
