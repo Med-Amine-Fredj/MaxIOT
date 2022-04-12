@@ -20,7 +20,7 @@ import { io } from 'socket.io-client';
 import { useSelector, useStore } from 'react-redux';
 
 import { getUiStyling } from '../store/actions/uiStylingActions';
-import { getDevicesData } from '../store/actions/devicesActions';
+
 import {
   BEZIER_LINE,
   COMPLETED_GAUGE,
@@ -43,6 +43,8 @@ import PieChartsFlalist from '../components/dataFlatlist/PieChartsFlalist';
 import SimpleFlatlist from '../components/dataFlatlist/SimpleFlatlist';
 
 import { SOCKET_URL } from '@env';
+import { getDevicesData } from '../store/actions/devicesDataActions';
+import { getDevices } from '../store/actions/devicesActions';
 
 function HomeScreen({ navigation }) {
   const uiStylingData = useSelector(
@@ -51,11 +53,9 @@ function HomeScreen({ navigation }) {
   const loadingUiStyling = useSelector(
     (state) => state?.entities?.uiStyling?.loading
   );
-  const deviceData = useSelector(
-    (state) => state?.entities?.devices?.devicesData
-  );
+  const devices = useSelector((state) => state?.entities?.devices?.devices);
 
-  const loadingDeviceData = useSelector(
+  const loadingDevices = useSelector(
     (state) => state?.entities?.devices?.loading
   );
 
@@ -64,8 +64,9 @@ function HomeScreen({ navigation }) {
   const socket = io(`http://192.168.1.93:5000/`);
 
   useEffect(() => {
-    getUiStyling(store);
     getDevicesData(store);
+    getUiStyling(store);
+    getDevices(store);
 
     socket.on('FromAPI', (data) => {
       getUiStyling(store);
@@ -80,30 +81,30 @@ function HomeScreen({ navigation }) {
     return () => socket.disconnect();
   }, []);
 
-  const simpleData = deviceData?.filter((n) => n?.chartType === SIMPLE_DATA);
+  const simpleData = devices?.filter((n) => n?.chartType === SIMPLE_DATA);
 
-  const iconsData = deviceData?.filter((n) => n?.chartType === ICONS);
+  const iconsData = devices?.filter((n) => n?.chartType === ICONS);
 
-  const lineChartsData = deviceData?.filter(
+  const lineChartsData = devices?.filter(
     (n) => n?.chartType === BEZIER_LINE || n?.chartType === SIMPLE_LINE
   );
 
-  const gaugeData = deviceData?.filter(
+  const gaugeData = devices?.filter(
     (n) =>
       n?.chartType === COMPLETED_GAUGE || n?.chartType === INCOMPLETED_GAUGE
   );
 
-  const circleChartData = deviceData?.filter(
+  const circleChartData = devices?.filter(
     (n) => n?.chartType === PROGRESS_RING || n?.chartType === PIE
   );
 
-  const barsChartsData = deviceData?.filter(
+  const barsChartsData = devices?.filter(
     (n) => n?.chartType === STACKED_BARS || n?.chartType === SIMPLE_BAR
   );
 
   return (
     <>
-      <ActivityIndicator visible={loadingDeviceData || loadingUiStyling} />
+      <ActivityIndicator visible={loadingDevices || loadingUiStyling} />
 
       <StatusBar backgroundColor="#6E53A2" />
 
