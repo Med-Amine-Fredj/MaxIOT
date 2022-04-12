@@ -14,7 +14,7 @@ function IconsFlatlist({ data, isScrollable, navigation }) {
         horizontal={isScrollable}
         numColumns={!isScrollable && data?.length >= 3 && 3}
         data={data}
-        keyExtractor={(item, index) => index.toString()}
+        keyExtractor={(item, index) => 'IC' + index.toString()}
         renderItem={({ item }) => (
           <IconsCard
             iconData={item}

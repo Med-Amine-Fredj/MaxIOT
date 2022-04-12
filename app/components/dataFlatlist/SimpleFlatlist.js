@@ -13,7 +13,7 @@ function SimpleFlatlist({ data, isScrollable }) {
         horizontal={isScrollable}
         numColumns={!isScrollable && data?.length >= 2 && 2}
         data={data}
-        keyExtractor={(item, index) => index.toString()}
+        keyExtractor={(item, index) => 'SD' + index.toString()}
         renderItem={({ item }) => (
           <InfoCard
             number={item?.meta?.simpleDataNmuber}

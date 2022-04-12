@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { StyleSheet, Text, View, ScrollView, StatusBar } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, LogBox } from 'react-native';
 
 import color from './app/config/colors';
 
@@ -17,6 +17,8 @@ export default function App() {
   const appStore = defaultStore;
 
   useEffect(() => {
+    LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+
     if (appStore) {
       injectStore(appStore);
     }

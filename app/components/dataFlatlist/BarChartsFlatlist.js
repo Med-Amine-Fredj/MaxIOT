@@ -15,7 +15,7 @@ function BarChartsFlatlist({ data, isScrollable, navigation }) {
         horizontal={isScrollable}
         numColumns={!isScrollable && data?.length >= 1 && 1}
         data={data}
-        keyExtractor={(item, index) => index.toString()}
+        keyExtractor={(item, index) => 'BC' + index.toString()}
         renderItem={({ item }) => (
           <BarsChartsCard
             chartObject={item}

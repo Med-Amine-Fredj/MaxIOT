@@ -15,7 +15,7 @@ function GaugeFlatlist({ data, isScrollable, navigation }) {
         horizontal={isScrollable}
         numColumns={!isScrollable && data?.length >= 2 && 2}
         data={data}
-        keyExtractor={(item, index) => index.toString()}
+        keyExtractor={(item, index) => 'GC' + index.toString()}
         renderItem={({ item }) => (
           <ChartsCard
             chartObject={item}

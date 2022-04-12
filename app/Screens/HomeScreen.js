@@ -6,6 +6,8 @@ import {
   View,
   ScrollView,
   SafeAreaView,
+  FlatList,
+  Text,
 } from 'react-native';
 
 import Screen from '../components/Screen';
@@ -38,8 +40,9 @@ import IconsFlatlist from '../components/dataFlatlist/IconsFlatlist';
 import GaugeFlatlist from '../components/dataFlatlist/GaugeFlatlist';
 import BarChartsFlatlist from '../components/dataFlatlist/BarChartsFlatlist';
 import PieChartsFlalist from '../components/dataFlatlist/PieChartsFlalist';
-import InfoCard from '../components/cards/InfoCard';
 import SimpleFlatlist from '../components/dataFlatlist/SimpleFlatlist';
+
+import { SOCKET_URL } from '@env';
 
 function HomeScreen({ navigation }) {
   const uiStylingData = useSelector(
@@ -58,12 +61,15 @@ function HomeScreen({ navigation }) {
 
   const store = useStore();
 
+  const socket = io(`http://192.168.1.93:5000/`);
+
   useEffect(() => {
     getUiStyling(store);
     getDevicesData(store);
-    const socket = io('http://192.168.1.77:5000/');
 
     socket.on('FromAPI', (data) => {
+      getUiStyling(store);
+      getDevicesData(store);
       console.log('Operation on collection : ', data);
     });
 
@@ -100,55 +106,50 @@ function HomeScreen({ navigation }) {
       <ActivityIndicator visible={loadingDeviceData || loadingUiStyling} />
 
       <StatusBar backgroundColor="#6E53A2" />
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        showsHorizontalScrollIndicator={false}
-      >
-        <Screen>
-          <View style={styles.container}>
+
+      <Screen>
+        <View style={styles.container}>
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            showsHorizontalScrollIndicator={false}
+          >
             <SafeAreaView>
               <DateNow />
-
               <AllUserCard usersNumber={1231231231} />
 
               <SimpleFlatlist
                 data={simpleData}
                 isScrollable={uiStylingData?.simpleData?.scrollable}
               />
-
               <LineChartFlatlist
                 data={lineChartsData}
                 isScrollable={uiStylingData?.lineCharts?.scrollable}
                 navigation={navigation}
               />
-
               <IconsFlatlist
                 data={iconsData}
                 isScrollable={uiStylingData?.icons?.scrollable}
                 navigation={navigation}
               />
-
               <GaugeFlatlist
                 data={gaugeData}
                 isScrollable={uiStylingData?.gaugeCharts?.scrollable}
                 navigation={navigation}
               />
-
               <BarChartsFlatlist
                 data={barsChartsData}
                 isScrollable={uiStylingData?.barCharts?.scrollable}
                 navigation={navigation}
               />
-
               <PieChartsFlalist
                 data={circleChartData}
                 isScrollable={uiStylingData?.pieCharts?.scrollable}
                 navigation={navigation}
               />
             </SafeAreaView>
-          </View>
-        </Screen>
-      </ScrollView>
+          </ScrollView>
+        </View>
+      </Screen>
     </>
   );
 }

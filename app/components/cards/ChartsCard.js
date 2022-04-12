@@ -141,6 +141,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   chartContainer: {
+    justifyContent: 'center',
     minHeight: '80%',
     maxHeight: '80%',
   },
