@@ -8,13 +8,13 @@ const devices = {
       return { ...dataSet, loading: true };
     },
     get_devices_success: (dataSet, action) => {
-      return { ...dataSet, loading: false, devicesData: action.payload.data };
+      return { ...dataSet, loading: false, devicesStyle: action.payload.data };
     },
     get_devices_fail: (dataSet, action) => {
       return { ...dataSet, loading: false, error: action.payload };
     },
     get_devices_reset: (dataSet, action) => {
-      return { ...dataSet, loading: false, devicesData: [], error: null };
+      return { ...dataSet, loading: false, devicesStyle: [], error: null };
     },
   },
 };
