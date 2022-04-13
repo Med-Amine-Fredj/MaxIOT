@@ -31,6 +31,7 @@ function IconsFlatlist({ data, isScrollable, navigation }) {
             onPress={() =>
               navigation.navigate(routes.ICONS_DETAILS, {
                 item,
+                values: number(item.deviceId),
               })
             }
           />

@@ -14,6 +14,7 @@ function LineChartFlatlist({ data, isScrollable, navigation }) {
   const number = (id) => {
     return dataC.filter((n) => n?.deviceId === id)[0].values;
   };
+
   return (
     <>
       <FlatList
@@ -30,6 +31,7 @@ function LineChartFlatlist({ data, isScrollable, navigation }) {
             onPress={() =>
               navigation.navigate(routes.CHART_DETAILS, {
                 item,
+                values: number(item.deviceId),
               })
             }
           />

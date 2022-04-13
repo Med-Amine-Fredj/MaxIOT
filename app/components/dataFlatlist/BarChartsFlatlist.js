@@ -31,6 +31,7 @@ function BarChartsFlatlist({ data, isScrollable, navigation }) {
             onPress={() =>
               navigation.navigate(routes.CHART_DETAILS, {
                 item,
+                values: number(item.deviceId),
               })
             }
           />

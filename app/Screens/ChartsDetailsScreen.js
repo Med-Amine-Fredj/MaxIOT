@@ -49,6 +49,8 @@ function ChartsDetailsScreen({ navigation, route }) {
   };
   const item = route.params.item;
 
+  const values = route.params.values;
+
   return (
     <>
       <ActivityIndicator visible={route.params.item.length === 0} />
@@ -59,11 +61,11 @@ function ChartsDetailsScreen({ navigation, route }) {
         <View style={styles.chartContainer}>
           {item?.chartType === SIMPLE_LINE && (
             <>
-              <SimpleLineChart dataArray={item?.meta?.values} size="large" />
+              <SimpleLineChart dataArray={values} size="large" />
               <View style={styles.lineChartTextContainer}>
                 <Text style={styles.lineChartTextTitle}>Last Value : </Text>
                 <Text style={styles.lineChartText}>
-                  {item?.meta?.values[item?.meta?.values.length - 1]}
+                  {values[values?.length - 1]}
                 </Text>
               </View>
             </>
@@ -71,11 +73,11 @@ function ChartsDetailsScreen({ navigation, route }) {
 
           {item?.chartType === BEZIER_LINE && (
             <>
-              <BezierLineChart dataArray={item?.meta?.values} size="large" />
+              <BezierLineChart dataArray={values} size="large" />
               <View style={styles.lineChartTextContainer}>
                 <Text style={styles.lineChartTextTitle}>Last Value : </Text>
                 <Text style={styles.lineChartText}>
-                  {item?.meta?.values[item?.meta?.values.length - 1]}
+                  {values[values?.length - 1]}
                 </Text>
               </View>
             </>
@@ -83,10 +85,10 @@ function ChartsDetailsScreen({ navigation, route }) {
           {item?.chartType === INCOMPLETED_GAUGE && (
             <>
               <IncompletedGauge
-                value={item?.meta?.values[item?.meta?.values.length - 1]}
-                min={item?.meta?.min[item?.meta?.min.length - 1]}
-                max={item?.meta?.max[item?.meta?.max.length - 1]}
-                warning={item?.meta?.warning[item?.meta?.warning.length - 1]}
+                value={values[values?.length - 1]}
+                min={item?.meta?.min[item?.meta?.min?.length - 1]}
+                max={item?.meta?.max[item?.meta?.max?.length - 1]}
+                warning={item?.meta?.warning[item?.meta?.warning?.length - 1]}
                 size="large"
               />
               <View style={styles.lineChartTextContainer}>
@@ -108,24 +110,24 @@ function ChartsDetailsScreen({ navigation, route }) {
           {item?.chartType == COMPLETED_GAUGE && (
             <>
               <CircleGauge
-                value={item?.meta?.values[item?.meta?.values.length - 1]}
-                min={item?.meta?.min[item?.meta?.min.length - 1]}
-                max={item?.meta?.max[item?.meta?.max.length - 1]}
-                warning={item?.meta?.warning[item?.meta?.warning.length - 1]}
+                value={values[values?.length - 1]}
+                min={item?.meta?.min[item?.meta?.min?.length - 1]}
+                max={item?.meta?.max[item?.meta?.max?.length - 1]}
+                warning={item?.meta?.warning[item?.meta?.warning?.length - 1]}
                 size="large"
               />
               <View style={styles.lineChartTextContainer}>
                 <Text style={styles.lineChartTextTitle}>Min : </Text>
                 <Text style={styles.lineChartText}>
-                  {item?.meta?.min[item?.meta?.min.length - 1]}%
+                  {item?.meta?.min[item?.meta?.min?.length - 1]}%
                 </Text>
                 <Text style={styles.lineChartTextTitle}>Warning : </Text>
                 <Text style={styles.lineChartText}>
-                  {item?.meta?.warning[item?.meta?.warning.length - 1]}%
+                  {item?.meta?.warning[item?.meta?.warning?.length - 1]}%
                 </Text>
                 <Text style={styles.lineChartTextTitle}>Max : </Text>
                 <Text style={styles.lineChartText}>
-                  {item?.meta?.max[item?.meta?.max.length - 1]}%
+                  {item?.meta?.max[item?.meta?.max?.length - 1]}%
                 </Text>
               </View>
             </>
@@ -134,7 +136,7 @@ function ChartsDetailsScreen({ navigation, route }) {
             <View style={{ alignSelf: 'center', marginBottom: '10%' }}>
               <MultiBarChart
                 size="large"
-                values={item?.meta?.values}
+                values={values}
                 color={item?.meta?.colors[item?.meta?.colors.length - 1]}
               />
             </View>
@@ -143,7 +145,7 @@ function ChartsDetailsScreen({ navigation, route }) {
             <View style={{ marginLeft: 50 }}>
               <StackedBarsChart
                 size="large"
-                dataArray={item?.meta?.values}
+                dataArray={values}
                 legendArray={item?.meta?.legend}
                 colorsArray={item?.meta?.colors}
               />
@@ -154,7 +156,7 @@ function ChartsDetailsScreen({ navigation, route }) {
               <SimplePieCharts
                 size="large"
                 names={item?.meta?.names}
-                values={item?.meta?.values}
+                values={values}
                 colors={item?.meta?.colors}
               />
             </View>
@@ -162,7 +164,7 @@ function ChartsDetailsScreen({ navigation, route }) {
           {item?.chartType === PROGRESS_RING && (
             <ProgressRing
               size="large"
-              dataArray={item?.meta?.values}
+              dataArray={values}
               dataColors={item?.meta?.colors}
               dataLegend={item?.meta?.legend}
             />

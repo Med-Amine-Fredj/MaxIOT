@@ -23,6 +23,9 @@ function IconsDetailsScreen({ navigation, route }) {
 
   const item = route.params.item;
 
+  const value = route.params.values;
+  console.log(item);
+
   return (
     <>
       <StatusBar backgroundColor="#6E53A2" />
@@ -31,14 +34,14 @@ function IconsDetailsScreen({ navigation, route }) {
         <View style={{ flexDirection: 'row' }}>
           <View style={styles.iconContainer}>
             <Icon
-              iconName={item.iconName}
-              iconColor={item.iconColor}
-              iconBackgroundColor={item.iconBackgroundColor}
+              iconName={item?.meta?.iconName}
+              iconColor={item?.meta?.iconColor}
+              iconBackgroundColor={item?.meta?.iconBackgroundColor}
               size="large"
             />
           </View>
           <View style={styles.textContainer}>
-            <Text style={styles.txt}> {item.value}</Text>
+            <Text style={styles.txt}> {value}</Text>
           </View>
         </View>
         <SafeAreaView style={{ flex: 2, backgroundColor: 'white' }}>
