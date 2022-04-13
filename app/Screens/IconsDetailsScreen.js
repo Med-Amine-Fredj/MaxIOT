@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   StyleSheet,
@@ -12,6 +12,7 @@ import ListItemSeparator from '../components/ListItemSeparator';
 import ChartDetailsCard from '../components/cards/ChartDetailsCard';
 import dataDetails from '../mockData/dataDetails';
 import Icon from '../components/Icon';
+import { useSelector } from 'react-redux';
 
 function IconsDetailsScreen({ navigation, route }) {
   const [refreshing, setRefreshing] = useState(false);
@@ -21,15 +22,26 @@ function IconsDetailsScreen({ navigation, route }) {
     setTimeout(() => setRefreshing(false), 3000);
   };
 
-  const item = route.params.item;
+  const id = route.params.id;
 
-  const value = route.params.values;
-  console.log(item);
+  const [item, setItem] = useState({});
+  const [values, setValues] = useState(null);
+
+  const deviceStyle = useSelector(
+    (state) => state?.entities?.devices?.devicesStyle
+  );
+
+  const deviceData = useSelector(
+    (state) => state?.entities?.devicesData?.devicesData
+  );
+  useEffect(() => {
+    setItem(deviceStyle?.filter((n) => n?._id === id)[0]);
+    setValues(deviceData?.filter((n) => n?.deviceId === id)[0]?.values);
+  }, [item, values, deviceData, deviceStyle]);
 
   return (
     <>
-      <StatusBar backgroundColor="#6E53A2" />
-      <Header onPress={() => navigation.goBack()} title={item.title} />
+      <Header onPress={() => navigation.goBack()} title={item?.name} />
       <View style={styles.container}>
         <View style={{ flexDirection: 'row' }}>
           <View style={styles.iconContainer}>
@@ -41,7 +53,9 @@ function IconsDetailsScreen({ navigation, route }) {
             />
           </View>
           <View style={styles.textContainer}>
-            <Text style={styles.txt}> {value}</Text>
+            <Text style={styles.txt}>
+              {values ? values[values?.length - 1] : ''}
+            </Text>
           </View>
         </View>
         <SafeAreaView style={{ flex: 2, backgroundColor: 'white' }}>
@@ -58,7 +72,6 @@ function IconsDetailsScreen({ navigation, route }) {
           />
         </SafeAreaView>
       </View>
-      <StatusBar backgroundColor="#6E53A2" />
     </>
   );
 }

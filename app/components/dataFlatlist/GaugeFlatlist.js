@@ -31,7 +31,7 @@ function GaugeFlatlist({ data, isScrollable, navigation }) {
             chartObject={item}
             onPress={() =>
               navigation.navigate(routes.CHART_DETAILS, {
-                id: item.deviceId,
+                id: item._id,
               })
             }
           />

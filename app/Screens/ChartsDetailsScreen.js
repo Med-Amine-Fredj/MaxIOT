@@ -53,6 +53,7 @@ function ChartsDetailsScreen({ navigation, route }) {
 
   const [item, setItem] = useState({});
   const [values, setValues] = useState(null);
+
   const deviceStyle = useSelector(
     (state) => state?.entities?.devices?.devicesStyle
   );
@@ -61,8 +62,8 @@ function ChartsDetailsScreen({ navigation, route }) {
     (state) => state?.entities?.devicesData?.devicesData
   );
   useEffect(() => {
-    setItem(deviceStyle?.filter((n) => n?.deviceId === id)[0]);
-    setValues(deviceData?.filter((n) => n?.deviceId === id)[0].values);
+    setItem(deviceStyle?.filter((n) => n?._id === id)[0]);
+    setValues(deviceData?.filter((n) => n?.deviceId === id)[0]?.values);
   }, [item, values, deviceData]);
 
   return (
@@ -106,15 +107,15 @@ function ChartsDetailsScreen({ navigation, route }) {
               <View style={styles.lineChartTextContainer}>
                 <Text style={styles.lineChartTextTitle}>Min : </Text>
                 <Text style={styles.lineChartText}>
-                  {item?.meta?.min[item?.meta?.min.length - 1]}%
+                  {item?.meta?.min[item?.meta?.min?.length - 1]}%
                 </Text>
                 <Text style={styles.lineChartTextTitle}>Warning : </Text>
                 <Text style={styles.lineChartText}>
-                  {item?.meta?.warning[item?.meta?.warning.length - 1]}%
+                  {item?.meta?.warning[item?.meta?.warning?.length - 1]}%
                 </Text>
                 <Text style={styles.lineChartTextTitle}>Max : </Text>
                 <Text style={styles.lineChartText}>
-                  {item?.meta?.max[item?.meta?.max.length - 1]}%
+                  {item?.meta?.max[item?.meta?.max?.length - 1]}%
                 </Text>
               </View>
             </>
@@ -149,7 +150,7 @@ function ChartsDetailsScreen({ navigation, route }) {
               <MultiBarChart
                 size="large"
                 values={values}
-                color={item?.meta?.colors[item?.meta?.colors.length - 1]}
+                color={item?.meta?.colors[item?.meta?.colors?.length - 1]}
               />
             </View>
           )}
