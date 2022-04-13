@@ -43,7 +43,10 @@ import PieChartsFlalist from '../components/dataFlatlist/PieChartsFlalist';
 import SimpleFlatlist from '../components/dataFlatlist/SimpleFlatlist';
 
 import { SOCKET_URL } from '@env';
-import { getDevicesData } from '../store/actions/devicesDataActions';
+import {
+  getDevicesData,
+  updateDevicesData,
+} from '../store/actions/devicesDataActions';
 import { getDevices } from '../store/actions/devicesActions';
 
 function HomeScreen({ navigation }) {
@@ -60,7 +63,9 @@ function HomeScreen({ navigation }) {
   const loadingDevices = useSelector(
     (state) => state?.entities?.devices?.loading
   );
-
+  const deviceData = useSelector(
+    (state) => state?.entities?.devicesData?.devicesData
+  );
   const store = useStore();
 
   const socket = io(`http://192.168.1.93:5000/`);
@@ -70,9 +75,10 @@ function HomeScreen({ navigation }) {
     getUiStyling(store);
     getDevices(store);
 
-    socket.on('FromAPI', (data) => {
-      getDevicesData(store);
-      // console.log('Operation on collection : ', data);
+    socket.on('Devices_Values_Watch', (data) => {
+      // getDevicesData(store);
+      updateDevicesData(store, data.id, data.values, deviceData);
+      console.log('Operation on collection : ', data);
     });
 
     socket.on('connect', () => {
@@ -138,11 +144,11 @@ function HomeScreen({ navigation }) {
                 isScrollable={uiStylingData?.gaugeCharts?.scrollable}
                 navigation={navigation}
               />
-              <BarChartsFlatlist
+              {/* <BarChartsFlatlist
                 data={barsChartsData}
                 isScrollable={uiStylingData?.barCharts?.scrollable}
                 navigation={navigation}
-              />
+              /> */}
               <PieChartsFlalist
                 data={circleChartData}
                 isScrollable={uiStylingData?.pieCharts?.scrollable}

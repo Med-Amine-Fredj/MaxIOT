@@ -2,10 +2,15 @@ import axios from 'axios';
 
 import { API_URL } from '@env';
 import {
-  GET_DEVICES_DATA_FAIL,
   GET_DEVICES_DATA_REQUEST,
   GET_DEVICES_DATA_SUCCESS,
+  GET_DEVICES_DATA_FAIL,
+  UPDATE_DEVICES_DATA_REQUEST,
+  UPDATE_DEVICES_DATA_SUCCESS,
+  UPDATE_DEVICES_DATA_FAIL,
 } from '../slices/reducers/devicesData';
+
+import { useSelector } from 'react-redux';
 
 export const getDevicesData = async (store) => {
   try {
@@ -26,6 +31,31 @@ export const getDevicesData = async (store) => {
         error.response && error.response.data.message
           ? error.response.data.message
           : error.message,
+    });
+  }
+};
+
+export const updateDevicesData = (store, id, values, deviceData) => {
+  try {
+    store.dispatch({
+      type: UPDATE_DEVICES_DATA_REQUEST,
+    });
+
+    const newArr = deviceData.map((obj) => {
+      if (obj._id === id) {
+        return { ...obj, values: values };
+      }
+      return obj;
+    });
+
+    store.dispatch({
+      type: UPDATE_DEVICES_DATA_SUCCESS,
+      payload: { data: newArr },
+    });
+  } catch (error) {
+    store.dispatch({
+      type: UPDATE_DEVICES_DATA_FAIL,
+      payload: error,
     });
   }
 };
