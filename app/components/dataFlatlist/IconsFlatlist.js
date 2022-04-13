@@ -12,7 +12,7 @@ function IconsFlatlist({ data, isScrollable, navigation }) {
   );
 
   const number = (id) => {
-    return dataC.filter((n) => n?.deviceId === id)[0].values;
+    return dataC?.filter((n) => n?.deviceId === id)[0]?.values;
   };
 
   return (
@@ -21,12 +21,12 @@ function IconsFlatlist({ data, isScrollable, navigation }) {
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
         horizontal={isScrollable}
-        numColumns={!isScrollable && data?.length >= 3 && 3}
+        numColumns={!isScrollable && 3}
         data={data}
         keyExtractor={(item, index) => 'IC' + index.toString()}
         renderItem={({ item }) => (
           <IconsCard
-            values={number(item.deviceId)}
+            values={number(item?._id) || 0}
             iconData={item}
             onPress={() =>
               navigation.navigate(routes.ICONS_DETAILS, {

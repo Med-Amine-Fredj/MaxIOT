@@ -34,11 +34,11 @@ function ChartsCard({ chartObject, onPress, values }) {
       <View style={styles.card}>
         <View style={styles.chartContainer}>
           <IncompletedGauge
-            value={values[values.length - 1]}
-            min={chartObject?.meta?.min[chartObject?.meta?.min.length - 1]}
-            max={chartObject?.meta?.max[chartObject?.meta?.max.length - 1]}
+            value={values[values?.length - 1] || 0}
+            min={chartObject?.meta?.min[chartObject?.meta?.min?.length - 1]}
+            max={chartObject?.meta?.max[chartObject?.meta?.max?.length - 1]}
             warning={
-              chartObject?.meta?.warning[chartObject?.meta?.warning.length - 1]
+              chartObject?.meta?.warning[chartObject?.meta?.warning?.length - 1]
             }
           />
         </View>
@@ -51,7 +51,7 @@ function ChartsCard({ chartObject, onPress, values }) {
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.card}>
         <View style={styles.chartContainer}>
-          <BezierLineChart dataArray={values} size="small" />
+          <BezierLineChart dataArray={values || 0} size="small" />
         </View>
         <View style={styles.titleContainer}>
           <Text style={styles.title}>{chartObject?.name}</Text>
@@ -63,11 +63,11 @@ function ChartsCard({ chartObject, onPress, values }) {
       <View style={styles.card}>
         <View style={styles.chartContainer}>
           <CircleGauge
-            value={values[values.length - 1]}
-            min={chartObject?.meta?.min[chartObject?.meta?.min.length - 1]}
-            max={chartObject?.meta?.max[chartObject?.meta?.max.length - 1]}
+            value={values[values?.length - 1] || 0}
+            min={chartObject?.meta?.min[chartObject?.meta?.min?.length - 1]}
+            max={chartObject?.meta?.max[chartObject?.meta?.max?.length - 1]}
             warning={
-              chartObject?.meta?.warning[chartObject?.meta?.warning.length - 1]
+              chartObject?.meta?.warning[chartObject?.meta?.warning?.length - 1]
             }
           />
         </View>
@@ -80,7 +80,7 @@ function ChartsCard({ chartObject, onPress, values }) {
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.card}>
         <View style={styles.chartContainer}>
-          <SimpleLineChart dataArray={values} size="small" />
+          <SimpleLineChart dataArray={values || 0} size="small" />
         </View>
         <View style={styles.titleContainer}>
           <Text style={styles.title}>{chartObject?.name}</Text>
@@ -92,7 +92,7 @@ function ChartsCard({ chartObject, onPress, values }) {
       <View style={styles.card}>
         <View style={styles.chartContainer}>
           <ProgressRing
-            dataArray={values}
+            dataArray={values || 0}
             dataColors={chartObject?.meta?.colors}
             dataLegend={chartObject?.meta?.legend}
           />
@@ -110,7 +110,7 @@ function ChartsCard({ chartObject, onPress, values }) {
             <SimplePieCharts
               size="small"
               names={chartObject?.meta?.names}
-              values={values}
+              values={values || 0}
               colors={chartObject?.meta?.colors}
             />
           </View>

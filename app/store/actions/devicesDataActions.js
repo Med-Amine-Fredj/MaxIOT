@@ -8,6 +8,9 @@ import {
   UPDATE_DEVICES_DATA_REQUEST,
   UPDATE_DEVICES_DATA_SUCCESS,
   UPDATE_DEVICES_DATA_FAIL,
+  REMOVE_DEVICES_DATA_REQUEST,
+  REMOVE_DEVICES_DATA_SUCCESS,
+  REMOVE_DEVICES_DATA_FAIL,
 } from '../slices/reducers/devicesData';
 
 import { useSelector } from 'react-redux';
@@ -55,6 +58,26 @@ export const updateDevicesData = (store, id, values, deviceData) => {
   } catch (error) {
     store.dispatch({
       type: UPDATE_DEVICES_DATA_FAIL,
+      payload: error,
+    });
+  }
+};
+
+export const removeDevicesData = (store, id, deviceData) => {
+  try {
+    store.dispatch({
+      type: REMOVE_DEVICES_DATA_REQUEST,
+    });
+
+    const filteredData = deviceData.filter((item) => item._id !== id);
+
+    store.dispatch({
+      type: REMOVE_DEVICES_DATA_SUCCESS,
+      payload: { data: filteredData },
+    });
+  } catch (error) {
+    store.dispatch({
+      type: REMOVE_DEVICES_DATA_FAIL,
       payload: error,
     });
   }

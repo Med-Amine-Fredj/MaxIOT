@@ -13,7 +13,7 @@ function BarChartsFlatlist({ data, isScrollable, navigation }) {
   );
 
   const number = (id) => {
-    return dataC.filter((n) => n?.deviceId === id)[0].values;
+    return dataC?.filter((n) => n?.deviceId === id)[0]?.values;
   };
   return (
     <>
@@ -21,12 +21,12 @@ function BarChartsFlatlist({ data, isScrollable, navigation }) {
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
         horizontal={isScrollable}
-        numColumns={!isScrollable && data?.length >= 1 && 1}
+        numColumns={!isScrollable && 1}
         data={data}
         keyExtractor={(item, index) => 'BC' + index.toString()}
         renderItem={({ item }) => (
           <BarsChartsCard
-            values={number(item.deviceId)}
+            values={number(item?._id) || 0}
             chartObject={item}
             onPress={() =>
               navigation.navigate(routes.CHART_DETAILS, {

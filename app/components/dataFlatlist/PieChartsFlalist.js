@@ -12,7 +12,7 @@ function PieChartsFlalist({ data, isScrollable, navigation }) {
   );
 
   const number = (id) => {
-    return dataC.filter((n) => n?.deviceId === id)[0].values;
+    return dataC?.filter((n) => n?.deviceId === id)[0]?.values;
   };
 
   return (
@@ -21,12 +21,12 @@ function PieChartsFlalist({ data, isScrollable, navigation }) {
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
         horizontal={isScrollable}
-        numColumns={!isScrollable && data?.length >= 2 && 2}
+        numColumns={!isScrollable && 2}
         data={data}
         keyExtractor={(item, index) => 'PC' + index.toString()}
         renderItem={({ item }) => (
           <ChartsCard
-            values={number(item.deviceId)}
+            values={number(item?._id) || 0}
             chartObject={item}
             onPress={() =>
               navigation.navigate(routes.CHART_DETAILS, {

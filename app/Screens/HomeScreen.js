@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import {
   StyleSheet,
@@ -45,6 +45,7 @@ import SimpleFlatlist from '../components/dataFlatlist/SimpleFlatlist';
 import { SOCKET_URL } from '@env';
 import {
   getDevicesData,
+  removeDevicesData,
   updateDevicesData,
 } from '../store/actions/devicesDataActions';
 import { getDevices } from '../store/actions/devicesActions';
@@ -75,10 +76,12 @@ function HomeScreen({ navigation }) {
     getUiStyling(store);
     getDevices(store);
 
-    socket.on('Devices_Values_Watch', (data) => {
-      // getDevicesData(store);
+    socket.on('Devices_Values_Update', (data) => {
       updateDevicesData(store, data.id, data.values, deviceData);
-      console.log('Operation on collection : ', data);
+    });
+
+    socket.on('Devices_Values_Removed', (data) => {
+      removeDevicesData(store, data, deviceData);
     });
 
     socket.on('connect', () => {
@@ -144,11 +147,11 @@ function HomeScreen({ navigation }) {
                 isScrollable={uiStylingData?.gaugeCharts?.scrollable}
                 navigation={navigation}
               />
-              {/* <BarChartsFlatlist
+              <BarChartsFlatlist
                 data={barsChartsData}
                 isScrollable={uiStylingData?.barCharts?.scrollable}
                 navigation={navigation}
-              /> */}
+              />
               <PieChartsFlalist
                 data={circleChartData}
                 isScrollable={uiStylingData?.pieCharts?.scrollable}
