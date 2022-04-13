@@ -1,18 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import {
-  View,
-  StyleSheet,
-  FlatList,
-  Text,
-  StatusBar,
-  SafeAreaView,
-} from 'react-native';
+import { View, StyleSheet, FlatList, Text, SafeAreaView } from 'react-native';
+import { useSelector } from 'react-redux';
+
 import Header from '../components/Header';
 import ListItemSeparator from '../components/ListItemSeparator';
 import ChartDetailsCard from '../components/cards/ChartDetailsCard';
-import dataDetails from '../mockData/dataDetails';
 import Icon from '../components/Icon';
-import { useSelector } from 'react-redux';
 
 function IconsDetailsScreen({ navigation, route }) {
   const [refreshing, setRefreshing] = useState(false);
@@ -34,6 +27,7 @@ function IconsDetailsScreen({ navigation, route }) {
   const deviceData = useSelector(
     (state) => state?.entities?.devicesData?.devicesData
   );
+
   useEffect(() => {
     setItem(deviceStyle?.filter((n) => n?._id === id)[0]);
     setValues(deviceData?.filter((n) => n?.deviceId === id)[0]?.values);
@@ -75,6 +69,7 @@ function IconsDetailsScreen({ navigation, route }) {
     </>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 2,
@@ -95,4 +90,5 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
+
 export default IconsDetailsScreen;

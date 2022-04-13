@@ -26,7 +26,7 @@ function PieChartsFlalist({ data, isScrollable, navigation }) {
         keyExtractor={(item, index) => 'PC' + index.toString()}
         renderItem={({ item }) => (
           <ChartsCard
-            values={number(item?._id) || 0}
+            values={number(item?._id)}
             chartObject={item}
             onPress={() =>
               navigation.navigate(routes.CHART_DETAILS, {

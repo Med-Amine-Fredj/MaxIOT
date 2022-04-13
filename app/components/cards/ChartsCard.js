@@ -110,7 +110,7 @@ function ChartsCard({ chartObject, onPress, values }) {
             <SimplePieCharts
               size="small"
               names={chartObject?.meta?.names}
-              values={values || 0}
+              values={values}
               colors={chartObject?.meta?.colors}
             />
           </View>
