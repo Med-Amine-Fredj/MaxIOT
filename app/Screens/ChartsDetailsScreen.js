@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   StyleSheet,
@@ -39,6 +39,7 @@ import {
 } from '../components/charts/AllChartsTypesConstants';
 
 import ActivityIndicator from '../components/ActivityIndicator';
+import { useSelector } from 'react-redux';
 
 function ChartsDetailsScreen({ navigation, route }) {
   const [refreshing, setRefreshing] = useState(false);
@@ -47,15 +48,26 @@ function ChartsDetailsScreen({ navigation, route }) {
     setRefreshing(true);
     setTimeout(() => setRefreshing(false), 3000);
   };
-  const item = route.params.item;
 
-  const values = route.params.values;
+  const id = route.params.id;
+
+  const [item, setItem] = useState({});
+  const [values, setValues] = useState(null);
+  const deviceStyle = useSelector(
+    (state) => state?.entities?.devices?.devicesStyle
+  );
+
+  const deviceData = useSelector(
+    (state) => state?.entities?.devicesData?.devicesData
+  );
+  useEffect(() => {
+    setItem(deviceStyle?.filter((n) => n?.deviceId === id)[0]);
+    setValues(deviceData?.filter((n) => n?.deviceId === id)[0].values);
+  }, [item, values, deviceData]);
 
   return (
     <>
-      <ActivityIndicator visible={route.params.item.length === 0} />
-      <StatusBar backgroundColor="#6E53A2" />
-
+      <ActivityIndicator visible={!id} />
       <Header onPress={() => navigation.goBack()} title={item?.name} />
       <View style={styles.container}>
         <View style={styles.chartContainer}>
