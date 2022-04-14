@@ -62,23 +62,3 @@ export const updateDevicesData = (store, id, values, deviceData) => {
     });
   }
 };
-
-export const removeDevicesData = (store, id, deviceData) => {
-  try {
-    store.dispatch({
-      type: REMOVE_DEVICES_DATA_REQUEST,
-    });
-
-    const filteredData = deviceData.filter((item) => item._id !== id);
-
-    store.dispatch({
-      type: REMOVE_DEVICES_DATA_SUCCESS,
-      payload: { data: filteredData },
-    });
-  } catch (error) {
-    store.dispatch({
-      type: REMOVE_DEVICES_DATA_FAIL,
-      payload: error,
-    });
-  }
-};

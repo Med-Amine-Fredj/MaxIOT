@@ -48,7 +48,7 @@ import {
   removeDevicesData,
   updateDevicesData,
 } from '../store/actions/devicesDataActions';
-import { getDevices } from '../store/actions/devicesActions';
+import { getDevices, updateDevices } from '../store/actions/devicesActions';
 
 function HomeScreen({ navigation }) {
   const uiStylingData = useSelector(
@@ -76,12 +76,12 @@ function HomeScreen({ navigation }) {
     getUiStyling(store);
     getDevices(store);
 
-    socket.on('Devices_Values_Update', (data) => {
+    socket.on('devices-values-update', (data) => {
       updateDevicesData(store, data.id, data.values, deviceData);
     });
 
-    socket.on('Devices_Values_Removed', (data) => {
-      removeDevicesData(store, data, deviceData);
+    socket.on('devices-updated', (data) => {
+      updateDevices(store, data.id, data.meta, devices);
     });
 
     socket.on('connect', () => {

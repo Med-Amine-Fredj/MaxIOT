@@ -26,16 +26,6 @@ const devicesData = {
     update_devices_data_fail: (dataSet, action) => {
       return { ...dataSet, loading: false, error: action.payload };
     },
-
-    remove_devices_data_request: (dataSet, action) => {
-      return { ...dataSet, loading: true };
-    },
-    remove_devices_data_success: (dataSet, action) => {
-      return { ...dataSet, loading: false, devicesData: action.payload.data };
-    },
-    remove_devices_data_fail: (dataSet, action) => {
-      return { ...dataSet, loading: false, error: action.payload };
-    },
   },
 };
 
@@ -50,9 +40,3 @@ export const UPDATE_DEVICES_DATA_REQUEST =
 export const UPDATE_DEVICES_DATA_SUCCESS =
   'devicesData/update_devices_data_success';
 export const UPDATE_DEVICES_DATA_FAIL = 'devicesData/update_devices_data_fail';
-
-export const REMOVE_DEVICES_DATA_REQUEST =
-  'devicesData/remove_devices_data_request';
-export const REMOVE_DEVICES_DATA_SUCCESS =
-  'devicesData/remove_devices_data_success';
-export const REMOVE_DEVICES_DATA_FAIL = 'devicesData/remove_devices_data_fail';
