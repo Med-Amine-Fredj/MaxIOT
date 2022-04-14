@@ -107,12 +107,19 @@ function ChartsCard({ chartObject, onPress, values }) {
       <TouchableWithoutFeedback onPress={onPress}>
         <View style={styles.card}>
           <View style={styles.chartContainer}>
-            <SimplePieCharts
-              size="small"
-              names={chartObject?.meta?.names}
-              values={values}
-              colors={chartObject?.meta?.colors}
-            />
+            {values?.length == chartObject?.meta?.names?.length ? (
+              <SimplePieCharts
+                size="small"
+                names={chartObject?.meta?.names}
+                values={values}
+                colors={chartObject?.meta?.colors}
+              />
+            ) : (
+              <>
+                <Text>Chart Type : {chartObject?.chartType}</Text>
+                <Text>No Data Found !</Text>
+              </>
+            )}
           </View>
           <View style={styles.titleContainer}>
             <Text style={styles.title}>{chartObject?.name}</Text>

@@ -50,6 +50,7 @@ import {
 } from '../store/actions/devicesDataActions';
 import {
   getDevices,
+  insertDevice,
   removeDevice,
   updateDevices,
 } from '../store/actions/devicesActions';
@@ -93,10 +94,13 @@ function HomeScreen({ navigation }) {
     });
 
     socket.on('devices-removed', (data) => {
-      removeDevice(store, data, devices);
-      removeDeviceData(store, data, deviceData);
+      removeDevice(store, data);
+      removeDeviceData(store, data);
     });
 
+    socket.on('devices-inserted', (data) => {
+      insertDevice(store, data);
+    });
     socket.on('connect', () => {
       console.log('Connected wih Id : ', socket.id);
     });

@@ -31,7 +31,8 @@ const devicesData = {
       return { ...dataSet, loading: true };
     },
     remove_devices_data_success: (dataSet, action) => {
-      return { ...dataSet, loading: false, devicesData: action.payload.data };
+      dataSet.devicesData.filter((item) => item._id !== action.payload.data);
+      dataSet.loading = false;
     },
     remove_devices_data_fail: (dataSet, action) => {
       return { ...dataSet, loading: false, error: action.payload };

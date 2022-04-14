@@ -8,6 +8,9 @@ import {
   REMOVE_DEVICES_REQUEST,
   REMOVE_DEVICES_SUCCESS,
   REMOVE_DEVICES_FAIL,
+  INSERT_DEVICES_REQUEST,
+  INSERT_DEVICES_SUCCESS,
+  INSERT_DEVICES_FAIL,
 } from '../slices/reducers/devices';
 
 import axios from 'axios';
@@ -62,21 +65,37 @@ export const updateDevices = (store, id, meta, devices) => {
   }
 };
 
-export const removeDevice = (store, id, deviceStyle) => {
+export const removeDevice = (store, data) => {
   try {
     store.dispatch({
       type: REMOVE_DEVICES_REQUEST,
     });
 
-    const filteredData = deviceStyle.filter((item) => item._id !== id);
-
     store.dispatch({
       type: REMOVE_DEVICES_SUCCESS,
-      payload: { data: filteredData },
+      payload: { data },
     });
   } catch (error) {
     store.dispatch({
       type: REMOVE_DEVICES_FAIL,
+      payload: error,
+    });
+  }
+};
+
+export const insertDevice = (store, data, deviceStyle) => {
+  try {
+    store.dispatch({
+      type: INSERT_DEVICES_REQUEST,
+    });
+
+    store.dispatch({
+      type: INSERT_DEVICES_SUCCESS,
+      payload: { data },
+    });
+  } catch (error) {
+    store.dispatch({
+      type: INSERT_DEVICES_FAIL,
       payload: error,
     });
   }
