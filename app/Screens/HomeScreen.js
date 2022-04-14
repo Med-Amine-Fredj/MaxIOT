@@ -45,10 +45,14 @@ import SimpleFlatlist from '../components/dataFlatlist/SimpleFlatlist';
 import { SOCKET_URL } from '@env';
 import {
   getDevicesData,
-  removeDevicesData,
+  removeDeviceData,
   updateDevicesData,
 } from '../store/actions/devicesDataActions';
-import { getDevices, updateDevices } from '../store/actions/devicesActions';
+import {
+  getDevices,
+  removeDevice,
+  updateDevices,
+} from '../store/actions/devicesActions';
 
 function HomeScreen({ navigation }) {
   const uiStylingData = useSelector(
@@ -71,10 +75,14 @@ function HomeScreen({ navigation }) {
 
   const socket = io(`http://192.168.1.93:5000/`);
 
-  useEffect(() => {
+  const login = () => {
     getDevicesData(store);
     getUiStyling(store);
     getDevices(store);
+  };
+
+  useEffect(() => {
+    login();
 
     socket.on('devices-values-update', (data) => {
       updateDevicesData(store, data.id, data.values, deviceData);
@@ -82,6 +90,11 @@ function HomeScreen({ navigation }) {
 
     socket.on('devices-updated', (data) => {
       updateDevices(store, data.id, data.meta, devices);
+    });
+
+    socket.on('devices-removed', (data) => {
+      removeDevice(store, data, devices);
+      removeDeviceData(store, data, deviceData);
     });
 
     socket.on('connect', () => {
