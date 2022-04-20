@@ -74,7 +74,7 @@ function HomeScreen({ navigation }) {
   );
   const store = useStore();
 
-  const socket = io(`http://192.168.1.93:5000/`);
+  const socket = io(`http://192.168.1.76:5000/`);
 
   const login = () => {
     getDevicesData(store);

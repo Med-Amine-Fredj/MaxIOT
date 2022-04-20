@@ -14,7 +14,7 @@ export const getUiStyling = async (store) => {
       type: GET_UISTYLING_REQUEST,
     });
 
-    const { data } = await axios.get(`http://192.168.1.93:5000/api/uiStyling`);
+    const { data } = await axios.get(`http://192.168.1.76:5000/api/uiStyling`);
 
     data &&
       store.dispatch({
