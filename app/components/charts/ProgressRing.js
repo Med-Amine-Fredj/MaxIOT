@@ -28,16 +28,18 @@ export default function ProgressRing({
 
   return (
     <View style={styles.container}>
-      <ProgressChart
-        data={data}
-        width={size === 'large' ? screenWidth : screenWidth * 0.5}
-        height={size === 'large' ? screenHeigth * 0.4 : screenHeigth * 0.3}
-        strokeWidth={size === 'large' ? 10 : 5}
-        radius={size === 'large' ? 10 : 1}
-        chartConfig={chartConfig}
-        withCustomBarColorFromData={true}
-        hideLegend={size === 'large' ? false : true}
-      />
+      {data && (
+        <ProgressChart
+          data={data}
+          width={size === 'large' ? screenWidth : screenWidth * 0.5}
+          height={size === 'large' ? screenHeigth * 0.4 : screenHeigth * 0.3}
+          strokeWidth={size === 'large' ? 10 : 5}
+          radius={size === 'large' ? 10 : 1}
+          chartConfig={chartConfig}
+          withCustomBarColorFromData={true}
+          hideLegend={size === 'large' ? false : true}
+        />
+      )}
     </View>
   );
 }

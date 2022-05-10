@@ -69,12 +69,12 @@ function HomeScreen({ navigation }) {
   const loadingDevices = useSelector(
     (state) => state?.entities?.devices?.loading
   );
-  const deviceData = useSelector(
-    (state) => state?.entities?.devicesData?.devicesData
-  );
+  // const deviceData = useSelector(
+  //   (state) => state?.entities?.devicesData?.devicesData
+  // );
   const store = useStore();
 
-  const socket = io(`http://192.168.1.76:5000/`);
+  const socket = io(`http://192.168.100.115:5000/`);
 
   const login = () => {
     getDevicesData(store);
@@ -84,7 +84,9 @@ function HomeScreen({ navigation }) {
 
   useEffect(() => {
     login();
-
+    socket.on('connect', () => {
+      console.log('Connected wih Id : ', socket.id);
+    });
     socket.on('devices-values-update', (data) => {
       updateDevicesData(store, data.id, data.values, deviceData);
     });
@@ -101,33 +103,30 @@ function HomeScreen({ navigation }) {
     socket.on('devices-inserted', (data) => {
       insertDevice(store, data);
     });
-    socket.on('connect', () => {
-      console.log('Connected wih Id : ', socket.id);
-    });
 
     return () => socket.disconnect();
   }, []);
 
-  const simpleData = devices?.filter((n) => n?.chartType === SIMPLE_DATA);
+  // const simpleData = devices?.filter((n) => n?.chartType === SIMPLE_DATA);
 
-  const iconsData = devices?.filter((n) => n?.chartType === ICONS);
+  // const iconsData = devices?.filter((n) => n?.chartType === ICONS);
 
-  const lineChartsData = devices?.filter(
-    (n) => n?.chartType === BEZIER_LINE || n?.chartType === SIMPLE_LINE
-  );
+  // const lineChartsData = devices?.filter(
+  //   (n) => n?.chartType === BEZIER_LINE || n?.chartType === SIMPLE_LINE
+  // );
 
-  const gaugeData = devices?.filter(
-    (n) =>
-      n?.chartType === COMPLETED_GAUGE || n?.chartType === INCOMPLETED_GAUGE
-  );
+  // const gaugeData = devices?.filter(
+  //   (n) =>
+  //     n?.chartType === COMPLETED_GAUGE || n?.chartType === INCOMPLETED_GAUGE
+  // );
 
-  const circleChartData = devices?.filter(
-    (n) => n?.chartType === PROGRESS_RING || n?.chartType === PIE
-  );
+  // const circleChartData = devices?.filter(
+  //   (n) => n?.chartType === PROGRESS_RING || n?.chartType === PIE
+  // );
 
-  const barsChartsData = devices?.filter(
-    (n) => n?.chartType === STACKED_BARS || n?.chartType === SIMPLE_BAR
-  );
+  // const barsChartsData = devices?.filter(
+  //   (n) => n?.chartType === STACKED_BARS || n?.chartType === SIMPLE_BAR
+  // );
 
   return (
     <>
@@ -144,33 +143,32 @@ function HomeScreen({ navigation }) {
             <SafeAreaView>
               <DateNow />
               <AllUserCard usersNumber={1231231231} />
-
               <SimpleFlatlist
-                data={simpleData}
+                data={[]}
                 isScrollable={uiStylingData?.simpleData?.scrollable}
               />
               <LineChartFlatlist
-                data={lineChartsData}
+                data={[]}
                 isScrollable={uiStylingData?.lineCharts?.scrollable}
                 navigation={navigation}
               />
               <IconsFlatlist
-                data={iconsData}
+                data={[]}
                 isScrollable={uiStylingData?.icons?.scrollable}
                 navigation={navigation}
               />
               <GaugeFlatlist
-                data={gaugeData}
+                data={[]}
                 isScrollable={uiStylingData?.gaugeCharts?.scrollable}
                 navigation={navigation}
               />
               <BarChartsFlatlist
-                data={barsChartsData}
+                data={[]}
                 isScrollable={uiStylingData?.barCharts?.scrollable}
                 navigation={navigation}
               />
               <PieChartsFlalist
-                data={circleChartData}
+                data={[]}
                 isScrollable={uiStylingData?.pieCharts?.scrollable}
                 navigation={navigation}
               />

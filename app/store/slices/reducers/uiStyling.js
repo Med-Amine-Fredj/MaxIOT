@@ -9,10 +9,10 @@ const uiStyling = {
       return { ...dataSet, loading: true };
     },
     get_uistyling_success: (dataSet, action) => {
-      return { ...dataSet, loading: false, uiStylingData: action.payload[0] };
+      return { ...dataSet, loading: false, uiStylingData: action.payload };
     },
     get_uistyling_fail: (dataSet, action) => {
-      return { ...dataSet, loading: false, error: action.payload[0] };
+      return { ...dataSet, loading: false, error: action.payload };
     },
     get_uistyling_reset: (dataSet, action) => {
       return { ...dataSet, loading: false, uiStylingData: [], error: null };

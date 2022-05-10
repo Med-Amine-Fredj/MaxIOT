@@ -48,21 +48,23 @@ export default function BezierLineChart({ dataArray, size }) {
           {data.datasets[0].data[data.datasets[0].data.length - 1]}
         </Text>
       )}
-      <LineChart
-        data={data}
-        width={size == 'large' ? w : w * 0.69}
-        height={size == 'large' ? h * 0.3 : h * 0.17}
-        withOuterLines={size == 'large' ? true : false}
-        withInnerLines={size == 'large' ? true : false}
-        withVerticalLines={size == 'large' ? true : false}
-        withVerticalLabels={size == 'large' ? true : false}
-        withHorizontalLabels={size == 'large' ? true : false}
-        chartConfig={chartConfig}
-        fromZero={true}
-        withDots={size == 'large' ? true : false}
-        segments={4}
-        bezier
-      />
+      {data && (
+        <LineChart
+          data={data}
+          width={size == 'large' ? w : w * 0.69}
+          height={size == 'large' ? h * 0.3 : h * 0.17}
+          withOuterLines={size == 'large' ? true : false}
+          withInnerLines={size == 'large' ? true : false}
+          withVerticalLines={size == 'large' ? true : false}
+          withVerticalLabels={size == 'large' ? true : false}
+          withHorizontalLabels={size == 'large' ? true : false}
+          chartConfig={chartConfig}
+          fromZero={true}
+          withDots={size == 'large' ? true : false}
+          segments={4}
+          bezier
+        />
+      )}
     </View>
   );
 }

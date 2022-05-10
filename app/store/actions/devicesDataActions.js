@@ -21,7 +21,7 @@ export const getDevicesData = async (store) => {
       type: GET_DEVICES_DATA_REQUEST,
     });
 
-    axios.get(`http://192.168.1.76:5000/api/sensors/`).then((response) => {
+    axios.get(`http://192.168.100.115:5000/api/sensors/`).then((response) => {
       store.dispatch({
         type: GET_DEVICES_DATA_SUCCESS,
         payload: { data: response.data },

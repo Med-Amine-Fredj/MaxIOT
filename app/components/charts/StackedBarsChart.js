@@ -38,23 +38,25 @@ export default function StackedBarsChart({
 
   return (
     <View style={styles.container}>
-      <StackedBarChart
-        style={{
-          paddingRight: size == 'large' ? '0%' : '23%',
-          padding: 10,
-          alignSelf: 'center',
-          justifyContent: 'center',
-        }}
-        data={data}
-        width={size == 'large' ? screenWidth * 1.15 : screenWidth}
-        height={screenHeigth * 0.3}
-        chartConfig={chartConfig}
-        withVerticalLabels={size == 'large' ? false : false}
-        withHorizontalLabels={size == 'large' ? true : false}
-        hideLegend={size == 'large' ? false : true}
-        fromZero={true}
-        segments={4}
-      />
+      {data && (
+        <StackedBarChart
+          style={{
+            paddingRight: size == 'large' ? '0%' : '23%',
+            padding: 10,
+            alignSelf: 'center',
+            justifyContent: 'center',
+          }}
+          data={data}
+          width={size == 'large' ? screenWidth * 1.15 : screenWidth}
+          height={screenHeigth * 0.3}
+          chartConfig={chartConfig}
+          withVerticalLabels={size == 'large' ? false : false}
+          withHorizontalLabels={size == 'large' ? true : false}
+          hideLegend={size == 'large' ? false : true}
+          fromZero={true}
+          segments={4}
+        />
+      )}
     </View>
   );
 }

@@ -26,45 +26,46 @@ export default function MultiBarChart({ size, values, color }) {
     // },
   ];
   return (
-    <>
-      <BarChart
-        style={{
-          height: size == 'large' ? h * 0.25 : h * 0.15,
-          backgroundColor: 'white',
-          width: size == 'large' ? d * 0.9 : d * 0.8,
-          marginTop: '5%',
-        }}
-        data={barData}
-        numberOfTicks={5}
-        spacingInner={0.2}
-        spacingOuter={0.1}
-        gridMin={0}
-        yAccessor={({ item }) => item.value}
-        xAccessor={({ item }) => item.date}
-        animate={true}
-        animationDuration={1000}
-        svg={{
-          fill: color,
-        }}
-      >
-        {size == 'large' && <Grid direction="HORIZONTAL" />}
-      </BarChart>
-      {size == 'large' && (
-        <XAxis
+    barData && (
+      <>
+        <BarChart
           style={{
-            marginTop: 3,
-            height: size == 'large' ? h * 0.03 : h * 0.15,
+            height: size == 'large' ? h * 0.25 : h * 0.15,
+            backgroundColor: 'white',
+            width: size == 'large' ? d * 0.9 : d * 0.8,
+            marginTop: '5%',
           }}
-          data={data1}
-          formatLabel={(value, index) => value}
-          contentInset={{ left: 10, right: 10 }}
-          svg={{ fontSize: 10, fill: 'black' }}
-        />
-      )}
-    </>
+          data={barData}
+          numberOfTicks={5}
+          spacingInner={0.2}
+          spacingOuter={0.1}
+          gridMin={0}
+          yAccessor={({ item }) => item.value}
+          xAccessor={({ item }) => item.date}
+          animate={true}
+          animationDuration={1000}
+          svg={{
+            fill: color,
+          }}
+        >
+          {size == 'large' && <Grid direction="HORIZONTAL" />}
+        </BarChart>
+        {size == 'large' && (
+          <XAxis
+            style={{
+              marginTop: 3,
+              height: size == 'large' ? h * 0.03 : h * 0.15,
+            }}
+            data={data1}
+            formatLabel={(value, index) => value}
+            contentInset={{ left: 10, right: 10 }}
+            svg={{ fontSize: 10, fill: 'black' }}
+          />
+        )}
+      </>
+    )
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',

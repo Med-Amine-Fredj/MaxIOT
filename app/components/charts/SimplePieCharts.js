@@ -60,16 +60,18 @@ export default function SimplePieCharts({ names, values, colors, size }) {
 
   return (
     <View style={styles.container}>
-      <PieChart
-        data={data}
-        width={size == 'small' ? screenWidth * 0.5 : screenWidth}
-        height={size == 'small' ? screenHeigth * 0.2 : screenHeigth * 0.3}
-        chartConfig={chartConfig}
-        accessor={'population'}
-        paddingLeft={size == 'small' ? '50' : '20'}
-        absolute={false}
-        hasLegend={size == 'small' ? false : true}
-      />
+      {data && (
+        <PieChart
+          data={data}
+          width={size == 'small' ? screenWidth * 0.5 : screenWidth}
+          height={size == 'small' ? screenHeigth * 0.2 : screenHeigth * 0.3}
+          chartConfig={chartConfig}
+          accessor={'population'}
+          paddingLeft={size == 'small' ? '50' : '20'}
+          absolute={false}
+          hasLegend={size == 'small' ? false : true}
+        />
+      )}
     </View>
   );
 }
