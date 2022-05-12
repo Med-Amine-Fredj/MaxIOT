@@ -8,6 +8,7 @@ import {
   SafeAreaView,
   FlatList,
   Text,
+  TouchableWithoutFeedback,
 } from 'react-native';
 
 import Screen from '../components/Screen';
@@ -54,6 +55,8 @@ import {
   removeDevice,
   updateDevices,
 } from '../store/actions/devicesActions';
+import GreenDot from '../components/GreenDot';
+import RedDot from '../components/RedDot';
 
 function HomeScreen({ navigation }) {
   const socket = io(`http://192.168.1.32:5000/`);
@@ -83,7 +86,11 @@ function HomeScreen({ navigation }) {
     (state) => state?.entities?.devicesData?.devicesData
   );
 
+  const [realTime, setReal] = useState(true);
+
   useEffect(() => {
+    console.log(realTime);
+
     login();
     socket.on('connect', () => {
       console.log('Connected wih Id : ', socket.id);
@@ -142,7 +149,12 @@ function HomeScreen({ navigation }) {
             showsHorizontalScrollIndicator={false}
           >
             <SafeAreaView>
-              <DateNow />
+              <DateNow
+                realTime={realTime}
+                onPress={() => {
+                  setReal(!realTime);
+                }}
+              />
               <AllUserCard usersNumber={1231231231} />
               <SimpleFlatlist data={simpleData} />
               {/* {uiStylingData?.map((element) => (
