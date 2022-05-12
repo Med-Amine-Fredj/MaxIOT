@@ -61,6 +61,11 @@ function ChartsDetailsScreen({ navigation, route }) {
   const deviceData = useSelector(
     (state) => state?.entities?.devicesData?.devicesData
   );
+  const stacked = (id) => {
+    const stackedNumber = deviceData?.filter((n) => n?.deviceId === id)[0]
+      ?.numberStackedValues;
+    return stackedNumber;
+  };
 
   const valuesCal = () => {
     let arr = [];
@@ -169,7 +174,8 @@ function ChartsDetailsScreen({ navigation, route }) {
             <View style={{ marginLeft: 50 }}>
               <StackedBarsChart
                 size="large"
-                dataArray={values}
+                dataArray={values || 0}
+                stackedNumber={stacked(item._id) || 0}
                 legendArray={item?.meta?.legend}
                 colorsArray={item?.meta?.colors}
               />

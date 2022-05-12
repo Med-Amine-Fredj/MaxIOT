@@ -14,7 +14,6 @@ function BarChartsFlatlist({ data, isScrollable, navigation }) {
   const stacked = (id) => {
     const stackedNumber = dataC?.filter((n) => n?.deviceId === id)[0]
       ?.numberStackedValues;
-    console.log('stacked in fiuntion ======', stackedNumber);
     return stackedNumber;
   };
 

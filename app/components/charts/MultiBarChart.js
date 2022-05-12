@@ -7,7 +7,7 @@ let d = Dimensions.get('window').width;
 let h = Dimensions.get('window').height;
 
 export default function MultiBarChart({ size, values, color }) {
-  const data1 = values.map((value) => ({
+  const data1 = values.slice(1).map((value) => ({
     value,
   }));
 
