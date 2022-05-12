@@ -110,7 +110,7 @@ function HomeScreen({ navigation }) {
 
   const simpleData = devices?.filter((n) => n?.chartType == SIMPLE_DATA);
 
-  // const iconsData = devices?.filter((n) => n?.chartType === ICONS);
+  const iconsData = devices?.filter((n) => n?.chartType === ICONS);
 
   const lineChartsData = devices?.filter(
     (n) => n?.chartType === BEZIER_LINE || n?.chartType === SIMPLE_LINE
@@ -157,16 +157,16 @@ function HomeScreen({ navigation }) {
               ))} */}
 
               <LineChartFlatlist
-                data={lineChartsData}
-                isScrollable={false}
+                data={lineChartsData || []}
+                isScrollable={true}
                 navigation={navigation}
               />
-              {/*<IconsFlatlist
-                data={[]}
-                isScrollable={uiStylingData?.icons?.scrollable}
+              <IconsFlatlist
+                data={iconsData || []}
+                isScrollable={true}
                 navigation={navigation}
               />
-              <GaugeFlatlist
+              {/* <GaugeFlatlist
                 data={[]}
                 isScrollable={uiStylingData?.gaugeCharts?.scrollable}
                 navigation={navigation}

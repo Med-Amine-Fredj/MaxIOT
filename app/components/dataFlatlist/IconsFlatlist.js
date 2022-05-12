@@ -12,7 +12,13 @@ function IconsFlatlist({ data, isScrollable, navigation }) {
   );
 
   const number = (id) => {
-    return dataC?.filter((n) => n?.deviceId === id)[0]?.values;
+    let arr = [];
+    dataC
+      ?.filter((n) => n?.deviceId === id)[0]
+      ?.values.forEach((element) => {
+        arr = [...arr, element.value];
+      });
+    return arr;
   };
 
   return (
@@ -21,7 +27,6 @@ function IconsFlatlist({ data, isScrollable, navigation }) {
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
         horizontal={isScrollable}
-        numColumns={!isScrollable && 3}
         data={data}
         keyExtractor={(item, index) => 'IC' + index.toString()}
         renderItem={({ item }) => (
