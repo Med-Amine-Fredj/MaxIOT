@@ -12,7 +12,13 @@ function LineChartFlatlist({ data, isScrollable, navigation }) {
   );
 
   const number = (id) => {
-    return dataC?.filter((n) => n?.deviceId === id)[0]?.values;
+    let arr = [];
+    dataC
+      ?.filter((n) => n?.deviceId === id)[0]
+      ?.values.forEach((element) => {
+        arr = [...arr, element.value];
+      });
+    return arr;
   };
 
   return (
@@ -26,7 +32,7 @@ function LineChartFlatlist({ data, isScrollable, navigation }) {
         keyExtractor={(item, index) => 'LC' + index.toString()}
         renderItem={({ item }) => (
           <ChartsCard
-            values={number(item?._id) || 0}
+            values={number(item?._id) || [0]}
             chartObject={item}
             onPress={() =>
               navigation.navigate(routes.CHART_DETAILS, {

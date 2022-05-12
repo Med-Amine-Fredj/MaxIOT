@@ -10,7 +10,11 @@ export default function SimpleLineChart({ dataArray, size }) {
     datasets: [
       {
         data:
-          size == 'large' ? dataArray : dataArray.slice(dataArray.length - 6),
+          size === 'large'
+            ? dataArray
+            : size === 'small' && dataArray?.length > 6
+            ? dataArray.slice(-6)
+            : size === 'small' && dataArray?.length <= 6 && dataArray,
       },
     ],
   };
@@ -41,25 +45,23 @@ export default function SimpleLineChart({ dataArray, size }) {
     <View style={styles.container}>
       {size == 'small' && (
         <Text style={styles.txt}>
-          {data.datasets[0].data[data.datasets[0].data.length - 1]}
+          {data?.datasets[0]?.data[data?.datasets[0]?.data?.length - 1]}
         </Text>
       )}
-      {data && (
-        <LineChart
-          data={data}
-          width={size == 'large' ? screenWidth : screenWidth * 0.67}
-          height={size == 'large' ? screenHeigth * 0.3 : screenHeigth * 0.17}
-          withOuterLines={size == 'large' ? true : false}
-          withInnerLines={size == 'large' ? true : false}
-          withVerticalLines={size == 'large' ? true : false}
-          withVerticalLabels={size == 'large' ? true : false}
-          withHorizontalLabels={size == 'large' ? true : false}
-          chartConfig={chartConfig}
-          fromZero={true}
-          withDots={size == 'large' ? true : false}
-          segments={4}
-        />
-      )}
+      <LineChart
+        data={data}
+        width={size == 'large' ? screenWidth : screenWidth * 0.67}
+        height={size == 'large' ? screenHeigth * 0.3 : screenHeigth * 0.17}
+        withOuterLines={size == 'large' ? true : false}
+        withInnerLines={size == 'large' ? true : false}
+        withVerticalLines={size == 'large' ? true : false}
+        withVerticalLabels={size == 'large' ? true : false}
+        withHorizontalLabels={size == 'large' ? true : false}
+        chartConfig={chartConfig}
+        fromZero={true}
+        withDots={size == 'large' ? true : false}
+        segments={4}
+      />
     </View>
   );
 }

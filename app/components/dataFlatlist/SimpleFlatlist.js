@@ -1,17 +1,19 @@
 import React from 'react';
 
-import { StyleSheet, FlatList } from 'react-native';
+import { StyleSheet, FlatList, Text } from 'react-native';
 import { useSelector } from 'react-redux';
 
 import InfoCard from '../cards/InfoCard';
 
-function SimpleFlatlist({ data, isScrollable }) {
-  const deviesData = useSelector(
+function SimpleFlatlist({ data }) {
+  const devicesData = useSelector(
     (state) => state?.entities?.devicesData?.devicesData
   );
 
   const number = (id) => {
-    return deviesData?.filter((n) => n?.deviceId === id)[0]?.values[0];
+    return devicesData
+      ?.filter((n) => n?.deviceId == id)[0]
+      ?.values?.slice(-1)[0]?.value;
   };
 
   return (
@@ -19,8 +21,7 @@ function SimpleFlatlist({ data, isScrollable }) {
       <FlatList
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
-        horizontal={isScrollable}
-        numColumns={!isScrollable && 2}
+        horizontal={true}
         data={data}
         keyExtractor={(item, index) => 'SD' + index.toString()}
         renderItem={({ item }) => (

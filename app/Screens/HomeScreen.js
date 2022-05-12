@@ -56,6 +56,16 @@ import {
 } from '../store/actions/devicesActions';
 
 function HomeScreen({ navigation }) {
+  const socket = io(`http://192.168.1.32:5000/`);
+
+  const store = useStore();
+
+  const login = () => {
+    getDevicesData(store);
+    getUiStyling(store);
+    getDevices(store);
+  };
+
   const uiStylingData = useSelector(
     (state) => state?.entities?.uiStyling?.uiStylingData
   );
@@ -69,26 +79,14 @@ function HomeScreen({ navigation }) {
   const loadingDevices = useSelector(
     (state) => state?.entities?.devices?.loading
   );
-  // const deviceData = useSelector(
-  //   (state) => state?.entities?.devicesData?.devicesData
-  // );
-  const store = useStore();
-
-  const socket = io(`http://192.168.100.115:5000/`);
-
-  const login = () => {
-    getDevicesData(store);
-    getUiStyling(store);
-    getDevices(store);
-  };
+  const deviceData = useSelector(
+    (state) => state?.entities?.devicesData?.devicesData
+  );
 
   useEffect(() => {
     login();
     socket.on('connect', () => {
       console.log('Connected wih Id : ', socket.id);
-    });
-    socket.on('devices-values-update', (data) => {
-      updateDevicesData(store, data.id, data.values, deviceData);
     });
 
     socket.on('devices-updated', (data) => {
@@ -97,23 +95,26 @@ function HomeScreen({ navigation }) {
 
     socket.on('devices-removed', (data) => {
       removeDevice(store, data);
-      removeDeviceData(store, data);
+      // removeDeviceData(store, data);
     });
 
     socket.on('devices-inserted', (data) => {
-      insertDevice(store, data);
+      insertDevice(store, data, deviceData);
+      getDevicesData(store);
     });
-
+    socket.on('devices-values-update', (data) => {
+      updateDevicesData(store, data.id, data.values, deviceData);
+    });
     return () => socket.disconnect();
   }, []);
 
-  // const simpleData = devices?.filter((n) => n?.chartType === SIMPLE_DATA);
+  const simpleData = devices?.filter((n) => n?.chartType == SIMPLE_DATA);
 
   // const iconsData = devices?.filter((n) => n?.chartType === ICONS);
 
-  // const lineChartsData = devices?.filter(
-  //   (n) => n?.chartType === BEZIER_LINE || n?.chartType === SIMPLE_LINE
-  // );
+  const lineChartsData = devices?.filter(
+    (n) => n?.chartType === BEZIER_LINE || n?.chartType === SIMPLE_LINE
+  );
 
   // const gaugeData = devices?.filter(
   //   (n) =>
@@ -143,16 +144,24 @@ function HomeScreen({ navigation }) {
             <SafeAreaView>
               <DateNow />
               <AllUserCard usersNumber={1231231231} />
-              <SimpleFlatlist
-                data={[]}
-                isScrollable={uiStylingData?.simpleData?.scrollable}
-              />
+              <SimpleFlatlist data={simpleData} />
+              {/* {uiStylingData?.map((element) => (
+                <FlatList
+                  showsVerticalScrollIndicator={false}
+                  showsHorizontalScrollIndicator={false}
+                  horizontal={element.layout == 'COL' ? false : true}
+                  data={element.components}
+                  keyExtractor={(item, index) => 'SF' + index.toString()}
+                  renderItem={({ item }) => <Text>{item.deviceId}</Text>}
+                />
+              ))} */}
+
               <LineChartFlatlist
-                data={[]}
-                isScrollable={uiStylingData?.lineCharts?.scrollable}
+                data={lineChartsData}
+                isScrollable={false}
                 navigation={navigation}
               />
-              <IconsFlatlist
+              {/*<IconsFlatlist
                 data={[]}
                 isScrollable={uiStylingData?.icons?.scrollable}
                 navigation={navigation}
@@ -171,7 +180,7 @@ function HomeScreen({ navigation }) {
                 data={[]}
                 isScrollable={uiStylingData?.pieCharts?.scrollable}
                 navigation={navigation}
-              />
+              /> */}
             </SafeAreaView>
           </ScrollView>
         </View>

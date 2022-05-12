@@ -31,10 +31,7 @@ const devices = {
       return { ...dataSet, loading: true };
     },
     remove_devices_success: (dataSet, action) => {
-      dataSet.devicesStyle = dataSet.devicesStyle.filter(
-        (item) => item._id !== action.payload.data
-      );
-      dataSet.loading = false;
+      return { ...dataSet, loading: false, devicesStyle: action.payload.data };
     },
     remove_devices_fail: (dataSet, action) => {
       return { ...dataSet, loading: false, error: action.payload };

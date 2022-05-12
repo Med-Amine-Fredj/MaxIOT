@@ -61,10 +61,21 @@ function ChartsDetailsScreen({ navigation, route }) {
   const deviceData = useSelector(
     (state) => state?.entities?.devicesData?.devicesData
   );
+
+  const valuesCal = () => {
+    let arr = [];
+    deviceData
+      ?.filter((n) => n?.deviceId === id)[0]
+      ?.values.forEach((element) => {
+        arr = [...arr, element.value];
+      });
+    return arr;
+  };
   useEffect(() => {
     setItem(deviceStyle?.filter((n) => n?._id === id)[0]);
-    setValues(deviceData?.filter((n) => n?.deviceId === id)[0]?.values);
-  }, [item, values, deviceData]);
+
+    setValues(valuesCal);
+  }, []);
 
   return (
     <>
@@ -74,7 +85,7 @@ function ChartsDetailsScreen({ navigation, route }) {
         <View style={styles.chartContainer}>
           {item?.chartType === SIMPLE_LINE && (
             <>
-              <SimpleLineChart dataArray={values} size="large" />
+              <SimpleLineChart dataArray={values || [0]} size="large" />
               <View style={styles.lineChartTextContainer}>
                 <Text style={styles.lineChartTextTitle}>Last Value : </Text>
                 <Text style={styles.lineChartText}>

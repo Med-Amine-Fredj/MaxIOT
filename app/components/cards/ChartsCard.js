@@ -80,7 +80,7 @@ function ChartsCard({ chartObject, onPress, values }) {
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.card}>
         <View style={styles.chartContainer}>
-          <SimpleLineChart dataArray={values || 0} size="small" />
+          <SimpleLineChart dataArray={values || [0]} size="small" />
         </View>
         <View style={styles.titleContainer}>
           <Text style={styles.title}>{chartObject?.name}</Text>

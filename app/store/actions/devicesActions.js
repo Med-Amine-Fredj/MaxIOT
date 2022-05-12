@@ -23,7 +23,7 @@ export const getDevices = async (store) => {
       type: GET_DEVICES_REQUEST,
     });
 
-    axios.get(`http://192.168.100.115:5000/api/devices`).then((response) => {
+    axios.get(`http://192.168.1.32:5000/api/devices`).then((response) => {
       store.dispatch({
         type: GET_DEVICES_SUCCESS,
         payload: { data: response.data },
@@ -71,9 +71,11 @@ export const removeDevice = (store, data) => {
       type: REMOVE_DEVICES_REQUEST,
     });
 
+    const devicesStyle = store.getState().entities?.devices?.devicesStyle;
+    const result = devicesStyle.filter((item) => item._id !== data);
     store.dispatch({
       type: REMOVE_DEVICES_SUCCESS,
-      payload: { data },
+      payload: { data: result },
     });
   } catch (error) {
     store.dispatch({
@@ -83,12 +85,12 @@ export const removeDevice = (store, data) => {
   }
 };
 
-export const insertDevice = (store, data, deviceStyle) => {
+export const insertDevice = (store, data, deviceData) => {
   try {
     store.dispatch({
       type: INSERT_DEVICES_REQUEST,
     });
-
+    // updateDevicesData(store, data._id, 0, deviceData);
     store.dispatch({
       type: INSERT_DEVICES_SUCCESS,
       payload: { data },
