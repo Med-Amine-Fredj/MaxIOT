@@ -53,7 +53,7 @@ export default function BezierLineChart({ dataArray, size }) {
       {data && (
         <LineChart
           data={data}
-          width={size == 'large' ? w : w * 0.69}
+          width={size == 'large' ? w : w * 0.75}
           height={size == 'large' ? h * 0.3 : h * 0.17}
           withOuterLines={size == 'large' ? true : false}
           withInnerLines={size == 'large' ? true : false}

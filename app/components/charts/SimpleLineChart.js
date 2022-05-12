@@ -50,8 +50,8 @@ export default function SimpleLineChart({ dataArray, size }) {
       )}
       <LineChart
         data={data}
-        width={size == 'large' ? screenWidth : screenWidth * 0.67}
-        height={size == 'large' ? screenHeigth * 0.3 : screenHeigth * 0.17}
+        width={size == 'large' ? screenWidth : screenWidth * 0.78}
+        height={size == 'large' ? screenHeigth * 0.3 : screenHeigth * 0.18}
         withOuterLines={size == 'large' ? true : false}
         withInnerLines={size == 'large' ? true : false}
         withVerticalLines={size == 'large' ? true : false}

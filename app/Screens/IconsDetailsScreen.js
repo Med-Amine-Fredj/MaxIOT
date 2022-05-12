@@ -48,7 +48,7 @@ function IconsDetailsScreen({ navigation, route }) {
           </View>
           <View style={styles.textContainer}>
             <Text style={styles.txt}>
-              {values ? values[values?.length - 1] : ''}
+              {values ? values[values?.length - 1].value : ''}
             </Text>
           </View>
         </View>

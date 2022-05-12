@@ -200,8 +200,8 @@ function ChartsDetailsScreen({ navigation, route }) {
             />
           )}
         </View>
-        <SafeAreaView style={{ flex: 2, backgroundColor: 'white' }}>
-          <ListItemSeparator />
+        <ListItemSeparator />
+        <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
           <FlatList
             showsVerticalScrollIndicator={false}
             showsHorizontalScrollIndicator={false}
@@ -214,14 +214,13 @@ function ChartsDetailsScreen({ navigation, route }) {
           />
         </SafeAreaView>
       </View>
-      <StatusBar backgroundColor="#6E53A2" />
     </>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 2,
+    flex: 1,
     backgroundColor: 'white',
   },
   chartContainer: {
