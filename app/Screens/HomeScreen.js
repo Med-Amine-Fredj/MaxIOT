@@ -89,8 +89,6 @@ function HomeScreen({ navigation }) {
   const [realTime, setReal] = useState(true);
 
   useEffect(() => {
-    console.log(realTime);
-
     login();
     socket.on('connect', () => {
       console.log('Connected wih Id : ', socket.id);
@@ -123,10 +121,10 @@ function HomeScreen({ navigation }) {
     (n) => n?.chartType === BEZIER_LINE || n?.chartType === SIMPLE_LINE
   );
 
-  // const gaugeData = devices?.filter(
-  //   (n) =>
-  //     n?.chartType === COMPLETED_GAUGE || n?.chartType === INCOMPLETED_GAUGE
-  // );
+  const gaugeData = devices?.filter(
+    (n) =>
+      n?.chartType === COMPLETED_GAUGE || n?.chartType === INCOMPLETED_GAUGE
+  );
 
   // const circleChartData = devices?.filter(
   //   (n) => n?.chartType === PROGRESS_RING || n?.chartType === PIE
@@ -178,12 +176,12 @@ function HomeScreen({ navigation }) {
                 isScrollable={true}
                 navigation={navigation}
               />
-              {/* <GaugeFlatlist
-                data={[]}
-                isScrollable={uiStylingData?.gaugeCharts?.scrollable}
+              <GaugeFlatlist
+                data={gaugeData || []}
+                isScrollable={true}
                 navigation={navigation}
               />
-              <BarChartsFlatlist
+              {/*<BarChartsFlatlist
                 data={[]}
                 isScrollable={uiStylingData?.barCharts?.scrollable}
                 navigation={navigation}
