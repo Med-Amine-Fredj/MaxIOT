@@ -130,9 +130,9 @@ function HomeScreen({ navigation }) {
     (n) => n?.chartType === PROGRESS_RING || n?.chartType === PIE
   );
 
-  // const barsChartsData = devices?.filter(
-  //   (n) => n?.chartType === STACKED_BARS || n?.chartType === SIMPLE_BAR
-  // );
+  const barsChartsData = devices?.filter(
+    (n) => n?.chartType === STACKED_BARS || n?.chartType === SIMPLE_BAR
+  );
 
   return (
     <>
@@ -186,12 +186,11 @@ function HomeScreen({ navigation }) {
                 isScrollable={true}
                 navigation={navigation}
               />
-              {/*<BarChartsFlatlist
-                data={[]}
-                isScrollable={uiStylingData?.barCharts?.scrollable}
+              <BarChartsFlatlist
+                data={barsChartsData || []}
+                isScrollable={true}
                 navigation={navigation}
               />
-              */}
             </SafeAreaView>
           </ScrollView>
         </View>

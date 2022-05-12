@@ -7,13 +7,21 @@ let screenHeigth = Dimensions.get('window').height;
 
 export default function StackedBarsChart({
   dataArray,
+  stackedNumber,
   legendArray,
   colorsArray,
   size,
 }) {
+  const dataArraySliced = dataArray?.slice(1);
+  let dataFinal = [];
+  let [...arr] = dataArraySliced;
+  while (arr.length) {
+    dataFinal.push(arr.splice(0, stackedNumber));
+  }
+
   const data = {
     legend: legendArray,
-    data: dataArray,
+    data: dataFinal,
     barColors: colorsArray,
   };
   const chartConfig = {
@@ -38,25 +46,23 @@ export default function StackedBarsChart({
 
   return (
     <View style={styles.container}>
-      {data && (
-        <StackedBarChart
-          style={{
-            paddingRight: size == 'large' ? '0%' : '23%',
-            padding: 10,
-            alignSelf: 'center',
-            justifyContent: 'center',
-          }}
-          data={data}
-          width={size == 'large' ? screenWidth * 1.15 : screenWidth}
-          height={screenHeigth * 0.3}
-          chartConfig={chartConfig}
-          withVerticalLabels={size == 'large' ? false : false}
-          withHorizontalLabels={size == 'large' ? true : false}
-          hideLegend={size == 'large' ? false : true}
-          fromZero={true}
-          segments={4}
-        />
-      )}
+      <StackedBarChart
+        style={{
+          paddingRight: size == 'large' ? '0%' : '23%',
+          padding: 10,
+          alignSelf: 'center',
+          justifyContent: 'center',
+        }}
+        data={data}
+        width={size == 'large' ? screenWidth * 1.15 : screenWidth}
+        height={screenHeigth * 0.3}
+        chartConfig={chartConfig}
+        withVerticalLabels={size == 'large' ? false : false}
+        withHorizontalLabels={size == 'large' ? true : false}
+        hideLegend={size == 'large' ? false : true}
+        fromZero={true}
+        segments={4}
+      />
     </View>
   );
 }

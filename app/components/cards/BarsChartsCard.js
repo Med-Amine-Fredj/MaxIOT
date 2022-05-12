@@ -15,7 +15,7 @@ import { SIMPLE_BAR, STACKED_BARS } from '../charts/AllChartsTypesConstants';
 let w = Dimensions.get('window').width;
 let h = Dimensions.get('window').height;
 
-function BarsChartsCard({ chartObject, onPress, values }) {
+function BarsChartsCard({ chartObject, onPress, values, stackedNumber }) {
   return chartObject?.chartType === STACKED_BARS ? (
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.card}>
@@ -25,6 +25,7 @@ function BarsChartsCard({ chartObject, onPress, values }) {
         <View style={styles.chartContainer}>
           <StackedBarsChart
             dataArray={values || []}
+            stackedNumber={stackedNumber}
             legendArray={chartObject?.meta?.legend}
             colorsArray={chartObject?.meta?.colors}
           />
