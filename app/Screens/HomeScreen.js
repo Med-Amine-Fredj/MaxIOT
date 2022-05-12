@@ -55,8 +55,6 @@ import {
   removeDevice,
   updateDevices,
 } from '../store/actions/devicesActions';
-import GreenDot from '../components/GreenDot';
-import RedDot from '../components/RedDot';
 
 function HomeScreen({ navigation }) {
   const socket = io(`http://192.168.1.32:5000/`);
@@ -95,20 +93,19 @@ function HomeScreen({ navigation }) {
     });
 
     socket.on('devices-updated', (data) => {
-      updateDevices(store, data.id, data.meta, devices);
+      updateDevices(store, data.id, data.meta);
     });
 
     socket.on('devices-removed', (data) => {
       removeDevice(store, data);
-      // removeDeviceData(store, data);
     });
 
     socket.on('devices-inserted', (data) => {
-      insertDevice(store, data, deviceData);
+      insertDevice(store, data);
       getDevicesData(store);
     });
     socket.on('devices-values-update', (data) => {
-      updateDevicesData(store, data.id, data.values, deviceData);
+      updateDevicesData(store, data.id, data.values);
     });
     return () => socket.disconnect();
   }, []);

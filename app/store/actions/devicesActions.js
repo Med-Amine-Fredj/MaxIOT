@@ -45,8 +45,8 @@ export const updateDevices = (store, id, meta, devices) => {
     store.dispatch({
       type: UPDATE_DEVICES_REQUEST,
     });
-
-    const newArr = devices.map((obj) => {
+    const deviceData = store.getState().entities?.devices?.devicesStyle;
+    const newArr = deviceData.map((obj) => {
       if (obj._id === id) {
         return { ...obj, meta: meta };
       }
@@ -85,12 +85,11 @@ export const removeDevice = (store, data) => {
   }
 };
 
-export const insertDevice = (store, data, deviceData) => {
+export const insertDevice = (store, data) => {
   try {
     store.dispatch({
       type: INSERT_DEVICES_REQUEST,
     });
-    // updateDevicesData(store, data._id, 0, deviceData);
     store.dispatch({
       type: INSERT_DEVICES_SUCCESS,
       payload: { data },
