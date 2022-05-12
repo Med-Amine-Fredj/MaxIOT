@@ -126,9 +126,9 @@ function HomeScreen({ navigation }) {
       n?.chartType === COMPLETED_GAUGE || n?.chartType === INCOMPLETED_GAUGE
   );
 
-  // const circleChartData = devices?.filter(
-  //   (n) => n?.chartType === PROGRESS_RING || n?.chartType === PIE
-  // );
+  const circleChartData = devices?.filter(
+    (n) => n?.chartType === PROGRESS_RING || n?.chartType === PIE
+  );
 
   // const barsChartsData = devices?.filter(
   //   (n) => n?.chartType === STACKED_BARS || n?.chartType === SIMPLE_BAR
@@ -181,16 +181,17 @@ function HomeScreen({ navigation }) {
                 isScrollable={true}
                 navigation={navigation}
               />
+              <PieChartsFlalist
+                data={circleChartData || []}
+                isScrollable={true}
+                navigation={navigation}
+              />
               {/*<BarChartsFlatlist
                 data={[]}
                 isScrollable={uiStylingData?.barCharts?.scrollable}
                 navigation={navigation}
               />
-              <PieChartsFlalist
-                data={[]}
-                isScrollable={uiStylingData?.pieCharts?.scrollable}
-                navigation={navigation}
-              /> */}
+              */}
             </SafeAreaView>
           </ScrollView>
         </View>

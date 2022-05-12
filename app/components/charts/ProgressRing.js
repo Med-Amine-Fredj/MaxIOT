@@ -10,9 +10,15 @@ export default function ProgressRing({
   dataArray,
   size,
 }) {
+  const dataArraySliced = dataArray.slice(1);
   const data = {
     labels: dataLegend,
-    data: dataArray,
+    data:
+      dataArraySliced?.length == dataColors?.length
+        ? dataArraySliced
+        : dataArraySliced?.length > dataColors?.length
+        ? dataArraySliced?.slice(-dataColors?.length)
+        : dataArraySliced,
     colors: dataColors,
   };
 

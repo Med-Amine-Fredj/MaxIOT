@@ -12,9 +12,11 @@ export default function BezierLineChart({ dataArray, size }) {
     datasets: [
       {
         data:
-          size == 'large' && dataArray
+          size === 'large'
             ? dataArray
-            : dataArray?.slice(dataArray?.length - 5),
+            : size === 'small' && dataArray?.length > 6
+            ? dataArray.slice(-6)
+            : size === 'small' && dataArray?.length <= 6 && dataArray,
       },
     ],
   };

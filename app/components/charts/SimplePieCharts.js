@@ -7,10 +7,17 @@ let screenHeigth = Dimensions.get('window').height;
 
 export default function SimplePieCharts({ names, values, colors, size }) {
   let data = [];
+  const populationSliced = values.slice(1);
+  const populationFinal =
+    populationSliced?.length == colors?.length
+      ? populationSliced
+      : populationSliced?.length > colors?.length
+      ? populationSliced?.slice(-colors?.length)
+      : populationSliced;
   for (let i = 0; i < names.length; i++) {
     data.push({
       name: names[i],
-      population: values[i],
+      population: populationFinal[i],
       color: colors[i],
       legendFontColor: 'black',
       legendFontSize: 15,
@@ -60,18 +67,16 @@ export default function SimplePieCharts({ names, values, colors, size }) {
 
   return (
     <View style={styles.container}>
-      {data && (
-        <PieChart
-          data={data}
-          width={size == 'small' ? screenWidth * 0.5 : screenWidth}
-          height={size == 'small' ? screenHeigth * 0.2 : screenHeigth * 0.3}
-          chartConfig={chartConfig}
-          accessor={'population'}
-          paddingLeft={size == 'small' ? '50' : '20'}
-          absolute={false}
-          hasLegend={size == 'small' ? false : true}
-        />
-      )}
+      <PieChart
+        data={data}
+        width={size == 'small' ? screenWidth * 0.5 : screenWidth}
+        height={size == 'small' ? screenHeigth * 0.2 : screenHeigth * 0.3}
+        chartConfig={chartConfig}
+        accessor={'population'}
+        paddingLeft={size == 'small' ? '50' : '20'}
+        absolute={false}
+        hasLegend={size == 'small' ? false : true}
+      />
     </View>
   );
 }
