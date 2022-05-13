@@ -55,6 +55,9 @@ import {
 import ChartsCard from '../components/cards/ChartsCard';
 import BarsChartsCard from '../components/cards/BarsChartsCard';
 import IconsCard from '../components/cards/IconsCard';
+import { chartValuesCalculator } from '../../Helpers/Functions/chartsDataCalculator';
+import { stackedNumberCalculator } from '../../Helpers/Functions/StackedNumberForStackedBarChart';
+import routes from '../navigation/routes';
 
 function HomeScreen({ navigation }) {
   const socket = io(`http://192.168.1.32:5000/`);
@@ -161,36 +164,56 @@ function HomeScreen({ navigation }) {
                   showsVerticalScrollIndicator={false}
                   showsHorizontalScrollIndicator={false}
                   horizontal={element.layout === 'COL' ? false : true}
+                  numColumns={element.layout === 'COL' && 2}
                   data={element.components}
                   keyExtractor={(item, index) => item.deviceId.toString()}
                   renderItem={({ item }) => (
                     <>
-                      {/* <Text>{testFunction(item.deviceId)[0]?.chartType}</Text> */}
                       <ChartsCard
-                        values={[0]}
+                        values={
+                          chartValuesCalculator(
+                            store,
+                            testFunction(item.deviceId)[0]._id
+                          ) || [0]
+                        }
                         chartObject={testFunction(item.deviceId)[0]}
                         onPress={() =>
                           navigation.navigate(routes.CHART_DETAILS, {
-                            id: item._id,
+                            id: testFunction(item.deviceId)[0]._id,
                           })
                         }
                       />
                       <BarsChartsCard
-                        values={[0]}
-                        stackedNumber={0}
                         chartObject={testFunction(item.deviceId)[0]}
+                        values={
+                          chartValuesCalculator(
+                            store,
+                            testFunction(item.deviceId)[0]._id
+                          ) || [0]
+                        }
+                        stackedNumber={
+                          stackedNumberCalculator(
+                            store,
+                            testFunction(item.deviceId)[0]._id
+                          ) || 0
+                        }
                         onPress={() =>
                           navigation.navigate(routes.CHART_DETAILS, {
-                            id: item._id,
+                            id: testFunction(item.deviceId)[0]._id,
                           })
                         }
                       />
                       <IconsCard
-                        values={0}
+                        values={
+                          chartValuesCalculator(
+                            store,
+                            testFunction(item.deviceId)[0]._id
+                          ) || [0]
+                        }
                         iconData={testFunction(item.deviceId)[0]}
                         onPress={() =>
                           navigation.navigate(routes.ICONS_DETAILS, {
-                            id: item._id,
+                            id: testFunction(item.deviceId)[0]._id,
                           })
                         }
                       />
@@ -198,15 +221,15 @@ function HomeScreen({ navigation }) {
                   )}
                 />
               ))}
-              <BarChartsFlatlist
+              {/* <BarChartsFlatlist
                 data={barsChartsData || []}
                 isScrollable={true}
                 navigation={navigation}
-              />
+              /> */}
 
-              <LineChartFlatlist
+              {/* <LineChartFlatlist
                 data={lineChartsData || []}
-                isScrollable={true}
+                isScrollable={false}
                 navigation={navigation}
               />
 
@@ -214,12 +237,12 @@ function HomeScreen({ navigation }) {
                 data={gaugeData || []}
                 isScrollable={true}
                 navigation={navigation}
-              />
-              <PieChartsFlalist
+              /> */}
+              {/* <PieChartsFlalist
                 data={circleChartData || []}
                 isScrollable={true}
                 navigation={navigation}
-              />
+              /> */}
               {/* <IconsFlatlist
                 data={iconsData || []}
                 isScrollable={true}

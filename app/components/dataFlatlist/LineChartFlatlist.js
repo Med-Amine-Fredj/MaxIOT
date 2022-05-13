@@ -27,6 +27,7 @@ function LineChartFlatlist({ data, isScrollable, navigation }) {
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
         horizontal={isScrollable}
+        numColumns={2}
         data={data}
         keyExtractor={(item, index) => 'LC' + index.toString()}
         renderItem={({ item }) => (
