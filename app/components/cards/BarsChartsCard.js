@@ -24,7 +24,7 @@ function BarsChartsCard({ chartObject, onPress, values, stackedNumber }) {
         </View>
         <View style={styles.chartContainer}>
           <StackedBarsChart
-            dataArray={values || []}
+            dataArray={values || [0]}
             stackedNumber={stackedNumber}
             legendArray={chartObject?.meta?.legend}
             colorsArray={chartObject?.meta?.colors}
@@ -42,7 +42,7 @@ function BarsChartsCard({ chartObject, onPress, values, stackedNumber }) {
           <View style={styles.chartContainer}>
             <MultiBarChart
               size="small"
-              values={values}
+              values={values || [0]}
               color={
                 chartObject?.meta?.colors[chartObject?.meta?.colors.length - 1]
               }
@@ -65,19 +65,17 @@ const styles = StyleSheet.create({
     height: h * 0.3,
     width: w * 0.89,
     marginHorizontal: 3,
-    alignItems: 'center',
     justifyContent: 'center',
-    // marginBottom: '1%',
+    alignContent: 'center',
   },
   chartContainer: {
-    alignSelf: 'center',
-    alignContent: 'center',
     justifyContent: 'center',
-    minHeight: '80%',
-    maxHeight: '80%',
+    minHeight: '90%',
+    maxHeight: '90%',
   },
   titleContainer: {
-    marginBottom: '10%',
+    alignSelf: 'center',
+    marginBottom: '3%',
   },
   title: {
     fontSize: 15,

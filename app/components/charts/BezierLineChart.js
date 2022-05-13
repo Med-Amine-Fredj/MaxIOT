@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
 
 import colors from '../../config/colors';
+import NoDataFound from '../NoDataFound';
 
 let w = Dimensions.get('window').width;
 let h = Dimensions.get('window').height;
@@ -43,30 +44,39 @@ export default function BezierLineChart({ dataArray, size }) {
     },
   };
 
-  return (
+  return dataArray[0] === 0 && dataArray?.length === 1 ? (
+    <View
+      style={{
+        flex: 1,
+        justifyContent: 'center',
+        alignContent: 'center',
+      }}
+    >
+      <Text>No Data Found !</Text>
+      <NoDataFound visible={true} />
+    </View>
+  ) : (
     <View style={styles.container}>
       {size == 'small' && (
         <Text style={styles.txt}>
           {data.datasets[0].data[data.datasets[0].data.length - 1]}
         </Text>
       )}
-      {data && (
-        <LineChart
-          data={data}
-          width={size == 'large' ? w : w * 0.75}
-          height={size == 'large' ? h * 0.3 : h * 0.17}
-          withOuterLines={size == 'large' ? true : false}
-          withInnerLines={size == 'large' ? true : false}
-          withVerticalLines={size == 'large' ? true : false}
-          withVerticalLabels={size == 'large' ? true : false}
-          withHorizontalLabels={size == 'large' ? true : false}
-          chartConfig={chartConfig}
-          fromZero={true}
-          withDots={size == 'large' ? true : false}
-          segments={4}
-          bezier
-        />
-      )}
+      <LineChart
+        data={data}
+        width={size == 'large' ? w : w * 0.75}
+        height={size == 'large' ? h * 0.3 : h * 0.17}
+        withOuterLines={size == 'large' ? true : false}
+        withInnerLines={size == 'large' ? true : false}
+        withVerticalLines={size == 'large' ? true : false}
+        withVerticalLabels={size == 'large' ? true : false}
+        withHorizontalLabels={size == 'large' ? true : false}
+        chartConfig={chartConfig}
+        fromZero={true}
+        withDots={size == 'large' ? true : false}
+        segments={4}
+        bezier
+      />
     </View>
   );
 }

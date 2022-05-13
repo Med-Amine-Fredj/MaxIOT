@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
 
 import { LineChart } from 'react-native-chart-kit';
+import NoDataFound from '../NoDataFound';
 
 let screenWidth = Dimensions.get('window').width;
 let screenHeigth = Dimensions.get('window').height;
@@ -40,29 +41,39 @@ export default function SimpleLineChart({ dataArray, size }) {
       strokeDasharray: [-1000000000000, 10000000000000000],
     },
   };
-
-  return (
-    <View style={styles.container}>
-      {size == 'small' && (
-        <Text style={styles.txt}>
-          {data?.datasets[0]?.data[data?.datasets[0]?.data?.length - 1]}
-        </Text>
-      )}
-      <LineChart
-        data={data}
-        width={size == 'large' ? screenWidth : screenWidth * 0.78}
-        height={size == 'large' ? screenHeigth * 0.3 : screenHeigth * 0.18}
-        withOuterLines={size == 'large' ? true : false}
-        withInnerLines={size == 'large' ? true : false}
-        withVerticalLines={size == 'large' ? true : false}
-        withVerticalLabels={size == 'large' ? true : false}
-        withHorizontalLabels={size == 'large' ? true : false}
-        chartConfig={chartConfig}
-        fromZero={true}
-        withDots={size == 'large' ? true : false}
-        segments={4}
-      />
+  return dataArray[0] === 0 && dataArray?.length === 1 ? (
+    <View
+      style={{
+        flex: 1,
+        justifyContent: 'center',
+      }}
+    >
+      <NoDataFound visible={true} />
     </View>
+  ) : (
+    <>
+      <View style={styles.container}>
+        {size == 'small' && (
+          <Text style={styles.txt}>
+            {data?.datasets[0]?.data[data?.datasets[0]?.data?.length - 1]}
+          </Text>
+        )}
+        <LineChart
+          data={data}
+          width={size == 'large' ? screenWidth : screenWidth * 0.78}
+          height={size == 'large' ? screenHeigth * 0.3 : screenHeigth * 0.18}
+          withOuterLines={size == 'large' ? true : false}
+          withInnerLines={size == 'large' ? true : false}
+          withVerticalLines={size == 'large' ? true : false}
+          withVerticalLabels={size == 'large' ? true : false}
+          withHorizontalLabels={size == 'large' ? true : false}
+          chartConfig={chartConfig}
+          fromZero={true}
+          withDots={size == 'large' ? true : false}
+          segments={4}
+        />
+      </View>
+    </>
   );
 }
 

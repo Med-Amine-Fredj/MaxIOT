@@ -14,25 +14,27 @@ let h = Dimensions.get('window').height;
 
 function IconsCard({ iconData, onPress, values }) {
   return (
-    <TouchableWithoutFeedback onPress={onPress}>
-      <View style={styles.card}>
-        <View style={styles.container}>
-          <Icon
-            iconName={iconData?.meta?.iconName}
-            iconColor={iconData?.meta?.iconColor}
-            iconBackgroundColor={iconData?.meta?.iconBackgroundColor}
-          />
-          <View style={styles.textContainer}>
-            <Text style={styles.v} numberOfLines={1}>
-              {values[values?.length - 1]}
-            </Text>
-            <Text style={styles.title} numberOfLines={1}>
-              {iconData?.name}
-            </Text>
+    iconData?.chartType === 'Icons' && (
+      <TouchableWithoutFeedback onPress={onPress}>
+        <View style={styles.card}>
+          <View style={styles.container}>
+            <Icon
+              iconName={iconData?.meta?.iconName}
+              iconColor={iconData?.meta?.iconColor}
+              iconBackgroundColor={iconData?.meta?.iconBackgroundColor}
+            />
+            <View style={styles.textContainer}>
+              <Text style={styles.v} numberOfLines={1}>
+                {values[values?.length - 1]}
+              </Text>
+              <Text style={styles.title} numberOfLines={1}>
+                {iconData?.name}
+              </Text>
+            </View>
           </View>
         </View>
-      </View>
-    </TouchableWithoutFeedback>
+      </TouchableWithoutFeedback>
+    )
   );
 }
 
@@ -41,7 +43,7 @@ const styles = StyleSheet.create({
     flex: 1,
     borderRadius: 10,
     backgroundColor: colors.white,
-    marginTop: h * 0.01,
+    marginTop: h * 0.015,
     overflow: 'hidden',
     height: h * 0.17,
     width: (w / 2) * 0.58,

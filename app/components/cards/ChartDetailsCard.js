@@ -22,11 +22,10 @@ function ChartDetailsCard({ item }) {
 const styles = StyleSheet.create({
   container: {
     marginTop: '2%',
-    justifyContent: 'center',
-    alignItems: 'center',
     marginBottom: '2%',
   },
   textContainer: {
+    flex: 1,
     flexDirection: 'row',
     marginLeft: '10%',
   },

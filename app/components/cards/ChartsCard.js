@@ -15,6 +15,7 @@ import CircleGauge from '../charts/CircleGauge';
 import SimpleLineChart from '../charts/SimpleLineChart';
 import ProgressRing from '../charts/ProgressRing';
 import SimplePieCharts from '../charts/SimplePieCharts';
+import NoDataFound from '../NoDataFound';
 
 import {
   BEZIER_LINE,
@@ -80,7 +81,7 @@ function ChartsCard({ chartObject, onPress, values }) {
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.card}>
         <View style={styles.chartContainer}>
-          <SimpleLineChart dataArray={values || [0]} size="small" />
+          <SimpleLineChart dataArray={values} size="small" />
         </View>
         <View style={styles.titleContainer}>
           <Text style={styles.title}>{chartObject?.name}</Text>
@@ -125,6 +126,7 @@ function ChartsCard({ chartObject, onPress, values }) {
 
 const styles = StyleSheet.create({
   card: {
+    flex: 1,
     borderRadius: 10,
     backgroundColor: colors.white,
     marginTop: h * 0.015,
@@ -133,11 +135,11 @@ const styles = StyleSheet.create({
     height: h * 0.3,
     width: (w / 2) * 0.88,
     marginHorizontal: 3,
-    alignItems: 'center',
     justifyContent: 'center',
+    alignContent: 'center',
   },
   chartContainer: {
-    justifyContent: 'center',
+    flex: 1,
     minHeight: '80%',
     maxHeight: '80%',
   },

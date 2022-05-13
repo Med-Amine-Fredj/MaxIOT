@@ -1,6 +1,8 @@
-import { StyleSheet, View, Dimensions, ScrollView } from 'react-native';
+import { StyleSheet, View, Dimensions, Text } from 'react-native';
 
 import { StackedBarChart } from 'react-native-chart-kit';
+import colors from '../../config/colors';
+import NoDataFound from '../NoDataFound';
 
 let screenWidth = Dimensions.get('window').width;
 let screenHeigth = Dimensions.get('window').height;
@@ -44,18 +46,26 @@ export default function StackedBarsChart({
     },
   };
 
-  return (
+  return dataArray[0] === 0 && dataArray.length === 1 ? (
+    <View
+      style={{
+        flex: 1,
+      }}
+    >
+      <NoDataFound visible={true} />
+    </View>
+  ) : (
     <View style={styles.container}>
       <StackedBarChart
         style={{
-          paddingRight: size == 'large' ? '0%' : '23%',
-          padding: 10,
+          paddingRight: size === 'large' ? '1%' : '23%',
+          padding: size === 'large' ? 1 : 15,
           alignSelf: 'center',
           justifyContent: 'center',
         }}
         data={data}
         width={size == 'large' ? screenWidth * 1.15 : screenWidth}
-        height={screenHeigth * 0.3}
+        height={size == 'large' ? screenHeigth * 0.3 : screenHeigth * 0.25}
         chartConfig={chartConfig}
         withVerticalLabels={size == 'large' ? false : false}
         withHorizontalLabels={size == 'large' ? true : false}
@@ -69,9 +79,6 @@ export default function StackedBarsChart({
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignSelf: 'center',
+    backgroundColor: colors.white,
   },
 });

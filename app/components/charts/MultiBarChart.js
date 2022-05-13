@@ -1,81 +1,74 @@
 import { StyleSheet } from 'react-native';
+import { Dimensions, View } from 'react-native';
+import NoDataFound from '../NoDataFound';
 
-import { BarChart, Grid, XAxis } from 'react-native-svg-charts';
-import { Dimensions } from 'react-native';
+import { BarChart } from 'react-native-chart-kit';
 
-let d = Dimensions.get('window').width;
-let h = Dimensions.get('window').height;
+let screenWidth = Dimensions.get('window').width;
+let screenHeigth = Dimensions.get('window').height;
+
+import colors from '../../config/colors';
 
 export default function MultiBarChart({ size, values, color }) {
-  const data1 = values.slice(1).map((value) => ({
-    value,
-  }));
-
-  const barData = [
-    {
-      data: data1,
-      svg: {
-        fill: color,
+  const dataSliced = values.slice(1);
+  const finalData =
+    dataSliced.length > 12 && size === 'large'
+      ? dataSliced.slice(dataSliced.length - 12)
+      : dataSliced.length > 10 && size !== 'large'
+      ? dataSliced.slice(dataSliced.length - 10)
+      : dataSliced;
+  const data = {
+    datasets: [
+      {
+        data: finalData,
       },
+    ],
+  };
+
+  const chartConfig = {
+    backgroundGradientFrom: colors.white,
+    backgroundGradientTo: colors.white,
+    color: () => colors.primary,
+    barPercentage: size === 'large' ? 0.7 : 0.8,
+    propsForBackgroundLines: {
+      strokeOpacity: size === 'large' ? 0.1 : 0,
+      strokeDasharray: [-1000000000000, 1000000000000000],
     },
-    // {
-    //   data: data2,
-    //   svg: {
-    //     fill: '#7659FB',
-    //   },
-    // },
-  ];
-  return (
-    barData && (
-      <>
-        <BarChart
-          style={{
-            height: size == 'large' ? h * 0.25 : h * 0.15,
-            backgroundColor: 'white',
-            width: size == 'large' ? d * 0.9 : d * 0.8,
-            marginTop: '5%',
-          }}
-          data={barData}
-          numberOfTicks={5}
-          spacingInner={0.2}
-          spacingOuter={0.1}
-          gridMin={0}
-          yAccessor={({ item }) => item.value}
-          xAccessor={({ item }) => item.date}
-          animate={true}
-          animationDuration={1000}
-          svg={{
-            fill: color,
-          }}
-        >
-          {size == 'large' && <Grid direction="HORIZONTAL" />}
-        </BarChart>
-        {size == 'large' && (
-          <XAxis
-            style={{
-              marginTop: 3,
-              height: size == 'large' ? h * 0.03 : h * 0.15,
-            }}
-            data={data1}
-            formatLabel={(value, index) => value}
-            contentInset={{ left: 10, right: 10 }}
-            svg={{ fontSize: 10, fill: 'black' }}
-          />
-        )}
-      </>
-    )
+    decimalPlaces: 0,
+    labelColor: () => `black`,
+    propsForLabels: {
+      fontSize: size == 'large' ? 9 : 0,
+      fontWeight: 'bold',
+    },
+  };
+  return values[0] === 0 && values.length === 1 ? (
+    <View
+      style={{
+        flex: 1,
+      }}
+    >
+      <NoDataFound visible={true} />
+    </View>
+  ) : (
+    <View style={styles.container}>
+      <BarChart
+        style={{
+          padding: size === 'large' ? 10 : 9,
+          alignSelf: 'flex-end',
+          justifyContent: 'center',
+        }}
+        data={data}
+        width={size === 'large' ? screenWidth * 1.15 : screenWidth * 1.05}
+        height={size === 'large' ? screenHeigth * 0.3 : screenHeigth * 0.25}
+        chartConfig={chartConfig}
+        showValuesOnTopOfBars={true}
+      />
+    </View>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  txt: {
-    fontSize: 30,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: '#00BFBF',
+    backgroundColor: colors.white,
   },
 });

@@ -201,7 +201,7 @@ function ChartsDetailsScreen({ navigation, route }) {
           )}
         </View>
         <ListItemSeparator />
-        <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
+        <SafeAreaView>
           <FlatList
             showsVerticalScrollIndicator={false}
             showsHorizontalScrollIndicator={false}
@@ -225,6 +225,7 @@ const styles = StyleSheet.create({
   },
   chartContainer: {
     marginTop: '10%',
+    maxHeight: '50%',
   },
   lineChartTextContainer: {
     flexDirection: 'row',

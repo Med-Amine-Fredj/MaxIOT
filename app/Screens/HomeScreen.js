@@ -55,6 +55,10 @@ import {
   removeDevice,
   updateDevices,
 } from '../store/actions/devicesActions';
+import ChartsCard from '../components/cards/ChartsCard';
+import BarsChartsCard from '../components/cards/BarsChartsCard';
+import IconsCard from '../components/cards/IconsCard';
+import NoDataFound from '../components/NoDataFound';
 
 function HomeScreen({ navigation }) {
   const socket = io(`http://192.168.1.32:5000/`);
@@ -111,7 +115,11 @@ function HomeScreen({ navigation }) {
   }, []);
 
   const simpleData = devices?.filter((n) => n?.chartType == SIMPLE_DATA);
-
+  const testFunction = (deviceId) => {
+    const test = devices?.filter((n) => n?._id === deviceId);
+    // console.log('test ======', test);
+    return test;
+  };
   const iconsData = devices?.filter((n) => n?.chartType === ICONS);
 
   const lineChartsData = devices?.filter(
@@ -152,27 +160,60 @@ function HomeScreen({ navigation }) {
               />
               <AllUserCard usersNumber={1231231231} />
               <SimpleFlatlist data={simpleData} />
-              {/* {uiStylingData?.map((element) => (
+              {uiStylingData?.map((element) => (
                 <FlatList
                   showsVerticalScrollIndicator={false}
                   showsHorizontalScrollIndicator={false}
-                  horizontal={element.layout == 'COL' ? false : true}
+                  horizontal={element.layout === 'COL' ? false : true}
                   data={element.components}
                   keyExtractor={(item, index) => 'SF' + index.toString()}
-                  renderItem={({ item }) => <Text>{item.deviceId}</Text>}
+                  renderItem={({ item }) => (
+                    <>
+                      {/* <Text>{testFunction(item.deviceId)[0]?.chartType}</Text> */}
+                      <ChartsCard
+                        values={[0]}
+                        chartObject={testFunction(item.deviceId)[0]}
+                        onPress={() =>
+                          navigation.navigate(routes.CHART_DETAILS, {
+                            id: item._id,
+                          })
+                        }
+                      />
+                      <BarsChartsCard
+                        values={[0]}
+                        stackedNumber={0}
+                        chartObject={testFunction(item.deviceId)[0]}
+                        onPress={() =>
+                          navigation.navigate(routes.CHART_DETAILS, {
+                            id: item._id,
+                          })
+                        }
+                      />
+                      <IconsCard
+                        values={0}
+                        iconData={testFunction(item.deviceId)[0]}
+                        onPress={() =>
+                          navigation.navigate(routes.ICONS_DETAILS, {
+                            id: item._id,
+                          })
+                        }
+                      />
+                    </>
+                  )}
                 />
-              ))} */}
+              ))}
+              <BarChartsFlatlist
+                data={barsChartsData || []}
+                isScrollable={true}
+                navigation={navigation}
+              />
 
               <LineChartFlatlist
                 data={lineChartsData || []}
                 isScrollable={true}
                 navigation={navigation}
               />
-              <IconsFlatlist
-                data={iconsData || []}
-                isScrollable={true}
-                navigation={navigation}
-              />
+
               <GaugeFlatlist
                 data={gaugeData || []}
                 isScrollable={true}
@@ -183,11 +224,11 @@ function HomeScreen({ navigation }) {
                 isScrollable={true}
                 navigation={navigation}
               />
-              <BarChartsFlatlist
-                data={barsChartsData || []}
+              {/* <IconsFlatlist
+                data={iconsData || []}
                 isScrollable={true}
                 navigation={navigation}
-              />
+              />*/}
             </SafeAreaView>
           </ScrollView>
         </View>
