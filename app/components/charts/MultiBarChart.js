@@ -62,6 +62,7 @@ export default function MultiBarChart({ size, values, color }) {
         height={size === 'large' ? screenHeigth * 0.3 : screenHeigth * 0.25}
         chartConfig={chartConfig}
         showValuesOnTopOfBars={true}
+        fromZero={size === 'large' ? true : false}
       />
     </View>
   );

@@ -6,14 +6,13 @@ import {
   View,
   Dimensions,
   TouchableWithoutFeedback,
-  TouchableOpacity,
 } from 'react-native';
 
 import color from '../config/colors';
 import GreenDot from './GreenDot';
 import RedDot from './RedDot';
 
-let h = Dimensions.get('window').height;
+let screenHeigth = Dimensions.get('window').height;
 
 function date({ onPress, realTime }) {
   const months = [

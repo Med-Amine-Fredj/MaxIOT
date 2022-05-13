@@ -62,21 +62,3 @@ export const updateDevicesData = (store, id, value) => {
     });
   }
 };
-
-export const removeDeviceData = (store, data) => {
-  try {
-    store.dispatch({
-      type: REMOVE_DEVICES_DATA_REQUEST,
-    });
-
-    store.dispatch({
-      type: REMOVE_DEVICES_DATA_SUCCESS,
-      payload: { data },
-    });
-  } catch (error) {
-    store.dispatch({
-      type: REMOVE_DEVICES_DATA_FAIL,
-      payload: error,
-    });
-  }
-};

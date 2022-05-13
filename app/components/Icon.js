@@ -6,7 +6,7 @@ function Icon({ iconName, iconColor, iconBackgroundColor, size }) {
     <>
       <AntDesign
         name={iconName}
-        size={size == 'large' ? 35 : 28}
+        size={size === 'large' ? 35 : 28}
         color={iconColor}
         style={{
           backgroundColor: iconBackgroundColor,

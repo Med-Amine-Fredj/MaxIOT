@@ -7,8 +7,6 @@ import {
   ScrollView,
   SafeAreaView,
   FlatList,
-  Text,
-  TouchableWithoutFeedback,
 } from 'react-native';
 
 import Screen from '../components/Screen';
@@ -46,7 +44,6 @@ import SimpleFlatlist from '../components/dataFlatlist/SimpleFlatlist';
 import { SOCKET_URL } from '@env';
 import {
   getDevicesData,
-  removeDeviceData,
   updateDevicesData,
 } from '../store/actions/devicesDataActions';
 import {
@@ -58,7 +55,6 @@ import {
 import ChartsCard from '../components/cards/ChartsCard';
 import BarsChartsCard from '../components/cards/BarsChartsCard';
 import IconsCard from '../components/cards/IconsCard';
-import NoDataFound from '../components/NoDataFound';
 
 function HomeScreen({ navigation }) {
   const socket = io(`http://192.168.1.32:5000/`);
@@ -166,7 +162,7 @@ function HomeScreen({ navigation }) {
                   showsHorizontalScrollIndicator={false}
                   horizontal={element.layout === 'COL' ? false : true}
                   data={element.components}
-                  keyExtractor={(item, index) => 'SF' + index.toString()}
+                  keyExtractor={(item, index) => item.deviceId.toString()}
                   renderItem={({ item }) => (
                     <>
                       {/* <Text>{testFunction(item.deviceId)[0]?.chartType}</Text> */}

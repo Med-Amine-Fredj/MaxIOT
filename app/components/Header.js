@@ -12,7 +12,7 @@ import Icon from './Icon';
 
 import colors from '../config/colors';
 
-let h = Dimensions.get('window').height;
+let screenHeigth = Dimensions.get('window').height;
 
 function Header({ onPress, title }) {
   return (
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   screen: {
     flexDirection: 'row',
     backgroundColor: 'white',
-    height: h * 0.06,
+    height: screenHeigth * 0.06,
     // marginTop: Constants.statusBarHeight,
     alignItems: 'center',
     borderBottomWidth: 0.5,
