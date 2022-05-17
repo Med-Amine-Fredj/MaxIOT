@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from 'react';
 
-import { StatusBar, ScrollView, FlatList } from 'react-native';
+import {
+  StatusBar,
+  ScrollView,
+  FlatList,
+  Text,
+  View,
+  TouchableOpacity,
+} from 'react-native';
 
 import Screen from '../components/Screen';
 
@@ -58,6 +65,7 @@ import InfoCard from '../components/cards/InfoCard';
 import { filterDeviceById } from '../../Helpers/Functions/filterDeviceById';
 
 import { SOCKET_URL } from '../config/dotEnvFile';
+import Icon from '../components/Icon';
 
 function HomeScreen({ navigation }) {
   const socket = io(SOCKET_URL);
@@ -93,7 +101,7 @@ function HomeScreen({ navigation }) {
       setSocketLoader(false);
     });
     if (realTime) {
-      login();
+      // login();
 
       socket.on('devices-updated', (data) => {
         updateDevices(store, data.id, data.meta);
@@ -172,87 +180,139 @@ function HomeScreen({ navigation }) {
           />
           <AllUserCard usersNumber={1231231231} />
           {uiStylingData?.map((element, index) => (
-            <FlatList
-              key={index}
-              showsVerticalScrollIndicator={false}
-              showsHorizontalScrollIndicator={false}
-              horizontal={element.layout === 'COL' ? false : true}
-              numColumns={element.layout === 'COL' && 2}
-              data={element.components}
-              keyExtractor={(item) => item._id.toString()}
-              renderItem={({ item }) => (
-                <>
-                  <InfoCard
-                    number={
-                      chartValuesCalculator(
-                        store,
-                        filterDeviceById(store, item?.deviceId)[0]?._id
-                      ) || [0] ||
-                      0
-                    }
-                    message={
-                      filterDeviceById(store, item?.deviceId)[0]?.name || ''
-                    }
-                    chartObject={
-                      filterDeviceById(store, item?.deviceId)[0] || {}
-                    }
-                  />
-                  <ChartsCard
-                    values={
-                      chartValuesCalculator(
-                        store,
-                        filterDeviceById(store, item?.deviceId)[0]?._id
-                      ) || [0]
-                    }
-                    chartObject={
-                      filterDeviceById(store, item?.deviceId)[0] || {}
-                    }
-                    onPress={() =>
-                      navigation.navigate(routes.CHART_DETAILS, {
-                        id: filterDeviceById(store, item?.deviceId)[0]?._id,
-                      })
-                    }
-                  />
-                  <BarsChartsCard
-                    chartObject={
-                      filterDeviceById(store, item?.deviceId)[0] || {}
-                    }
-                    values={
-                      chartValuesCalculator(
-                        store,
-                        filterDeviceById(store, item?.deviceId)[0]?._id
-                      ) || [0]
-                    }
-                    stackedNumber={
-                      stackedNumberCalculator(
-                        store,
-                        filterDeviceById(store, item?.deviceId)[0]?._id
-                      ) || 0
-                    }
-                    onPress={() =>
-                      navigation.navigate(routes.CHART_DETAILS, {
-                        id: filterDeviceById(store, item?.deviceId)[0]?._id,
-                      })
-                    }
-                  />
-                  <IconsCard
-                    values={
-                      chartValuesCalculator(
-                        store,
-                        filterDeviceById(store, item?.deviceId)[0]?._id
-                      ) || [0]
-                    }
-                    iconData={filterDeviceById(store, item?.deviceId)[0] || {}}
-                    onPress={() =>
-                      navigation.navigate(routes.ICONS_DETAILS, {
-                        id: filterDeviceById(store, item?.deviceId)[0]?._id,
-                      })
-                    }
-                  />
-                </>
+            <>
+              {element.layout === 'ROW' && (
+                <View key={index + Math.random().toFixed(2).toString()}>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                    }}
+                  >
+                    <View
+                      style={{
+                        right: 0,
+                        marginTop: '28%',
+                        position: 'absolute',
+                        zIndex: 1,
+                        opacity: 0.5,
+                      }}
+                    >
+                      <TouchableOpacity>
+                        <Icon
+                          iconName="caretright"
+                          iconColor="black"
+                          iconBackgroundColor="#E2E2DF"
+                          size="new"
+                        />
+                      </TouchableOpacity>
+                    </View>
+
+                    <View
+                      style={{
+                        left: 0,
+                        marginTop: '28%',
+                        position: 'absolute',
+                        zIndex: 1,
+                        opacity: 0.5,
+                      }}
+                    >
+                      <TouchableOpacity>
+                        <Icon
+                          iconName="caretleft"
+                          iconColor="black"
+                          iconBackgroundColor="#E2E2DF"
+                          size="new"
+                        />
+                      </TouchableOpacity>
+                    </View>
+                  </View>
+                </View>
               )}
-            />
+              <FlatList
+                key={index}
+                showsVerticalScrollIndicator={false}
+                showsHorizontalScrollIndicator={false}
+                horizontal={element.layout === 'COL' ? false : true}
+                numColumns={element.layout === 'COL' && 2}
+                data={element.components}
+                keyExtractor={(item) => item._id.toString()}
+                renderItem={({ item }) => (
+                  <>
+                    <InfoCard
+                      number={
+                        chartValuesCalculator(
+                          store,
+                          filterDeviceById(store, item?.deviceId)[0]?._id
+                        ) || [0] ||
+                        0
+                      }
+                      message={
+                        filterDeviceById(store, item?.deviceId)[0]?.name || ''
+                      }
+                      chartObject={
+                        filterDeviceById(store, item?.deviceId)[0] || {}
+                      }
+                    />
+                    <ChartsCard
+                      values={
+                        chartValuesCalculator(
+                          store,
+                          filterDeviceById(store, item?.deviceId)[0]?._id
+                        ) || [0]
+                      }
+                      chartObject={
+                        filterDeviceById(store, item?.deviceId)[0] || {}
+                      }
+                      onPress={() =>
+                        navigation.navigate(routes.CHART_DETAILS, {
+                          id: filterDeviceById(store, item?.deviceId)[0]?._id,
+                        })
+                      }
+                    />
+                    <BarsChartsCard
+                      chartObject={
+                        filterDeviceById(store, item?.deviceId)[0] || {}
+                      }
+                      values={
+                        chartValuesCalculator(
+                          store,
+                          filterDeviceById(store, item?.deviceId)[0]?._id
+                        ) || [0]
+                      }
+                      stackedNumber={
+                        stackedNumberCalculator(
+                          store,
+                          filterDeviceById(store, item?.deviceId)[0]?._id
+                        ) || 0
+                      }
+                      onPress={() =>
+                        navigation.navigate(routes.CHART_DETAILS, {
+                          id: filterDeviceById(store, item?.deviceId)[0]?._id,
+                        })
+                      }
+                    />
+                    <IconsCard
+                      values={
+                        chartValuesCalculator(
+                          store,
+                          filterDeviceById(store, item?.deviceId)[0]?._id
+                        ) || [0]
+                      }
+                      iconData={
+                        filterDeviceById(store, item?.deviceId)[0] || {}
+                      }
+                      onPress={() =>
+                        navigation.navigate(routes.ICONS_DETAILS, {
+                          id: filterDeviceById(store, item?.deviceId)[0]?._id,
+                        })
+                      }
+                    />
+                  </>
+                )}
+              />
+            </>
           ))}
+
           {/* <BarChartsFlatlist
                 data={barsChartsData || []}
                 isScrollable={true}

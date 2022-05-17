@@ -6,11 +6,11 @@ function Icon({ iconName, iconColor, iconBackgroundColor, size }) {
     <>
       <AntDesign
         name={iconName}
-        size={size === 'large' ? 35 : 28}
+        size={size === 'large' ? 35 : size == 'new' ? 13 : 28}
         color={iconColor}
         style={{
           backgroundColor: iconBackgroundColor,
-          borderRadius: size == 'large' ? 50 : 30,
+          borderRadius: size == 'large' ? 50 : size == 'new' ? 20 : 30,
           padding: iconBackgroundColor ? 11 : 0,
         }}
       />
