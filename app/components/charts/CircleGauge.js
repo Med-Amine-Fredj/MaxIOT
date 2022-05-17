@@ -50,7 +50,7 @@ export default function CircleGauge({ value, min, max, warning, size }) {
   return (
     <>
       <View style={styles.container}>
-        <View>
+        <View style={{ minHeight: '10%' }}>
           {value == warning && (
             <View style={styles.messageContainer}>
               <AntDesign

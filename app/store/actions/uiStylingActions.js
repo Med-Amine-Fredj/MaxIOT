@@ -1,3 +1,7 @@
+import axios from 'axios';
+
+import { API_URL } from '../../config/dotEnvFile';
+
 import {
   GET_UISTYLING_REQUEST,
   GET_UISTYLING_SUCCESS,
@@ -13,17 +17,13 @@ import {
   UPDATE_UISTYLING_FAIL,
 } from '../slices/reducers/uiStyling';
 
-import { API_URL } from '@env';
-
-import axios from 'axios';
-
 export const getUiStyling = async (store) => {
   try {
     store.dispatch({
       type: GET_UISTYLING_REQUEST,
     });
 
-    const { data } = await axios.get(`http://192.168.0.135:5000/api/uiStyling`);
+    const { data } = await axios.get(`${API_URL}/uiStyling`);
 
     data &&
       store.dispatch({

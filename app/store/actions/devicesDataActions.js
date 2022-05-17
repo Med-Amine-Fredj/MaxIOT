@@ -1,6 +1,6 @@
 import axios from 'axios';
+import { API_URL } from '../../config/dotEnvFile';
 
-import { API_URL } from '@env';
 import {
   GET_DEVICES_DATA_REQUEST,
   GET_DEVICES_DATA_SUCCESS,
@@ -8,9 +8,6 @@ import {
   UPDATE_DEVICES_DATA_REQUEST,
   UPDATE_DEVICES_DATA_SUCCESS,
   UPDATE_DEVICES_DATA_FAIL,
-  REMOVE_DEVICES_DATA_REQUEST,
-  REMOVE_DEVICES_DATA_SUCCESS,
-  REMOVE_DEVICES_DATA_FAIL,
 } from '../slices/reducers/devicesData';
 
 export const getDevicesData = async (store) => {
@@ -19,7 +16,7 @@ export const getDevicesData = async (store) => {
       type: GET_DEVICES_DATA_REQUEST,
     });
 
-    axios.get(`http://192.168.0.135:5000/api/sensors/`).then((response) => {
+    axios.get(`${API_URL}/sensors/`).then((response) => {
       store.dispatch({
         type: GET_DEVICES_DATA_SUCCESS,
         payload: { data: response.data },
@@ -28,10 +25,7 @@ export const getDevicesData = async (store) => {
   } catch (error) {
     store.dispatch({
       type: GET_DEVICES_DATA_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
+      payload: error,
     });
   }
 };

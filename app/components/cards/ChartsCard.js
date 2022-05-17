@@ -126,7 +126,6 @@ function ChartsCard({ chartObject, onPress, values }) {
 
 const styles = StyleSheet.create({
   card: {
-    // flex: 1,
     borderRadius: 10,
     backgroundColor: colors.white,
     marginTop: h * 0.015,

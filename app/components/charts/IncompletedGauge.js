@@ -39,7 +39,7 @@ export default function gouge({ value, size, min, max, warning }) {
 
   return (
     <View style={styles.container}>
-      <View>
+      <View style={{ minHeight: '10%' }}>
         {value === warning && (
           <View style={styles.messageContainer}>
             <AntDesign

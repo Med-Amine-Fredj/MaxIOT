@@ -1,13 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import {
-  StyleSheet,
-  StatusBar,
-  View,
-  ScrollView,
-  SafeAreaView,
-  FlatList,
-} from 'react-native';
+import { StatusBar, ScrollView, FlatList } from 'react-native';
 
 import Screen from '../components/Screen';
 
@@ -45,8 +38,6 @@ import GaugeFlatlist from '../components/dataFlatlist/GaugeFlatlist';
 import BarChartsFlatlist from '../components/dataFlatlist/BarChartsFlatlist';
 import PieChartsFlalist from '../components/dataFlatlist/PieChartsFlalist';
 import SimpleFlatlist from '../components/dataFlatlist/SimpleFlatlist';
-
-import { SOCKET_URL } from '@env';
 import {
   getDevicesData,
   updateDevicesData,
@@ -66,8 +57,10 @@ import routes from '../navigation/routes';
 import InfoCard from '../components/cards/InfoCard';
 import { filterDeviceById } from '../../Helpers/Functions/filterDeviceById';
 
+import { SOCKET_URL } from '../config/dotEnvFile';
+
 function HomeScreen({ navigation }) {
-  const socket = io(`http://192.168.0.135:5000/`);
+  const socket = io(SOCKET_URL);
 
   const store = useStore();
 

@@ -14,8 +14,7 @@ import {
 } from '../slices/reducers/devices';
 
 import axios from 'axios';
-
-import { API_URL } from '@env';
+import { API_URL } from '../../config/dotEnvFile';
 
 export const getDevices = async (store) => {
   try {
@@ -23,7 +22,7 @@ export const getDevices = async (store) => {
       type: GET_DEVICES_REQUEST,
     });
 
-    axios.get(`http://192.168.0.135:5000/api/devices`).then((response) => {
+    axios.get(`${API_URL}/devices`).then((response) => {
       store.dispatch({
         type: GET_DEVICES_SUCCESS,
         payload: { data: response.data },
@@ -40,7 +39,7 @@ export const getDevices = async (store) => {
   }
 };
 
-export const updateDevices = (store, id, meta, devices) => {
+export const updateDevices = (store, id, meta) => {
   try {
     store.dispatch({
       type: UPDATE_DEVICES_REQUEST,

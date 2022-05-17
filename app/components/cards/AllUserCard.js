@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text, Dimensions } from 'react-native';
 import color from '../../config/colors';
 
-let h = Dimensions.get('window').height;
+let screenHeight = Dimensions.get('window').height;
 
 function AllUserCard({ usersNumber }) {
   return (
@@ -23,11 +23,11 @@ function AllUserCard({ usersNumber }) {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: color.white,
-    height: h * 0.1,
+    height: screenHeight * 0.1,
     borderRadius: 10,
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: h * 0.05,
+    marginTop: screenHeight * 0.05,
   },
   numberContainer: {
     width: '73%',
