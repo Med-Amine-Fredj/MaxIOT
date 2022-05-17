@@ -71,6 +71,9 @@ function HomeScreen({ navigation }) {
 
   const store = useStore();
 
+  const [realTime, setReal] = useState(true);
+  const [socketLoader, setSocketLoader] = useState(true);
+
   const login = () => {
     getDevicesData(store);
     getUiStyling(store);
@@ -90,49 +93,51 @@ function HomeScreen({ navigation }) {
   const loadingDevices = useSelector(
     (state) => state?.entities?.devices?.loading
   );
+
+  useEffect(() => {
+    socket.on('connect', () => {
+      console.log('Connected wih Id : ', socket.id);
+      setSocketLoader(false);
+    });
+    if (realTime) {
+      login();
+
+      socket.on('devices-updated', (data) => {
+        updateDevices(store, data.id, data.meta);
+      });
+
+      socket.on('devices-removed', (data) => {
+        removeDevice(store, data);
+      });
+
+      socket.on('devices-inserted', (data) => {
+        insertDevice(store, data);
+        getDevicesData(store);
+      });
+
+      socket.on('uiStyling-added', (data) => {
+        insertUiSyling(store, data);
+      });
+
+      socket.on('uiStyling-removed', (data) => {
+        removeUiStyling(store, data);
+      });
+
+      socket.on('uiStyling-updated', (data) => {
+        updateUiStyling(store, data.id, data.components);
+      });
+
+      socket.on('devices-values-update', (data) => {
+        updateDevicesData(store, data.id, data.values);
+      });
+    }
+
+    return () => socket.disconnect();
+  }, [realTime]);
+
   const deviceData = useSelector(
     (state) => state?.entities?.devicesData?.devicesData
   );
-
-  const [realTime, setReal] = useState(true);
-
-  useEffect(() => {
-    login();
-    socket.on('connect', () => {
-      console.log('Connected wih Id : ', socket.id);
-    });
-
-    socket.on('devices-updated', (data) => {
-      updateDevices(store, data.id, data.meta);
-    });
-
-    socket.on('devices-removed', (data) => {
-      removeDevice(store, data);
-    });
-
-    socket.on('devices-inserted', (data) => {
-      insertDevice(store, data);
-      getDevicesData(store);
-    });
-
-    socket.on('uiStyling-added', (data) => {
-      insertUiSyling(store, data);
-    });
-
-    socket.on('uiStyling-removed', (data) => {
-      removeUiStyling(store, data);
-    });
-
-    socket.on('uiStyling-updated', (data) => {
-      updateUiStyling(store, data.id, data.components);
-    });
-
-    socket.on('devices-values-update', (data) => {
-      updateDevicesData(store, data.id, data.values);
-    });
-
-    return () => socket.disconnect();
-  }, []);
 
   const simpleData = devices?.filter((n) => n?.chartType == SIMPLE_DATA);
 
@@ -157,7 +162,9 @@ function HomeScreen({ navigation }) {
 
   return (
     <>
-      <ActivityIndicator visible={loadingDevices || loadingUiStyling} />
+      <ActivityIndicator
+        visible={loadingDevices || loadingUiStyling || socketLoader}
+      />
       <StatusBar backgroundColor="#6E53A2" />
       <Screen>
         <ScrollView
@@ -285,9 +292,5 @@ function HomeScreen({ navigation }) {
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {},
-});
 
 export default HomeScreen;
