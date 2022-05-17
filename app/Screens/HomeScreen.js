@@ -18,7 +18,12 @@ import { io } from 'socket.io-client';
 
 import { useSelector, useStore } from 'react-redux';
 
-import { getUiStyling } from '../store/actions/uiStylingActions';
+import {
+  getUiStyling,
+  insertUiSyling,
+  removeUiStyling,
+  updateUiStyling,
+} from '../store/actions/uiStylingActions';
 
 import {
   BEZIER_LINE,
@@ -58,9 +63,11 @@ import IconsCard from '../components/cards/IconsCard';
 import { chartValuesCalculator } from '../../Helpers/Functions/chartsDataCalculator';
 import { stackedNumberCalculator } from '../../Helpers/Functions/StackedNumberForStackedBarChart';
 import routes from '../navigation/routes';
+import InfoCard from '../components/cards/InfoCard';
+import { filterDeviceById } from '../../Helpers/Functions/filterDeviceById';
 
 function HomeScreen({ navigation }) {
-  const socket = io(`http://192.168.1.32:5000/`);
+  const socket = io(`http://192.168.0.135:5000/`);
 
   const store = useStore();
 
@@ -107,18 +114,28 @@ function HomeScreen({ navigation }) {
       insertDevice(store, data);
       getDevicesData(store);
     });
+
+    socket.on('uiStyling-added', (data) => {
+      insertUiSyling(store, data);
+    });
+
+    socket.on('uiStyling-removed', (data) => {
+      removeUiStyling(store, data);
+    });
+
+    socket.on('uiStyling-updated', (data) => {
+      updateUiStyling(store, data.id, data.components);
+    });
+
     socket.on('devices-values-update', (data) => {
       updateDevicesData(store, data.id, data.values);
     });
+
     return () => socket.disconnect();
   }, []);
 
   const simpleData = devices?.filter((n) => n?.chartType == SIMPLE_DATA);
-  const testFunction = (deviceId) => {
-    const test = devices?.filter((n) => n?._id === deviceId);
-    // console.log('test ======', test);
-    return test;
-  };
+
   const iconsData = devices?.filter((n) => n?.chartType === ICONS);
 
   const lineChartsData = devices?.filter(
@@ -141,93 +158,108 @@ function HomeScreen({ navigation }) {
   return (
     <>
       <ActivityIndicator visible={loadingDevices || loadingUiStyling} />
-
       <StatusBar backgroundColor="#6E53A2" />
-
       <Screen>
-        <View style={styles.container}>
-          <ScrollView
-            showsVerticalScrollIndicator={false}
-            showsHorizontalScrollIndicator={false}
-          >
-            <SafeAreaView>
-              <DateNow
-                realTime={realTime}
-                onPress={() => {
-                  setReal(!realTime);
-                }}
-              />
-              <AllUserCard usersNumber={1231231231} />
-              <SimpleFlatlist data={simpleData} />
-              {uiStylingData?.map((element) => (
-                <FlatList
-                  showsVerticalScrollIndicator={false}
-                  showsHorizontalScrollIndicator={false}
-                  horizontal={element.layout === 'COL' ? false : true}
-                  numColumns={element.layout === 'COL' && 2}
-                  data={element.components}
-                  keyExtractor={(item, index) => item.deviceId.toString()}
-                  renderItem={({ item }) => (
-                    <>
-                      <ChartsCard
-                        values={
-                          chartValuesCalculator(
-                            store,
-                            testFunction(item.deviceId)[0]._id
-                          ) || [0]
-                        }
-                        chartObject={testFunction(item.deviceId)[0]}
-                        onPress={() =>
-                          navigation.navigate(routes.CHART_DETAILS, {
-                            id: testFunction(item.deviceId)[0]._id,
-                          })
-                        }
-                      />
-                      <BarsChartsCard
-                        chartObject={testFunction(item.deviceId)[0]}
-                        values={
-                          chartValuesCalculator(
-                            store,
-                            testFunction(item.deviceId)[0]._id
-                          ) || [0]
-                        }
-                        stackedNumber={
-                          stackedNumberCalculator(
-                            store,
-                            testFunction(item.deviceId)[0]._id
-                          ) || 0
-                        }
-                        onPress={() =>
-                          navigation.navigate(routes.CHART_DETAILS, {
-                            id: testFunction(item.deviceId)[0]._id,
-                          })
-                        }
-                      />
-                      <IconsCard
-                        values={
-                          chartValuesCalculator(
-                            store,
-                            testFunction(item.deviceId)[0]._id
-                          ) || [0]
-                        }
-                        iconData={testFunction(item.deviceId)[0]}
-                        onPress={() =>
-                          navigation.navigate(routes.ICONS_DETAILS, {
-                            id: testFunction(item.deviceId)[0]._id,
-                          })
-                        }
-                      />
-                    </>
-                  )}
-                />
-              ))}
-              {/* <BarChartsFlatlist
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}
+        >
+          <DateNow
+            realTime={realTime}
+            onPress={() => {
+              setReal(!realTime);
+            }}
+          />
+          <AllUserCard usersNumber={1231231231} />
+          {uiStylingData?.map((element, index) => (
+            <FlatList
+              key={index}
+              showsVerticalScrollIndicator={false}
+              showsHorizontalScrollIndicator={false}
+              horizontal={element.layout === 'COL' ? false : true}
+              numColumns={element.layout === 'COL' && 2}
+              data={element.components}
+              keyExtractor={(item) => item._id.toString()}
+              renderItem={({ item }) => (
+                <>
+                  <InfoCard
+                    number={
+                      chartValuesCalculator(
+                        store,
+                        filterDeviceById(store, item?.deviceId)[0]?._id
+                      ) || [0] ||
+                      0
+                    }
+                    message={
+                      filterDeviceById(store, item?.deviceId)[0]?.name || ''
+                    }
+                    chartObject={
+                      filterDeviceById(store, item?.deviceId)[0] || {}
+                    }
+                  />
+                  <ChartsCard
+                    values={
+                      chartValuesCalculator(
+                        store,
+                        filterDeviceById(store, item?.deviceId)[0]?._id
+                      ) || [0]
+                    }
+                    chartObject={
+                      filterDeviceById(store, item?.deviceId)[0] || {}
+                    }
+                    onPress={() =>
+                      navigation.navigate(routes.CHART_DETAILS, {
+                        id: filterDeviceById(store, item?.deviceId)[0]?._id,
+                      })
+                    }
+                  />
+                  <BarsChartsCard
+                    chartObject={
+                      filterDeviceById(store, item?.deviceId)[0] || {}
+                    }
+                    values={
+                      chartValuesCalculator(
+                        store,
+                        filterDeviceById(store, item?.deviceId)[0]?._id
+                      ) || [0]
+                    }
+                    stackedNumber={
+                      stackedNumberCalculator(
+                        store,
+                        filterDeviceById(store, item?.deviceId)[0]?._id
+                      ) || 0
+                    }
+                    onPress={() =>
+                      navigation.navigate(routes.CHART_DETAILS, {
+                        id: filterDeviceById(store, item?.deviceId)[0]?._id,
+                      })
+                    }
+                  />
+                  <IconsCard
+                    values={
+                      chartValuesCalculator(
+                        store,
+                        filterDeviceById(store, item?.deviceId)[0]?._id
+                      ) || [0]
+                    }
+                    iconData={filterDeviceById(store, item?.deviceId)[0] || {}}
+                    onPress={() =>
+                      navigation.navigate(routes.ICONS_DETAILS, {
+                        id: filterDeviceById(store, item?.deviceId)[0]?._id,
+                      })
+                    }
+                  />
+                </>
+              )}
+            />
+          ))}
+          {/* <BarChartsFlatlist
                 data={barsChartsData || []}
                 isScrollable={true}
                 navigation={navigation}
               /> */}
 
-              {/* <LineChartFlatlist
+          {/* <LineChartFlatlist
                 data={lineChartsData || []}
                 isScrollable={false}
                 navigation={navigation}
@@ -238,28 +270,24 @@ function HomeScreen({ navigation }) {
                 isScrollable={true}
                 navigation={navigation}
               /> */}
-              {/* <PieChartsFlalist
+          {/* <PieChartsFlalist
                 data={circleChartData || []}
                 isScrollable={true}
                 navigation={navigation}
               /> */}
-              {/* <IconsFlatlist
+          {/* <IconsFlatlist
                 data={iconsData || []}
                 isScrollable={true}
                 navigation={navigation}
               />*/}
-            </SafeAreaView>
-          </ScrollView>
-        </View>
+        </ScrollView>
       </Screen>
     </>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
+  container: {},
 });
 
 export default HomeScreen;
