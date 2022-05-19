@@ -64,7 +64,7 @@ export default function gouge({ value, size, min, max, warning }) {
       <View style={{ alignSelf: 'center' }}>
         <AnimatedCircularProgress
           size={size == 'large' ? h * 0.34 : h * 0.18}
-          width={size == 'large' ? w * 0.025 : w * 0.015}
+          width={size == 'large' ? w * 0.025 : w * 0.013}
           fill={value}
           backgroundWidth={size == 'large' ? w * 0.018 : w * 0.01}
           tintColor={
@@ -79,7 +79,7 @@ export default function gouge({ value, size, min, max, warning }) {
           arcSweepAngle={240}
           rotation={242}
           lineCap="round"
-          duration={1000}
+          duration={0}
         >
           {(fill) => <Text style={levelStyle}>{Math.round(fill)}%</Text>}
         </AnimatedCircularProgress>

@@ -14,7 +14,7 @@ import Screen from '../components/Screen';
 import AllUserCard from '../components/cards/AllUserCard';
 import DateNow from '../components/dateNow';
 
-import { io } from 'socket.io-client';
+import io from 'socket.io-client';
 
 import { useSelector, useStore } from 'react-redux';
 
@@ -66,10 +66,11 @@ import { filterDeviceById } from '../../Helpers/Functions/filterDeviceById';
 
 import { SOCKET_URL } from '../config/dotEnvFile';
 import Icon from '../components/Icon';
+import { socketConnection } from '../../Helpers/Socket/socketConnection';
+
+const socket = io(SOCKET_URL, { transports: ['websocket'] });
 
 function HomeScreen({ navigation }) {
-  const socket = io(SOCKET_URL);
-
   const store = useStore();
 
   const [realTime, setReal] = useState(true);
@@ -94,46 +95,13 @@ function HomeScreen({ navigation }) {
   const loadingDevices = useSelector(
     (state) => state?.entities?.devices?.loading
   );
-
   useEffect(() => {
-    socket.on('connect', () => {
-      console.log('Connected wih Id : ', socket.id);
-      setSocketLoader(false);
-    });
     if (realTime) {
-      // login();
-
-      socket.on('devices-updated', (data) => {
-        updateDevices(store, data.id, data.meta);
-      });
-
-      socket.on('devices-removed', (data) => {
-        removeDevice(store, data);
-      });
-
-      socket.on('devices-inserted', (data) => {
-        insertDevice(store, data);
-        getDevicesData(store);
-      });
-
-      socket.on('uiStyling-added', (data) => {
-        insertUiSyling(store, data);
-      });
-
-      socket.on('uiStyling-removed', (data) => {
-        removeUiStyling(store, data);
-      });
-
-      socket.on('uiStyling-updated', (data) => {
-        updateUiStyling(store, data.id, data.components);
-      });
-
-      socket.on('devices-values-update', (data) => {
-        updateDevicesData(store, data.id, data.values);
-      });
+      login();
+      socketConnection(socket, store);
     }
 
-    return () => socket.disconnect();
+    // return () => socket.disconnect();
   }, [realTime]);
 
   const deviceData = useSelector(
@@ -163,9 +131,7 @@ function HomeScreen({ navigation }) {
 
   return (
     <>
-      <ActivityIndicator
-        visible={loadingDevices || loadingUiStyling || socketLoader}
-      />
+      <ActivityIndicator visible={loadingDevices || loadingUiStyling} />
       <StatusBar backgroundColor="#6E53A2" />
       <Screen>
         <ScrollView
@@ -181,7 +147,7 @@ function HomeScreen({ navigation }) {
           <AllUserCard usersNumber={1231231231} />
           {uiStylingData?.map((element, index) => (
             <>
-              {element.layout === 'ROW' && (
+              {/* {element.layout === 'ROW' && (
                 <View key={index + Math.random().toFixed(2).toString()}>
                   <View
                     style={{
@@ -227,7 +193,7 @@ function HomeScreen({ navigation }) {
                     </View>
                   </View>
                 </View>
-              )}
+              )} */}
               <FlatList
                 key={index}
                 showsVerticalScrollIndicator={false}
