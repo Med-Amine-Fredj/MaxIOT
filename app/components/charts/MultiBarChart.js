@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { Dimensions, View } from 'react-native';
+import { Dimensions, View, Text } from 'react-native';
 import NoDataFound from '../NoDataFound';
 
 import { BarChart } from 'react-native-chart-kit';

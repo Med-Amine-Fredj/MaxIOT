@@ -8,6 +8,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 
 import colors from '../../config/colors';
+import NoDataFound from '../NoDataFound';
 
 export default function CircleGauge({ value, min, max, warning, size }) {
   var levelStyle = StyleSheet.flatten([
@@ -49,65 +50,71 @@ export default function CircleGauge({ value, min, max, warning, size }) {
 
   return (
     <>
-      <View style={styles.container}>
-        <View style={{ minHeight: '10%' }}>
-          {value == warning && (
-            <View style={styles.messageContainer}>
-              <AntDesign
-                name="warning"
-                size={size == 'large' ? 30 : 25}
-                color={colors.dark_warning}
-              />
-              {size == 'large' && <Text style={messageStyle}>Warning</Text>}
-            </View>
-          )}
-          {(value >= max || value <= min) && (
-            <View style={styles.messageContainer}>
-              <MaterialIcons
-                name="error-outline"
-                size={size == 'large' ? 30 : 25}
-                color={colors.dark_red}
-              />
-              {size == 'large' && <Text style={messageStyle}>Error</Text>}
-            </View>
-          )}
+      {value === 0 ? (
+        <View style={{ flex: 1 }}>
+          <NoDataFound visible={true} />
         </View>
-        <View style={{ alignSelf: 'center' }}>
-          <AnimatedCircularProgress
-            size={size == 'large' ? 180 : 110}
-            width={6}
-            fill={Math.abs(value)}
-            backgroundWidth={1}
-            tintColor={
-              value <= min || value >= max
-                ? colors.light_red
-                : value == warning
-                ? colors.dark_warning
-                : colors.light_green
-            }
-            tintTransparency={false}
-            backgroundColor={
-              value <= min || value >= max
-                ? '#FFDCDC'
-                : value == warning
-                ? '#FFF0D7'
-                : '#EBFFFF'
-            }
-            lineCap="round"
-            duration={1000}
-            rotation={value < 0 ? (360 * value) / 100 : 0}
-          >
-            {(fill) => (
-              <>
-                <View style={styles.valueContainer}>
-                  <Text style={levelStyle}>{Math.round(value)}</Text>
-                  <Text style={percentStyle}>%</Text>
-                </View>
-              </>
+      ) : (
+        <View style={styles.container}>
+          <View style={{ minHeight: '10%' }}>
+            {value == warning && (
+              <View style={styles.messageContainer}>
+                <AntDesign
+                  name="warning"
+                  size={size == 'large' ? 30 : 25}
+                  color={colors.dark_warning}
+                />
+                {size == 'large' && <Text style={messageStyle}>Warning</Text>}
+              </View>
             )}
-          </AnimatedCircularProgress>
+            {(value >= max || value <= min) && (
+              <View style={styles.messageContainer}>
+                <MaterialIcons
+                  name="error-outline"
+                  size={size == 'large' ? 30 : 25}
+                  color={colors.dark_red}
+                />
+                {size == 'large' && <Text style={messageStyle}>Error</Text>}
+              </View>
+            )}
+          </View>
+          <View style={{ alignSelf: 'center' }}>
+            <AnimatedCircularProgress
+              size={size == 'large' ? 180 : 110}
+              width={6}
+              fill={Math.abs(value)}
+              backgroundWidth={1}
+              tintColor={
+                value <= min || value >= max
+                  ? colors.light_red
+                  : value == warning
+                  ? colors.dark_warning
+                  : colors.light_green
+              }
+              tintTransparency={false}
+              backgroundColor={
+                value <= min || value >= max
+                  ? '#FFDCDC'
+                  : value == warning
+                  ? '#FFF0D7'
+                  : '#EBFFFF'
+              }
+              lineCap="round"
+              duration={1000}
+              rotation={value < 0 ? (360 * value) / 100 : 0}
+            >
+              {(fill) => (
+                <>
+                  <View style={styles.valueContainer}>
+                    <Text style={levelStyle}>{Math.round(value)}</Text>
+                    <Text style={percentStyle}>%</Text>
+                  </View>
+                </>
+              )}
+            </AnimatedCircularProgress>
+          </View>
         </View>
-      </View>
+      )}
     </>
   );
 }

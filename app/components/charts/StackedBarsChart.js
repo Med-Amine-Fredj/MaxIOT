@@ -23,7 +23,12 @@ export default function StackedBarsChart({
 
   const data = {
     legend: legendArray,
-    data: dataFinal,
+    data:
+      dataFinal.length > 12 && size === 'large'
+        ? dataFinal.slice(dataFinal.length - 12)
+        : dataFinal.length > 10 && size !== 'large'
+        ? dataFinal.slice(dataFinal.length - 10)
+        : dataFinal,
     barColors: colorsArray,
   };
   const chartConfig = {
@@ -41,8 +46,9 @@ export default function StackedBarsChart({
     decimalPlaces: 0,
     labelColor: () => `black`,
     propsForLabels: {
-      fontSize: 9,
+      fontSize: 7,
       fontWeight: 'bold',
+      alignSelf: 'center',
     },
   };
 

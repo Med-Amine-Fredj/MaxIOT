@@ -15,7 +15,6 @@ import CircleGauge from '../charts/CircleGauge';
 import SimpleLineChart from '../charts/SimpleLineChart';
 import ProgressRing from '../charts/ProgressRing';
 import SimplePieCharts from '../charts/SimplePieCharts';
-import NoDataFound from '../NoDataFound';
 
 import {
   BEZIER_LINE,
@@ -111,7 +110,7 @@ function ChartsCard({ chartObject, onPress, values }) {
             <SimplePieCharts
               size="small"
               names={chartObject?.meta?.names}
-              values={values}
+              values={values || [0]}
               colors={chartObject?.meta?.colors}
             />
           </View>

@@ -1,5 +1,6 @@
 import { StyleSheet, View, Dimensions } from 'react-native';
 import { ProgressChart } from 'react-native-chart-kit';
+import NoDataFound from '../NoDataFound';
 
 let screenWidth = Dimensions.get('window').width;
 let screenHeigth = Dimensions.get('window').height;
@@ -14,7 +15,7 @@ export default function ProgressRing({
   const data = {
     labels: dataLegend,
     data:
-      dataArraySliced?.length == dataColors?.length
+      dataArraySliced?.length === dataColors?.length
         ? dataArraySliced
         : dataArraySliced?.length > dataColors?.length
         ? dataArraySliced?.slice(-dataColors?.length)
@@ -32,20 +33,22 @@ export default function ProgressRing({
     labelColor: () => `black`,
   };
 
-  return (
+  return data && dataArraySliced?.length >= dataColors?.length ? (
     <View style={styles.container}>
-      {data && (
-        <ProgressChart
-          data={data}
-          width={size === 'large' ? screenWidth : screenWidth * 0.5}
-          height={size === 'large' ? screenHeigth * 0.4 : screenHeigth * 0.3}
-          strokeWidth={size === 'large' ? 10 : 5}
-          radius={size === 'large' ? 10 : 1}
-          chartConfig={chartConfig}
-          withCustomBarColorFromData={true}
-          hideLegend={size === 'large' ? false : true}
-        />
-      )}
+      <ProgressChart
+        data={data}
+        width={size === 'large' ? screenWidth : screenWidth * 0.5}
+        height={size === 'large' ? screenHeigth * 0.4 : screenHeigth * 0.3}
+        strokeWidth={size === 'large' ? 10 : 5}
+        radius={size === 'large' ? 10 : 1}
+        chartConfig={chartConfig}
+        withCustomBarColorFromData={true}
+        hideLegend={size === 'large' ? false : true}
+      />
+    </View>
+  ) : (
+    <View style={{ flex: 1 }}>
+      <NoDataFound visible={true} />
     </View>
   );
 }

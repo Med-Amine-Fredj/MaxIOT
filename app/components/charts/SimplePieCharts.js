@@ -1,20 +1,21 @@
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
 
 import { PieChart } from 'react-native-chart-kit';
+import NoDataFound from '../NoDataFound';
 
 let screenWidth = Dimensions.get('window').width;
 let screenHeigth = Dimensions.get('window').height;
 
 export default function SimplePieCharts({ names, values, colors, size }) {
   let data = [];
-  const populationSliced = values.slice(1);
+  const populationSliced = values?.slice(1);
   const populationFinal =
     populationSliced?.length == colors?.length
       ? populationSliced
       : populationSliced?.length > colors?.length
       ? populationSliced?.slice(-colors?.length)
       : populationSliced;
-  for (let i = 0; i < names.length; i++) {
+  for (let i = 0; i < names?.length; i++) {
     data.push({
       name: names[i],
       population: populationFinal[i],
@@ -65,7 +66,7 @@ export default function SimplePieCharts({ names, values, colors, size }) {
     color: () => '#00BFBF',
   };
 
-  return (
+  return populationSliced?.length >= colors?.length ? (
     <View style={styles.container}>
       <PieChart
         data={data}
@@ -77,6 +78,10 @@ export default function SimplePieCharts({ names, values, colors, size }) {
         absolute={false}
         hasLegend={size == 'small' ? false : true}
       />
+    </View>
+  ) : (
+    <View style={{ flex: 1 }}>
+      <NoDataFound visible={true} />
     </View>
   );
 }

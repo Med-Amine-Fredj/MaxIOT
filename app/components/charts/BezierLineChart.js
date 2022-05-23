@@ -52,14 +52,13 @@ export default function BezierLineChart({ dataArray, size }) {
         alignContent: 'center',
       }}
     >
-      <Text>No Data Found !</Text>
       <NoDataFound visible={true} />
     </View>
   ) : (
     <View style={styles.container}>
       {size == 'small' && (
         <Text style={styles.txt}>
-          {data.datasets[0].data[data.datasets[0].data.length - 1]}
+          {data.datasets[0].data[data?.datasets[0]?.data?.length - 1]}
         </Text>
       )}
       <LineChart

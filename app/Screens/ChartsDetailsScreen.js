@@ -1,12 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  View,
-  StyleSheet,
-  FlatList,
-  Text,
-  StatusBar,
-  SafeAreaView,
-} from 'react-native';
+import { View, StyleSheet, FlatList, Text, SafeAreaView } from 'react-native';
 
 import Header from '../components/Header';
 
@@ -162,7 +155,13 @@ function ChartsDetailsScreen({ navigation, route }) {
             </>
           )}
           {item?.chartType === SIMPLE_BAR && (
-            <View style={{ alignSelf: 'center', marginBottom: '10%' }}>
+            <View
+              style={{
+                alignSelf: 'center',
+                marginBottom: '10%',
+                backgroundColor: 'blue',
+              }}
+            >
               <MultiBarChart
                 size="large"
                 values={values}

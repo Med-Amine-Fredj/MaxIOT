@@ -1,13 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import {
-  StatusBar,
-  ScrollView,
-  FlatList,
-  Text,
-  View,
-  TouchableOpacity,
-} from 'react-native';
+import { StatusBar, ScrollView, FlatList, View } from 'react-native';
 
 import Screen from '../components/Screen';
 
@@ -18,43 +11,12 @@ import io from 'socket.io-client';
 
 import { useSelector, useStore } from 'react-redux';
 
-import {
-  getUiStyling,
-  insertUiSyling,
-  removeUiStyling,
-  updateUiStyling,
-} from '../store/actions/uiStylingActions';
-
-import {
-  BEZIER_LINE,
-  COMPLETED_GAUGE,
-  ICONS,
-  INCOMPLETED_GAUGE,
-  PIE,
-  PROGRESS_RING,
-  SIMPLE_BAR,
-  SIMPLE_DATA,
-  SIMPLE_LINE,
-  STACKED_BARS,
-} from '../components/charts/AllChartsTypesConstants';
+import { getUiStyling } from '../store/actions/uiStylingActions';
 
 import ActivityIndicator from '../components/ActivityIndicator';
-import LineChartFlatlist from '../components/dataFlatlist/LineChartFlatlist';
-import IconsFlatlist from '../components/dataFlatlist/IconsFlatlist';
-import GaugeFlatlist from '../components/dataFlatlist/GaugeFlatlist';
-import BarChartsFlatlist from '../components/dataFlatlist/BarChartsFlatlist';
-import PieChartsFlalist from '../components/dataFlatlist/PieChartsFlalist';
-import SimpleFlatlist from '../components/dataFlatlist/SimpleFlatlist';
-import {
-  getDevicesData,
-  updateDevicesData,
-} from '../store/actions/devicesDataActions';
-import {
-  getDevices,
-  insertDevice,
-  removeDevice,
-  updateDevices,
-} from '../store/actions/devicesActions';
+
+import { getDevicesData } from '../store/actions/devicesDataActions';
+import { getDevices } from '../store/actions/devicesActions';
 import ChartsCard from '../components/cards/ChartsCard';
 import BarsChartsCard from '../components/cards/BarsChartsCard';
 import IconsCard from '../components/cards/IconsCard';
@@ -65,7 +27,6 @@ import InfoCard from '../components/cards/InfoCard';
 import { filterDeviceById } from '../../Helpers/Functions/filterDeviceById';
 
 import { SOCKET_URL } from '../config/dotEnvFile';
-import Icon from '../components/Icon';
 import { socketConnection } from '../../Helpers/Socket/socketConnection';
 
 const socket = io(SOCKET_URL, { transports: ['websocket'] });
@@ -74,7 +35,6 @@ function HomeScreen({ navigation }) {
   const store = useStore();
 
   const [realTime, setReal] = useState(true);
-  const [socketLoader, setSocketLoader] = useState(true);
 
   const login = () => {
     getDevicesData(store);
@@ -95,39 +55,19 @@ function HomeScreen({ navigation }) {
   const loadingDevices = useSelector(
     (state) => state?.entities?.devices?.loading
   );
-  useEffect(() => {
-    if (realTime) {
-      login();
-      socketConnection(socket, store);
-    }
-
-    // return () => socket.disconnect();
-  }, [realTime]);
 
   const deviceData = useSelector(
     (state) => state?.entities?.devicesData?.devicesData
   );
 
-  const simpleData = devices?.filter((n) => n?.chartType == SIMPLE_DATA);
+  useEffect(() => {
+    if (realTime) {
+      socketConnection(socket, store);
+      login();
+    }
 
-  const iconsData = devices?.filter((n) => n?.chartType === ICONS);
-
-  const lineChartsData = devices?.filter(
-    (n) => n?.chartType === BEZIER_LINE || n?.chartType === SIMPLE_LINE
-  );
-
-  const gaugeData = devices?.filter(
-    (n) =>
-      n?.chartType === COMPLETED_GAUGE || n?.chartType === INCOMPLETED_GAUGE
-  );
-
-  const circleChartData = devices?.filter(
-    (n) => n?.chartType === PROGRESS_RING || n?.chartType === PIE
-  );
-
-  const barsChartsData = devices?.filter(
-    (n) => n?.chartType === STACKED_BARS || n?.chartType === SIMPLE_BAR
-  );
+    // return () => socket.disconnect();
+  }, [realTime]);
 
   return (
     <>
@@ -146,56 +86,8 @@ function HomeScreen({ navigation }) {
           />
           <AllUserCard usersNumber={1231231231} />
           {uiStylingData?.map((element, index) => (
-            <>
-              {/* {element.layout === 'ROW' && (
-                <View key={index + Math.random().toFixed(2).toString()}>
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                    }}
-                  >
-                    <View
-                      style={{
-                        right: 0,
-                        marginTop: '28%',
-                        position: 'absolute',
-                        zIndex: 1,
-                        opacity: 0.5,
-                      }}
-                    >
-                      <TouchableOpacity>
-                        <Icon
-                          iconName="caretright"
-                          iconColor="black"
-                          iconBackgroundColor="#E2E2DF"
-                          size="new"
-                        />
-                      </TouchableOpacity>
-                    </View>
-
-                    <View
-                      style={{
-                        left: 0,
-                        marginTop: '28%',
-                        position: 'absolute',
-                        zIndex: 1,
-                        opacity: 0.5,
-                      }}
-                    >
-                      <TouchableOpacity>
-                        <Icon
-                          iconName="caretleft"
-                          iconColor="black"
-                          iconBackgroundColor="#E2E2DF"
-                          size="new"
-                        />
-                      </TouchableOpacity>
-                    </View>
-                  </View>
-                </View>
-              )} */}
+            <View key={index}>
               <FlatList
-                key={index}
                 showsVerticalScrollIndicator={false}
                 showsHorizontalScrollIndicator={false}
                 horizontal={element.layout === 'COL' ? false : true}
@@ -276,36 +168,8 @@ function HomeScreen({ navigation }) {
                   </>
                 )}
               />
-            </>
+            </View>
           ))}
-
-          {/* <BarChartsFlatlist
-                data={barsChartsData || []}
-                isScrollable={true}
-                navigation={navigation}
-              /> */}
-
-          {/* <LineChartFlatlist
-                data={lineChartsData || []}
-                isScrollable={false}
-                navigation={navigation}
-              />
-
-              <GaugeFlatlist
-                data={gaugeData || []}
-                isScrollable={true}
-                navigation={navigation}
-              /> */}
-          {/* <PieChartsFlalist
-                data={circleChartData || []}
-                isScrollable={true}
-                navigation={navigation}
-              /> */}
-          {/* <IconsFlatlist
-                data={iconsData || []}
-                isScrollable={true}
-                navigation={navigation}
-              />*/}
         </ScrollView>
       </Screen>
     </>
