@@ -8,6 +8,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 
 import colors from '../../config/colors';
 import NoDataFound from '../NoDataFound';
+import { schedulePushNotification } from '../../../Helpers/notification';
 
 let w = Dimensions.get('window').width;
 let h = Dimensions.get('window').height;
@@ -37,6 +38,17 @@ export default function gouge({ value, size, min, max, warning }) {
           : colors.light_green,
     },
   ]);
+
+  // const sendNotif = async (title, body) => {
+  //   await schedulePushNotification(title, body);
+  // };
+  // if (value == warning) {
+  //   sendNotif('Warning at the circle gauge', 'value is now in warning zone');
+  // } else if (value <= min) {
+  //   sendNotif('Warning at the circle gauge', 'value is below the minimum');
+  // } else if (value >= max) {
+  //   sendNotif('Warning at the circle gauge', 'value is over the maximum');
+  // }
 
   return (
     <>
