@@ -1,41 +1,49 @@
 import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, FlatList, Text, SafeAreaView } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useSelector, useStore } from 'react-redux';
 
 import Header from '../components/Header';
 import ListItemSeparator from '../components/ListItemSeparator';
 import ChartDetailsCard from '../components/cards/ChartDetailsCard';
 import Icon from '../components/Icon';
+import { chartValuesCalculator } from '../../Helpers/Functions/chartsDataCalculator';
 
 function IconsDetailsScreen({ navigation, route }) {
   const [refreshing, setRefreshing] = useState(false);
+  const store = useStore();
 
   const onRefresh = () => {
     setRefreshing(true);
     setTimeout(() => setRefreshing(false), 3000);
   };
 
+  const realTime = route.params.realTime;
   const id = route.params.id;
 
+  const [realTim, setReal] = useState(realTime);
+
   const [item, setItem] = useState({});
-  const [values, setValues] = useState(null);
 
   const deviceStyle = useSelector(
     (state) => state?.entities?.devices?.devicesStyle
   );
 
   const deviceData = useSelector(
-    (state) => state?.entities?.devicesData?.devicesData
+    (state) => realTim && state?.entities?.devicesData?.devicesData
   );
 
   useEffect(() => {
     setItem(deviceStyle?.filter((n) => n?._id === id)[0]);
-    setValues(deviceData?.filter((n) => n?.deviceId === id)[0]?.values);
-  }, [item, values, deviceData, deviceStyle]);
+  }, [item, deviceStyle]);
 
   return (
     <>
-      <Header onPress={() => navigation.goBack()} title={item?.name} />
+      <Header
+        onPress={() => navigation.goBack()}
+        title={item?.name}
+        realTime={realTim}
+        onRealTimePress={() => setReal(!realTim)}
+      />
       <View style={styles.container}>
         <View style={{ flexDirection: 'row' }}>
           <View style={styles.iconContainer}>
@@ -48,7 +56,11 @@ function IconsDetailsScreen({ navigation, route }) {
           </View>
           <View style={styles.textContainer}>
             <Text style={styles.txt}>
-              {values ? values[values?.length - 1].value : ''}
+              {chartValuesCalculator(store, item._id)
+                ? chartValuesCalculator(store, item._id)[
+                    chartValuesCalculator(store, item._id)?.length - 1
+                  ]
+                : ''}
             </Text>
           </View>
         </View>

@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, FlatList, Text, SafeAreaView } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  FlatList,
+  Text,
+  SafeAreaView,
+  TouchableWithoutFeedback,
+} from 'react-native';
 
 import Header from '../components/Header';
 
@@ -32,10 +39,13 @@ import {
 } from '../components/charts/AllChartsTypesConstants';
 
 import ActivityIndicator from '../components/ActivityIndicator';
-import { useSelector } from 'react-redux';
+import { useSelector, useStore } from 'react-redux';
+import { stackedNumberCalculator } from '../../Helpers/Functions/StackedNumberForStackedBarChart';
+import { chartValuesCalculator } from '../../Helpers/Functions/chartsDataCalculator';
 
 function ChartsDetailsScreen({ navigation, route }) {
   const [refreshing, setRefreshing] = useState(false);
+  const store = useStore();
 
   const onRefresh = () => {
     setRefreshing(true);
@@ -44,50 +54,50 @@ function ChartsDetailsScreen({ navigation, route }) {
 
   const id = route.params.id;
 
+  const realTime = route.params.realTime;
+
   const [item, setItem] = useState({});
-  const [values, setValues] = useState(null);
+
+  const [realTim, setReal] = useState(realTime);
 
   const deviceStyle = useSelector(
     (state) => state?.entities?.devices?.devicesStyle
   );
 
   const deviceData = useSelector(
-    (state) => state?.entities?.devicesData?.devicesData
+    (state) => realTim && state?.entities?.devicesData?.devicesData
   );
-  const stacked = (id) => {
-    const stackedNumber = deviceData?.filter((n) => n?.deviceId === id)[0]
-      ?.numberStackedValues;
-    return stackedNumber;
-  };
 
-  const valuesCal = () => {
-    let arr = [];
-    deviceData
-      ?.filter((n) => n?.deviceId === id)[0]
-      ?.values.forEach((element) => {
-        arr = [...arr, element.value];
-      });
-    return arr;
-  };
   useEffect(() => {
     setItem(deviceStyle?.filter((n) => n?._id === id)[0]);
-
-    setValues(valuesCal);
   }, []);
 
   return (
     <>
       <ActivityIndicator visible={!id} />
-      <Header onPress={() => navigation.goBack()} title={item?.name} />
+      <Header
+        realTime={realTim}
+        onPress={() => navigation.goBack()}
+        onRealTimePress={() => setReal(!realTim)}
+        title={item?.name}
+      />
+
       <View style={styles.container}>
         <View style={styles.chartContainer}>
           {item?.chartType === SIMPLE_LINE && (
             <>
-              <SimpleLineChart dataArray={values || [0]} size="large" />
+              <SimpleLineChart
+                dataArray={chartValuesCalculator(store, item._id) || [0]}
+                size="large"
+              />
               <View style={styles.lineChartTextContainer}>
                 <Text style={styles.lineChartTextTitle}>Last Value : </Text>
                 <Text style={styles.lineChartText}>
-                  {values[values?.length - 1]}
+                  {
+                    chartValuesCalculator(store, item._id)[
+                      chartValuesCalculator(store, item._id)?.length - 1
+                    ]
+                  }
                 </Text>
               </View>
             </>
@@ -95,11 +105,18 @@ function ChartsDetailsScreen({ navigation, route }) {
 
           {item?.chartType === BEZIER_LINE && (
             <>
-              <BezierLineChart dataArray={values} size="large" />
+              <BezierLineChart
+                dataArray={chartValuesCalculator(store, item._id)}
+                size="large"
+              />
               <View style={styles.lineChartTextContainer}>
                 <Text style={styles.lineChartTextTitle}>Last Value : </Text>
                 <Text style={styles.lineChartText}>
-                  {values[values?.length - 1]}
+                  {
+                    chartValuesCalculator(store, item._id)[
+                      chartValuesCalculator(store, item._id)?.length - 1
+                    ]
+                  }
                 </Text>
               </View>
             </>
@@ -107,7 +124,11 @@ function ChartsDetailsScreen({ navigation, route }) {
           {item?.chartType === INCOMPLETED_GAUGE && (
             <>
               <IncompletedGauge
-                value={values[values?.length - 1]}
+                value={
+                  chartValuesCalculator(store, item._id)[
+                    chartValuesCalculator(store, item._id)?.length - 1
+                  ]
+                }
                 min={item?.meta?.min[item?.meta?.min?.length - 1]}
                 max={item?.meta?.max[item?.meta?.max?.length - 1]}
                 warning={item?.meta?.warning[item?.meta?.warning?.length - 1]}
@@ -132,7 +153,11 @@ function ChartsDetailsScreen({ navigation, route }) {
           {item?.chartType == COMPLETED_GAUGE && (
             <>
               <CircleGauge
-                value={values[values?.length - 1]}
+                value={
+                  chartValuesCalculator(store, item._id)[
+                    chartValuesCalculator(store, item._id)?.length - 1
+                  ]
+                }
                 min={item?.meta?.min[item?.meta?.min?.length - 1]}
                 max={item?.meta?.max[item?.meta?.max?.length - 1]}
                 warning={item?.meta?.warning[item?.meta?.warning?.length - 1]}
@@ -164,7 +189,7 @@ function ChartsDetailsScreen({ navigation, route }) {
             >
               <MultiBarChart
                 size="large"
-                values={values}
+                values={chartValuesCalculator(store, item._id)}
                 color={item?.meta?.colors[item?.meta?.colors?.length - 1]}
               />
             </View>
@@ -173,8 +198,8 @@ function ChartsDetailsScreen({ navigation, route }) {
             <View style={{ marginLeft: 50 }}>
               <StackedBarsChart
                 size="large"
-                dataArray={values || 0}
-                stackedNumber={stacked(item._id) || 0}
+                dataArray={chartValuesCalculator(store, item._id) || 0}
+                stackedNumber={stackedNumberCalculator(store, item._id) || 0}
                 legendArray={item?.meta?.legend}
                 colorsArray={item?.meta?.colors}
               />
@@ -185,7 +210,7 @@ function ChartsDetailsScreen({ navigation, route }) {
               <SimplePieCharts
                 size="large"
                 names={item?.meta?.names}
-                values={values}
+                values={chartValuesCalculator(store, item._id)}
                 colors={item?.meta?.colors}
               />
             </View>
@@ -193,7 +218,7 @@ function ChartsDetailsScreen({ navigation, route }) {
           {item?.chartType === PROGRESS_RING && (
             <ProgressRing
               size="large"
-              dataArray={values}
+              dataArray={chartValuesCalculator(store, item._id)}
               dataColors={item?.meta?.colors}
               dataLegend={item?.meta?.legend}
             />

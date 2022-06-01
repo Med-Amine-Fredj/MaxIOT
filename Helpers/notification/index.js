@@ -5,7 +5,6 @@ export const schedulePushNotification = async (title, body, data) => {
     content: {
       title: title,
       body: body,
-      data: { data: data },
     },
     trigger: null,
   });
