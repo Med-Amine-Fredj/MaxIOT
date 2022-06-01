@@ -1,12 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  View,
-  StyleSheet,
-  FlatList,
-  Text,
-  SafeAreaView,
-  TouchableWithoutFeedback,
-} from 'react-native';
+import { View, StyleSheet, FlatList, Text, SafeAreaView } from 'react-native';
 
 import Header from '../components/Header';
 

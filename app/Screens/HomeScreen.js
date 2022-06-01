@@ -1,4 +1,3 @@
-import * as Notifications from 'expo-notifications';
 import React, { useEffect, useState } from 'react';
 
 import { StatusBar, ScrollView, FlatList, View, Button } from 'react-native';

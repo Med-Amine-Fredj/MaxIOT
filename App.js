@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
-import { StyleSheet, Text, View, ScrollView, LogBox } from 'react-native';
-
-import color from './app/config/colors';
+import { LogBox } from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
 import AppNavigator from './app/navigation/AppNavigator';
@@ -36,10 +34,3 @@ export default function App() {
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: color.backGround,
-  },
-});
