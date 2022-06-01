@@ -17,9 +17,7 @@ export default function App() {
   const appStore = defaultStore;
 
   useEffect(() => {
-    LogBox.ignoreLogs([
-      'VirtualizedLists should never be nested inside plain ScrollViews with the same orientation',
-    ]);
+    LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
 
     if (appStore) {
       injectStore(appStore);
