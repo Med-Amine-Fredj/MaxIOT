@@ -13,7 +13,9 @@ export default function BezierLineChart({ dataArray, size }) {
     datasets: [
       {
         data:
-          size === 'large'
+          size === 'large' && dataArray?.length > 24
+            ? dataArray.slice(-24)
+            : size === 'large' && dataArray?.length <= 24
             ? dataArray
             : size === 'small' && dataArray?.length > 6
             ? dataArray.slice(-6)
