@@ -3006,6 +3006,11 @@ expo-modules-core@0.6.5:
     compare-versions "^3.4.0"
     invariant "^2.2.4"
 
+expo-network@~4.1.0:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/expo-network/-/expo-network-4.1.1.tgz#08b1d0d8934197f2978e33c2ae8527811532d8ce"
+  integrity sha512-afqi/s1Abwry6dMgMUOtj1jDV9Hm1DBqmOoZyQpXcL+uzdlqUHvGyCxQ0sNwrMDNtPKP8CGME2XLMqql2DExEw==
+
 expo-notifications@~0.14.0:
   version "0.14.1"
   resolved "https://registry.yarnpkg.com/expo-notifications/-/expo-notifications-0.14.1.tgz#fe2b122ed79488e754b7f993f9b802eaf60b51a3"
@@ -5373,6 +5378,11 @@ react-native-screens@~3.10.1:
   dependencies:
     react-freeze "^1.0.0"
     warn-once "^0.1.0"
+
+react-native-select-dropdown@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-select-dropdown/-/react-native-select-dropdown-2.0.0.tgz#25ab0a7e4417a0a21908a2f5f5c0d20f0b6ec24c"
+  integrity sha512-5fBBtSjDz+8Dx5XX2z9z3+GOrs/rIPT3gFvw0N6sWxSgzy2K9eP4rb5ZKaPvAOmz04AJR+Qs9VggOp8BO6AWNw==
 
 react-native-simple-gauge@^0.3.1:
   version "0.3.1"

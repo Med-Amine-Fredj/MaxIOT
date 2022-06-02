@@ -21,7 +21,7 @@ function ChartDetailsCard({ item }) {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: '2%',
+    marginTop: '1%',
     marginBottom: '2%',
   },
   textContainer: {

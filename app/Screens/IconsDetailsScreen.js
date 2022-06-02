@@ -7,6 +7,9 @@ import ListItemSeparator from '../components/ListItemSeparator';
 import ChartDetailsCard from '../components/cards/ChartDetailsCard';
 import Icon from '../components/Icon';
 import { chartValuesCalculator } from '../../Helpers/Functions/chartsDataCalculator';
+import colors from '../config/colors';
+import { lastValueDate } from '../../Helpers/Functions/lastValueDate';
+import { borderColor } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes';
 
 function IconsDetailsScreen({ navigation, route }) {
   const [refreshing, setRefreshing] = useState(false);
@@ -45,7 +48,16 @@ function IconsDetailsScreen({ navigation, route }) {
         onRealTimePress={() => setReal(!realTim)}
       />
       <View style={styles.container}>
-        <View style={{ flexDirection: 'row' }}>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'center',
+            borderColor: colors.gray,
+            borderWidth: 1,
+            borderRadius: 100,
+            margin: 10,
+          }}
+        >
           <View style={styles.iconContainer}>
             <Icon
               iconName={item?.meta?.iconName}
@@ -63,6 +75,16 @@ function IconsDetailsScreen({ navigation, route }) {
                 : ''}
             </Text>
           </View>
+        </View>
+        <View style={styles.lineChartTextDateContainer}>
+          <Text style={styles.lineChartTextTitle}>Last Value Date: </Text>
+          <Text style={styles.lineChartText}>
+            {lastValueDate(store, item._id)?.split('T')[0]}
+          </Text>
+          <Text style={styles.lineChartTextTitle}>Last Value Time: </Text>
+          <Text style={styles.lineChartText}>
+            {lastValueDate(store, item._id)?.split('T')[1]?.split('.')[0]}
+          </Text>
         </View>
         <SafeAreaView style={{ flex: 2, backgroundColor: 'white' }}>
           <ListItemSeparator />
@@ -100,6 +122,22 @@ const styles = StyleSheet.create({
   txt: {
     fontSize: 30,
     fontWeight: 'bold',
+  },
+  lineChartTextDateContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+  },
+  lineChartTextTitle: {
+    alignSelf: 'center',
+    color: 'black',
+    fontSize: 13,
+    margin: 2,
+  },
+  lineChartText: {
+    alignSelf: 'center',
+    color: colors.primary,
+    fontSize: 13,
+    fontWeight: '600',
   },
 });
 

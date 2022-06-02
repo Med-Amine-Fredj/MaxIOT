@@ -13,9 +13,9 @@ export default function MultiBarChart({ size, values, color }) {
   const dataSliced = values.slice(1);
   const finalData =
     dataSliced.length > 12 && size === 'large'
-      ? dataSliced.slice(dataSliced.length - 12)
+      ? dataSliced.slice(-12)
       : dataSliced.length > 10 && size !== 'large'
-      ? dataSliced.slice(dataSliced.length - 10)
+      ? dataSliced.slice(-10)
       : dataSliced;
   const data = {
     datasets: [
@@ -58,7 +58,7 @@ export default function MultiBarChart({ size, values, color }) {
           justifyContent: 'center',
         }}
         data={data}
-        width={size === 'large' ? screenWidth * 1.15 : screenWidth * 1.05}
+        width={size === 'large' ? screenWidth * 1.1 : screenWidth * 1.12}
         height={size === 'large' ? screenHeigth * 0.3 : screenHeigth * 0.25}
         chartConfig={chartConfig}
         showValuesOnTopOfBars={true}
