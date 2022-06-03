@@ -37,7 +37,6 @@ import { stackedNumberCalculator } from '../../Helpers/Functions/StackedNumberFo
 import { chartValuesCalculator } from '../../Helpers/Functions/chartsDataCalculator';
 import SelectedDropdown from '../components/SelectedDropdown';
 import { lastValueDate } from '../../Helpers/Functions/lastValueDate';
-import { filterDeviceById } from '../../Helpers/Functions/filterDeviceById';
 
 function ChartsDetailsScreen({ navigation, route }) {
   const [refreshing, setRefreshing] = useState(false);

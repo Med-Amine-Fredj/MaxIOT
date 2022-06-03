@@ -10,6 +10,7 @@ import { chartValuesCalculator } from '../../Helpers/Functions/chartsDataCalcula
 import colors from '../config/colors';
 import { lastValueDate } from '../../Helpers/Functions/lastValueDate';
 import { borderColor } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes';
+import SelectedDropdown from '../components/SelectedDropdown';
 
 function IconsDetailsScreen({ navigation, route }) {
   const [refreshing, setRefreshing] = useState(false);
@@ -34,10 +35,11 @@ function IconsDetailsScreen({ navigation, route }) {
   const deviceData = useSelector(
     (state) => realTim && state?.entities?.devicesData?.devicesData
   );
-
+  const [selectedFilter, setSelectedFilter] = useState();
   useEffect(() => {
     setItem(deviceStyle?.filter((n) => n?._id === id)[0]);
-  }, [item, deviceStyle]);
+    console.log('Selected Filter =========', selectedFilter);
+  }, [item, deviceStyle, selectedFilter]);
 
   return (
     <>
@@ -47,6 +49,15 @@ function IconsDetailsScreen({ navigation, route }) {
         realTime={realTim}
         onRealTimePress={() => setReal(!realTim)}
       />
+      <View style={{ alignItems: 'flex-end', marginTop: 3, marginRight: '2%' }}>
+        <SelectedDropdown
+          data={deviceStyle?.filter((n) => n?._id === id)[0]?.chartType}
+          realTime={realTim}
+          onSelect={(selectedItem) => {
+            setSelectedFilter(selectedItem);
+          }}
+        />
+      </View>
       <View style={styles.container}>
         <View
           style={{

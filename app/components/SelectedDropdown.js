@@ -7,6 +7,7 @@ import Icon from './Icon';
 import {
   BEZIER_LINE,
   COMPLETED_GAUGE,
+  ICONS,
   INCOMPLETED_GAUGE,
   PIE,
   PROGRESS_RING,
@@ -22,7 +23,8 @@ function SelectedDropdown({ realTime, onSelect, data }) {
     data === INCOMPLETED_GAUGE ||
     data === COMPLETED_GAUGE ||
     data === PIE ||
-    data === PROGRESS_RING
+    data === PROGRESS_RING ||
+    data === ICONS
       ? setCountires([
           '3 Days Ago',
           '1 Week Ago',
