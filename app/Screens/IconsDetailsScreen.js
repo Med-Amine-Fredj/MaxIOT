@@ -49,7 +49,14 @@ function IconsDetailsScreen({ navigation, route }) {
         realTime={realTim}
         onRealTimePress={() => setReal(!realTim)}
       />
-      <View style={{ alignItems: 'flex-end', marginTop: 3, marginRight: '2%' }}>
+      <View
+        style={{
+          alignItems: 'flex-end',
+          marginTop: 3,
+          marginRight: '2%',
+          backgroundColor: 'white',
+        }}
+      >
         <SelectedDropdown
           data={deviceStyle?.filter((n) => n?._id === id)[0]?.chartType}
           realTime={realTim}
